@@ -1,0 +1,605 @@
+
+.form-div .upload-input {
+    pointer:cursor;
+    opacity:0;
+    _filter:alpha(opacity=0)
+}
+.form-div .upload-mark {
+    position:absolute;
+    left:90px;
+    cursor:pointer;
+    padding-left:5px;
+    width:338px;
+    height:25px;
+    line-height:25px;
+    vertical-align:middle;
+    border:1px solid #DDD;
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+    -o-border-radius:2px;
+    border-radius:2px;
+    -webkit-box-shadow:1px 1px 1px #DDD inset;
+    -moz-box-shadow:1px 1px 1px #ddd inset;
+    -o-box-shadow:1px 1px 1px #ddd inset;
+    box-shadow:1px 1px 1px #DDD inset
+}
+.form-div .upload-btn {
+    position:absolute;
+    left:450px
+}
+.head-summary {
+    font-size:12px
+}
+.head-views {
+    float:left
+}
+.main-head {
+    float:left
+}
+.main-head .main-head-holder {
+    width:160px;
+    height:160px;
+    padding:4px;
+    border:1px solid #e9e9e9;
+    -webkit-box-shadow:3px 3px 3px #e9e9e9;
+    -o-box-shadow:3px 3px 3px #e9e9e9;
+    -moz-box-shadow:3px 3px 3px #e9e9e9;
+    box-shadow:3px 3px 3px #e9e9e9
+}
+.main-head .center {
+    text-align:center;
+    margin-top:5px
+}
+.other-head {
+    margin-left:220px;
+    margin-top:4px
+}
+.head-cut {
+    margin-right:60px
+}
+.crop {
+    clear:both;
+    overflow:hidden
+}
+.crop .mask_wrapper {
+    background-color:#000;
+    float:left;
+    position:relative;
+    z-index:1
+}
+.crop .img_mask {
+    height:0;
+    left:0;
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    width:0;
+    z-index:2
+}
+.crop .cover_mask {
+    left:0;
+    position:absolute;
+    top:0
+}
+.crop .resizer_mask {
+    background-color:#ccc;
+    border:2px dashed #ccc;
+    bottom:0;
+    cursor:se-resize;
+    height:10px;
+    opacity:.5;
+    position:absolute;
+    right:0;
+    width:10px
+}
+.crop .preview {
+    overflow:hidden
+}
+.crop .preview_big_pic {
+    max-width:315px
+}
+.crop .top_border, .crop .left_border, .crop .right_border, .crop .bottom_border {
+    background:#CCC
+}
+.crop .top_border {
+    height:9px;
+    font-size:0;
+    left:0;
+    position:absolute;
+    top:-8px;
+    width:100%
+}
+.crop .left_border {
+    height:100%;
+    left:-8px;
+    position:absolute;
+    top:0;
+    width:9px
+}
+.crop .right_border {
+    cursor:e-resize;
+    height:100%;
+    position:absolute;
+    right:-8px;
+    top:0;
+    width:9px
+}
+.crop .bottom_border {
+    bottom:-8px;
+    cursor:n-resize;
+    height:9px;
+    font-size:0;
+    left:0;
+    position:absolute;
+    width:100%
+}
+.crop_operation {
+    float:left;
+    margin:0 40px 26px 0;
+    width:320px
+}
+.crop_operation .hint {
+    color:#888;
+    height:34px;
+    line-height:34px
+}
+#preview48, #preview24, #preview160 {
+    overflow:hidden
+}
+.cut-btns .gbtn-primary {
+    margin-left:20px
+}
+.cut-btns .gbtn {
+    margin-left:10px
+}
+.settings-profile-page .gform .gform-box-count-tip {
+    margin:8px 0 0;
+    position:absolute
+}
+.settings-profile-page .gform .gform-box-count {
+    margin-top:8px;
+    text-align:right;
+    width:402px
+}
+.main .content h3 {
+    color:#666;
+    font-size:14px;
+    line-height:30px;
+    border-bottom:1px solid #e9e9e9;
+    padding:0 0 10px 10px
+}
+.change_password {
+    margin:20px 0
+}
+.change_password label {
+    color:#999;
+    clear:left;
+    float:left;
+    line-height:27px;
+    font-size:12px;
+    text-align:right;
+    width:80px;
+    height:27px;
+    vertical-align:middle;
+    margin-right:10px
+}
+.change_password .buttons {
+    margin:20px 0 0 90px
+}
+.change_password .save {
+    margin-right:5px
+}
+.email_verify {
+    font-size:14px!important
+}
+.email_verify em {
+    margin:10px 0 25px!important
+}
+.email_verify .gbtn-send {
+    background:url("imgs/4-login_reg.png") no-repeat 0 -120px;
+    border:medium none;
+    color:#fff;
+    height:32px;
+    line-height:32px;
+    margin:10px 0 0 85px;
+    text-align:center;
+    width:128px
+}
+.gbind p {
+    padding:10px 0;
+    position:relative
+}
+.gicon-sina, .gicon-qq, .gicon-rr {
+    padding:0 10px 0 58px;
+    z-index:1;
+    position:absolute
+}
+.gbind-line {
+    border-top:1px dotted #d9d9d9;
+    display:block;
+    height:0;
+    position:relative;
+    top:19px;
+    width:50%
+}
+.gicon-bind, .gicon-unbind, .gicon-binded {
+    padding-left:25px;
+    margin:8px 0 0 50%
+}
+.gicon-binded {
+    color:#999
+}
+.gicon-unbind {
+    margin-left:5px
+}
+.rebind {
+    margin:8px 0 0 50%;
+    padding-left:5px;
+    display:inline-block
+}
+.message-new-page .gui-at>div {
+    margin-top:-5px
+}
+.message-new-page .gform .gttxt+.tip {
+    margin:0
+}
+.message-content-page .main-form {
+    width:470px;
+    margin:20px auto 0
+}
+.message-content-page .main-form textarea {
+    height:90px;
+    width:458px
+}
+.message-content-page .main-form p {
+    margin-top:10px
+}
+.message-content-page .main-form-vcode {
+    position:relative;
+    height:30px;
+    line-height:30px
+}
+.message-content-page .main-form-vcode input {
+    vertical-align:middle
+}
+.message-content-page .main-form-vcode label {
+    position:absolute;
+    width:48px;
+    height:30px;
+    line-height:30px;
+    text-align:right;
+    left:-65px
+}
+.message-content-page .main-form-vcode span {
+    color:#CCC
+}
+.message-content-page .main-form-vcode-txt {
+    width:6em
+}
+.message-content-page .main-form-vcode-pic {
+    display:inline;
+    margin:0 10px;
+    vertical-align:middle
+}
+.message-content-page .gform .gform-captcha label {
+    position:static;
+    width:50px
+}
+.message-content-page .main-form-do {
+    text-align:right
+}
+.message-content-page .main-message {
+    font-size:12px;
+    line-height:22px;
+    margin-top:30px
+}
+.message-content-page .main-message li {
+    width:470px;
+    margin:0 auto 20px;
+    position:relative
+}
+.message-content-page .main-message-content {
+    color:#666;
+    word-wrap:break-word;
+    border:1px solid #dedede;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow:3px 3px 3px #f7f7f7;
+    -moz-box-shadow:3px 3px 3px #f7f7f7;
+    -o-box-shadow:3px 3px 3px #f7f7f7;
+    box-shadow:3px 3px 3px #f7f7f7;
+    background-color:#f9f9f9;
+    padding:12px 15px
+}
+.message-content-page .main-message-content blockquote {
+    color:#999;
+    line-height:20px;
+    border-left:1px solid #d5d5d5;
+    margin:0 0 10px 5px;
+    padding:0 0 0 9px
+}
+.message-content-page .main-message-content-do {
+    border-top:1px dashed #d8d8d8;
+    margin-top:3px;
+    padding-top:5px;
+    color:#999;
+    overflow:hidden;
+    *zoom:1
+}
+.message-content-page .main-message-avatar {
+    position:absolute;
+    left:-65px
+}
+.message-content-page .main-message-avatar .arrow {
+    width:0;
+    height:0;
+    font-size:0;
+    border-style:dashed solid dashed dashed;
+    border-color:transparent #dedede transparent transparent;
+    position:absolute;
+    border-width:6px;
+    top:13px;
+    left:55px
+}
+.message-content-page .main-message-avatar .arrow .arrow {
+    border-color:transparent #fafafa transparent transparent;
+    top:-6px;
+    left:-4px
+}
+.message-content-page .sent .main-message-content {
+    background-color:#FFF
+}
+.message-content-page .sent .main-message-avatar {
+    right:-65px;
+    left:auto
+}
+.message-content-page .sent .main-message-avatar .arrow {
+    border-color:transparent transparent transparent #dedede;
+    border-style:dashed dashed dashed solid;
+    position:absolute;
+    border-width:6px;
+    top:12px;
+    left:-18px
+}
+.message-content-page .sent .main-message-avatar .arrow .arrow {
+    border-color:transparent transparent transparent #FFF;
+    border-style:dashed dashed dashed solid;
+    top:-6px;
+    left:-7px
+}
+.message-content-page .error, .message-content-page .main-form-vcode .error {
+    color:#e56b2e
+}
+.message-content-page .gform label {
+    left:-82px
+}
+.message-content-page .gform .gttxt+.tip {
+    margin:0
+}
+.message-index-page .gbtitle a.main-write {
+    float:right;
+    color:#999;
+    margin-right:60px;
+    margin-bottom:3px
+}
+.message-index-page .main-message {
+    font-size:12px;
+    line-height:22px;
+    margin:20px
+}
+.message-index-page .main-message li {
+    padding:10px 0 20px;
+    margin-top:15px;
+    *zoom:1;
+    overflow:hidden;
+    color:#999;
+    border-bottom:1px solid #e9e9e9
+}
+.message-index-page .pt-pic {
+    position:relative
+}
+.message-index-page .pt-pic sup {
+    position:absolute;
+    right:-5px;
+    top:-5px;
+    display:inline-block;
+    font-weight:bold;
+    padding:0 3px;
+    margin-left:1px;
+    color:#FFF;
+    background:#ff172b;
+    border:2px solid #FFF;
+    -webkit-border-radius:12px;
+    -moz-border-radius:12px;
+    -ms-border-radius:12px;
+    -o-border-radius:12px;
+    border-radius:12px;
+    -webkit-box-shadow:1px 1px 4px #000;
+    -moz-box-shadow:1px 1px 4px #000;
+    -ms-box-shadow:1px 1px 4px #000;
+    -o-box-shadow:1px 1px 4px #000;
+    box-shadow:1px 1px 4px #000;
+    font-size:10px;
+    line-height:1.2;
+    text-align:center
+}
+.message-index-page .pt-txt-d {
+    overflow:hidden;
+    *zoom:1
+}
+.message-index-page .msg-hover {
+    visibility:hidden
+}
+.message-index-page .hover .msg-hover {
+    visibility:visible
+}
+.notice-page h2 a {
+    color:#4ba733
+}
+.notice-page .titles {
+    font-size:12px
+}
+.notice-page .titles li {
+    padding:16px 10px;
+    border-bottom:1px solid #e9e9e9;
+    background-color:#f7f7f7
+}
+.notice-page .titles li h3 {
+    font-weight:normal
+}
+.notice-page .titles li a {
+    color:#666
+}
+.notice-page .titles .unread {
+    background-color:#FFF
+}
+.notice-page .titles .unread a {
+    color:#0078b6
+}
+.draft-page .gbtitle h2 a {
+    color:#4ba733
+}
+.draft-page .gbtitle-txt {
+    float:right;
+    margin-right:100px;
+    color:#666
+}
+.draft-page ul {
+    font-size:12px
+}
+.draft-page ul li {
+    padding:16px 10px;
+    border-bottom:1px solid #e9e9e9
+}
+.draft-page ul li h3 {
+    font-weight:normal
+}
+.draft-page ul .title-delete {
+    float:right;
+    margin-left:30px;
+    color:#666
+}
+.settings-profile-page .mail-reset-page {
+    font-size:12px;
+    color:#999
+}
+.settings-profile-page .mail-reset-page .mail-forget-link {
+    margin-left:18px
+}
+.settings-profile-page .gicon-mail_reset {
+    display:inline-block;
+    width:17px;
+    height:16px;
+    background:url("/skin/imgs/4-icon.png") no-repeat -509px -20px;
+    overflow:hidden;
+    vertical-align:middle
+}
+.settings-profile-page .gactived .gicon-mail_reset {
+    background-position:-509px -40px
+}
+.last-item {
+    border-bottom:none!important
+}
+.side {
+    background-color:#f7f7f7;
+    padding:30px 0 0 20px;
+    min-height:800px;
+    _height:800px
+}
+.side h1 {
+    font-size:24px
+}
+.side ul {
+    margin:15px 0 0 5px
+}
+.side ul li {
+    margin:10px 0
+}
+.side ul li a, .side ul li span {
+    margin-right:5px;
+    *float:left;
+    *display:inline
+}
+.main .content {
+    font-size:12px;
+    line-height:22px;
+    color:#999
+}
+.main .content em {
+    font-size:18px;
+    line-height:30px;
+    display:block;
+    font-style:normal;
+    color:#666;
+    margin:10px 0
+}
+.main .content p {
+    margin:20px 0;
+    verticle-align:middle
+}
+.main .content .b_txt {
+    border-color:#d9d9d9;
+    border-radius:2px;
+    border-style:solid;
+    border-width:1px;
+    box-shadow:1px 1px 1px #f2f2f2 inset;
+    vertical-align:middle;
+    height:15px;
+    padding:5px
+}
+.side li .gicon-notice {
+    background-position:-320px -20px;
+    width:17px;
+    height:14px
+}
+.side li.gactived .gicon-notice, .side gicon-notice-actived {
+    background-position:-320px -40px;
+    width:17px;
+    height:14px;
+
+}
+.side li.gactived span
+{
+    font-weight:bold;
+}
+.gform .gform-box-right {
+    margin-left:82px
+}
+.message-index-page .gbtitle, .message-new-page .gbtitle, .message-content-page .gbtitle {
+    color:#333
+}
+.message-index-page .gbtitle .gfr {
+    margin-right:20px;
+    _display:inline;
+}
+.message-index-page .gbtitle .gbtitle-point-to, .message-new-page .gbtitle .gbtitle-point-to, .message-content-page .gbtitle .gbtitle-point-to {
+    margin:0 5px;
+    color:#999
+}
+.message-index-page .gform textarea, .message-new-page .gform textarea, .message-content-page .gform textarea {
+    width:500px;
+    height:90px
+}
+.message-index-page .gform .main-form-vcode-txt, .message-new-page .gform .main-form-vcode-txt, .message-content-page .gform .main-form-vcode-txt {
+    width:6em
+}
+.message-index-page .gform .main-form-submit, .message-new-page .gform .main-form-submit, .message-content-page .gform .main-form-submit {
+    margin-top:-5px;
+    float:left;
+    width:550px;
+}
+.message-index-page .gform .gform-submit, .message-new-page .gform .gform-submit, .message-content-page .gform .gform-submit {
+    margin:0
+}
+
+.settings-profile-page .gform-box
+{
+	width:500px;
+}
+
+.message-content-page .gform-box
+{
+	width:550px;
+}

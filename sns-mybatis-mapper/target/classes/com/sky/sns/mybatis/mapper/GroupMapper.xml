@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.GroupMapper">
+<cache />
+  <resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="nickName" column="nickName"/>
+  <association property="avatar" javaType="Photo" columnPrefix="p_" resultMap="photoResult"/>
+</resultMap>
+   <resultMap id="photoResult" type="Photo">
+     <id property="id" column="id"/>
+  <result property="url" column="url"/>
+   </resultMap>
+<resultMap id="categoryResult" type="GroupCategory">
+  <id property="id" column="id"/>
+  <result property="name" column="name"/>
+</resultMap>
+  <resultMap id="groupResult" type="Group">
+  <id property="id" column="id"/>
+  <result property="photoId" column="photoId"/>
+  <result property="name" column="name"/>
+  <result property="description" column="description"/>
+  <result property="createdDate" column="createdDate"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="createdByUserId" column="createdByUserId"/>
+  <result property="reason" column="reason"/>
+  <result property="status" column="status"/>
+  <result property="isOpenContent" column="isOpenContent"/>
+  <result property="isNeedValidate" column="isNeedValidate"/>
+  <result property="isJoined" column="isJoined"/>
+  <association property="joinedUserCount" column="id"  select="getJoinedUserCount"/>
+  <association property="postCount" column="id"  select="getPostCount"/>
+  <association property="createdByUser" javaType="User" column="createdByUserId" select="getUser"/>
+  <association property="cover" javaType="Photo" column="photoId" select="getPhoto"/>
+  <collection property="categorys" ofType="Tag" column="id"  select="getCategorys" />
+</resultMap>
+ <resultMap id="searchGroupResult" type="Group">
+  <id property="id" column="id"/>
+  <result property="photoId" column="photoId"/>
+  <result property="name" column="name"/>
+  <result property="description" column="description"/>
+  <result property="createdDate" column="createdDate"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="createdByUserId" column="createdByUserId"/>
+  <result property="reason" column="reason"/>
+  <result property="status" column="status"/>
+  <result property="isOpenContent" column="isOpenContent"/>
+  <result property="isNeedValidate" column="isNeedValidate"/>
+  <result property="postCount" column="postCount" />
+  <result property="joinedUserCount" column="joinedUserCount" />
+  <association property="createdByUser" javaType="User" column="createdByUserId" select="getUser"/>
+  <collection property="categorys" ofType="Tag" column="id"  select="getCategorys" />
+</resultMap>
+<insert id="insertGroup" parameterType="Group" useGeneratedKeys="true" keyProperty="id">
+  insert into `Group` (photoId,name,description,createdDate,updatedDate,createdByUserId,reason,status,isOpenContent,isNeedValidate)
+  values (#{photoId},#{name},#{description},now(),now(),#{createdByUserId},#{reason},#{status},#{isOpenContent},#{isNeedValidate})
+</insert>
+<insert id="addCategory" >
+insert into Group_Category (groupId,categoryId)values(#{0},#{1})
+</insert>
+<delete id="deleteCategory">
+delete from Group_Category where groupId=#{0} and categoryId=#{1}
+</delete>
+<select id="getPhoto" resultMap="photoResult">
+select id,url from photo where id=#{photoId}
+</select>
+<select id="getCategorys" parameterType="long" resultMap="categoryResult">
+    select gc.id,gc.name from  group_category as ggc left outer join GroupCategory as gc on gc.id=ggc.categoryId
+    where ggc.groupId=#{id}
+</select>
+<select id="getGroupByCategory" resultMap="groupResult">
+select v.*,(select count(guj.userId) from group_user_join as guj where guj.groupId=v.id and guj.userId=#{userId}) as isJoined
+from (select g.* from `group` as g left outer join group_category as gc on gc.groupId=g.id
+where gc.categoryId=#{categoryId} order by g.id desc limit ${pageStart},${pageSize}) as v
+</select>
+<select id="countGroupByCategory" parameterType="long" resultType="long">
+select count(g.id) from `group` as g
+left outer join group_category as gc on gc.groupId=g.id
+where gc.categoryId=#{categroyId}
+</select>
+<insert id="joinGroup">
+insert into group_user_join (groupId,userId)values(#{0},#{1})
+</insert>
+<delete id="quitGroup">
+delete from group_user_join where groupId=#{0} and userId=#{1}
+</delete>
+<select id="isJoinGroup" resultType="int">
+select count(groupId) from group_user_join  where groupId=#{0} and userId=#{1}
+</select>
+<select id="getHottestGroup" resultMap="groupResult">
+select  g.*,(select count(guj.groupId) from group_user_join as guj where guj.groupId=g.id) as joinedUserCount from `group` as g order by joinedUserCount desc limit ${pageStart},${pageSize}
+</select>
+<select id="getNewGroup" resultMap="groupResult">
+select g.* from `group` as g order by g.createdDate desc limit ${pageStart},${pageSize}
+</select>
+<select id="getUser" parameterType="long" resultMap="userResult">
+select u.id,u.nickName,p.id as p_id,p.url as p_url from user as u
+left outer join photo as p on u.photoId=p.Id
+ where u.id=#{createdByUserId}
+</select>
+<select id="getPostCount" parameterType="long" resultType="int">
+select count(id) from groupPost where groupId=#{id}
+</select>
+<select id="getJoinedUserCount" parameterType="long" resultType="int">
+select count(userId) from group_user_join where groupId=#{id}
+</select>
+<select id="getGroupByKey"  resultMap="groupResult">
+select g.*,(select count(guj.userId) from group_user_join as guj where guj.groupId=g.id and guj.userId=#{userId}) as isJoined from `group` as g 
+where g.name like CONCAT('%',#{key},'%' )  or g.description like CONCAT('%',#{key},'%' ) 
+</select>
+<select id="getGroupDetailById" resultMap="groupResult">
+  SELECT g.*,(select count(guj.userId) from group_user_join as guj where guj.groupId=g.id and guj.userId=#{userId}) as isJoined FROM `Group` as g WHERE g.id = #{id}
+</select>
+<select id="getGroupById" parameterType="long" resultMap="groupResult">
+  SELECT g.* FROM `Group` as g WHERE g.id = #{id}
+</select>
+<select id="getGroupByName" resultType="int">
+  SELECT count(id) FROM `Group` WHERE name=#{name}
+    <if test="id>0">
+     and id &lt;>#{id}
+    </if>
+</select>
+<select id="getMyJoinedGroups" parameterType="long" resultMap="groupResult">
+   select g.* from group_user_join as guj left outer join `Group` as g on g.id=guj.groupId where guj.userId= #{id}
+</select>
+<update id="updateGroup" parameterType="Group">
+  update `Group` set photoId=#{photoId},name=#{name},description=#{description},updatedDate=now(),reason=#{reason},status=#{status},
+  isOpenContent=#{isOpenContent},isNeedValidate=#{isNeedValidate} where id=#{id}
+</update>
+<select id="getGroupMembers" resultMap="userResult">
+   select u.nickName,u.id from group_user_join as guj left outer join user as u on u.id=guj.userId where guj.groupId=#{groupId} 
+   <if test="name!=null and name!=''">
+       and u.nickName like CONCAT('%',#{name},'%' )  
+    </if>
+    limit ${pageStart},${pageSize}
+</select>
+<select id="countGroupMembers" resultType="long">
+   select count(guj.userId) from group_user_join as guj left  outer join user as u on u.id=guj.userId where guj.groupId=#{groupId} 
+   <if test="name!=null and name!=''">
+     and u.nickName like CONCAT('%',#{name},'%' )  
+    </if>
+</select>
+<select id="getAllGroups" resultMap="groupResult">
+select * from `group`
+</select>
+<select id="getActiveMember" resultMap="userResult">
+select u.id,u.nickName  from groupPostComment as gpc left outer join user as u on gpc.postedByUserId=u.id 
+left outer join groupPost as gp on gp.id=gpc.groupPostId
+where gp.groupId=#{id}
+group by gpc.postedByUserId order by gpc.postedDate desc
+limit ${pageStart},${pageSize}
+</select>
+<select id="getRelatedGroup" resultMap="groupResult">
+select g.* from group_category as gc1 left outer join `group` as g on g.id=gc1.groupId
+ where gc1.categoryId in 
+ (select gc.categoryId from group_category as gc where gc.groupId=#{id})
+and gc1.groupId &lt;>#{id} 
+group by g.id
+limit ${pageStart},${pageSize}
+</select>
+<select id="searchGroups" parameterType="SGroup" resultMap="searchGroupResult">
+  select g.*,(select count(c1.id) from groupPost as c1 where c1.groupId=g.id) as postCount,
+  (select count(c2.userId) from group_user_join as c2 where c2.groupId=g.id) as joinedUserCount 
+  from `Group` as g
+  left outer join User as u on u.id=g.createdByUserId
+  left outer join Group_Category as ggc on ggc.groupId=g.id
+  left outer join GroupCategory as gc on ggc.categoryId=gc.id
+  <where> 
+    <if test="status>0">
+    g.status=#{status}
+    </if>
+    <if test="isOpenContent>0">
+    and g.isOpenContent=#{isOpenContent}
+    </if>
+    <if test="isNeedValidate>0">
+   and  g.isNeedValidate=#{isNeedValidate}
+    </if>
+    <if test="description!=null and description!=''">
+        AND g.description like CONCAT('%',#{description},'%' )  
+    </if>
+    <if test="name!=null and name!=''">
+        AND g.name like CONCAT('%',#{name},'%' )  
+    </if>
+    <if test="createdByUser!=null and createdByUser.nickName!=null and createdByUser.nickName!=''">
+        AND u.nickName like CONCAT('%',#{createdByUser.nickName},'%' )  
+    </if>
+    <if test="createdDateMin!=null">
+        AND g.createdDate>#{createdDateMin}
+    </if>
+    <if test="createdDateMax!=null">
+        AND g.createdDate &lt; #{createdDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND g.updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND g.updatedDate &lt; #{updatedDateMax}
+    </if>
+     <if test="categoryName!=null and categoryName!='' ">
+        AND gc.name like CONCAT('%',#{categoryName},'%' )  
+    </if>
+</where>
+group by g.id
+order by ${sort} ${order} limit ${pageStart},${pageSize}
+</select>
+<select id="countGroups" parameterType="SGroup" resultType="long">
+select count(v.id) from (select g.id from `Group` as g left outer join User as u  on u.id=g.createdByUserId
+  left outer join Group_Category as ggc on ggc.groupId=g.id
+  left outer join GroupCategory as gc on ggc.categoryId=gc.id
+  <where> 
+    <if test="status>0">
+    g.status=#{status}
+    </if>
+    <if test="isOpenContent>0">
+    and g.isOpenContent=#{isOpenContent}
+    </if>
+    <if test="isNeedValidate>0">
+    and g.isNeedValidate=#{isNeedValidate}
+    </if>
+    <if test="description!=null and description!=''">
+        AND g.description like CONCAT('%',#{description},'%' )  
+    </if>
+    <if test="name!=null and name!=''">
+        AND g.name like CONCAT('%',#{name},'%' )  
+    </if>
+    <if test="createdByUser!=null and createdByUser.nickName!=null and createdByUser.nickName!=''">
+        AND u.nickName like CONCAT('%',#{createdByUser.nickName},'%' )  
+    </if>
+    <if test="createdDateMin!=null">
+        AND g.createdDate>#{createdDateMin}
+    </if>
+    <if test="createdDateMax!=null">
+        AND g.createdDate &lt; #{createdDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND g.updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND g.updatedDate &lt; #{updatedDateMax}
+    </if>
+     <if test="categoryName!=null and categoryName!='' ">
+        AND gc.name like CONCAT('%',#{categoryName},'%' )  
+    </if>
+</where>
+group by g.id) as v
+</select>
+</mapper>

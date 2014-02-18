@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<package name="ajaxGetJson" extends="json-default">
+	<!-- <global-results>
+			<result name="error">/WEB-INF/jsp/common/errorJson.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Throwable"
+				result="error" />
+		</global-exception-mappings> -->
+		<action name="*Ajax" class="{1}AjaxAction">
+			<result name="json" type="json">
+				<param name="root">jsonData</param>
+			</result>
+			<result name="imgJson" type="json">
+			    <param name="contentType">text/html;charset=UTF-8</param>
+				<param name="root">jsonData</param>
+			</result>
+			<result name="text" type="stream">
+				<param name="contentType">text/html;charset=UTF-8</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="javascript" type="freemarker">
+				/WEB-INF/ftl/ajax/topBar.ftl
+			</result>
+		</action>
+        <action name="*Admin" class="{1}AdminAction">
+			<result name="json" type="json">
+				<param name="root">jsonData</param>
+			</result>
+			<result name="text" type="stream">
+				<param name="contentType">text/html;charset=UTF-8</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			 <result name="page" type="freemarker">/WEB-INF/ftl/admin/embedPage/{1}/${module}.ftl</result> 
+			</action>
+	</package>
+
+	<package name="struts2" extends="struts-default">
+	    <default-action-ref name="notFound" />
+		<global-results>
+			<result name="error">/WEB-INF/jsp/common/errorPage.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Throwable"
+				result="error" />
+		</global-exception-mappings>
+		<action name="notFound" class="notFoundAction" >
+			<result>/WEB-INF/jsp/common/notFoundPage.jsp</result>
+		</action>
+		<!-- 验证码图片 -->
+		<action name="randomImg" class="randomImgAction">
+			<result type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="question" class="questionAction">
+			<result name="ask">/WEB-INF/jsp/question/ask.jsp</result>
+			<result name="goToDetail" type="redirect">
+				/question/${question.id}
+			</result>
+			<result name="goToAnswer" type="redirect">
+				/question/${question.id}#answer${answer.id}
+			</result>
+			<result name="goToAsk" type="redirect">
+				/question/ask
+			</result>
+			<result name="detail">
+				/WEB-INF/jsp/question/detail.jsp
+			</result>
+			<result name="pending">
+				/WEB-INF/jsp/question/pending.jsp
+			</result>
+			<result name="newest">
+				/WEB-INF/jsp/question/newest.jsp
+			</result>
+			<result name="hottest">
+				/WEB-INF/jsp/question/hottest.jsp
+			</result>
+		</action>
+		<action name="blog" class="blogAction">
+			<result name="post">/WEB-INF/jsp/blog/post.jsp</result>
+			<result name="goToDetail" type="redirect">
+				/blog/${blog.id}
+			</result>
+			<result name="goToComment" type="redirect">
+				/blog/${blog.id}#comment${blogComment.id}
+			</result>
+			<result name="goToPost" type="redirect">
+				/blog/post
+			</result>
+			<result name="detail">
+				/WEB-INF/jsp/blog/detail.jsp
+			</result>
+			<result name="all">
+				/WEB-INF/jsp/blog/all.jsp
+			</result>
+		</action>
+	    <action name="group" class="groupAction">
+			<result name="apply">/WEB-INF/jsp/group/apply.jsp</result>
+			<result name="success">/WEB-INF/jsp/group/success.jsp</result>
+			<result name="all">/WEB-INF/jsp/group/all.jsp</result>
+			<result name="postDetail">/WEB-INF/jsp/group/post/detail.jsp</result>
+			<result name="groupDetail">/WEB-INF/jsp/group/detail.jsp</result>
+			<result name="posts">/WEB-INF/jsp/group/post/posts.jsp</result>
+			<result name="hotPosts">/WEB-INF/jsp/group/post/hotPosts.jsp</result>
+			<result name="search">/WEB-INF/jsp/group/search.jsp</result>
+			<result name="goToPostDetail" type="redirect">
+				/post/${groupPost.id}
+			</result>
+			<result name="goToComment" type="redirect">
+				/post/${groupPost.id}?page=${pageNo}#comment${groupPostComment.id}
+			</result>
+			<result name="post">/WEB-INF/jsp/group/post/post.jsp</result>
+			<result name="members">/WEB-INF/jsp/group/members.jsp</result>
+		</action>
+		 <action name="site" class="articleAction">
+			<result name="all">/WEB-INF/jsp/article/all.jsp</result>
+			<result name="site">/WEB-INF/jsp/article/site.jsp</result>
+			<result name="post">/WEB-INF/jsp/article/post.jsp</result>
+			<result name="success" >/WEB-INF/jsp/article/success.jsp</result>
+		</action>
+		<action name="article" class="articleAction">
+			<result name="goToDetail" type="redirect">
+				/article/${article.id}
+			</result>
+			<result name="goToComment" type="redirect">
+				/article/${article.id}?page=${pageNo}#comment${articleComment.id}
+			</result>
+			<result name="detail">
+				/WEB-INF/jsp/article/detail.jsp
+			</result>
+		</action>
+	    <action name="user" class="userAction">
+	       <result name="profile">
+				/WEB-INF/jsp/user/settings/profile.jsp
+			</result>
+			<result name="avatar">
+				/WEB-INF/jsp/user/settings/avatar.jsp
+			</result>
+			<result name="goToIndex" type="redirect">
+				/i/${curUser.id}
+			</result>
+			<result name="index">
+				/WEB-INF/jsp/user/space/index.jsp
+			</result>
+			<result name="answer">
+				/WEB-INF/jsp/user/space/answer.jsp
+			</result>
+			<result name="following">
+				/WEB-INF/jsp/user/space/following.jsp
+			</result>
+			<result name="follower">
+				/WEB-INF/jsp/user/space/follower.jsp
+			</result>
+			<result name="question">
+				/WEB-INF/jsp/user/space/question.jsp
+			</result>
+			<result name="post">
+				/WEB-INF/jsp/user/space/post.jsp
+			</result>
+			<result name="activity">
+				/WEB-INF/jsp/user/space/activity.jsp
+			</result>
+			<result name="group">
+				/WEB-INF/jsp/user/space/group.jsp
+			</result>
+			<result name="blog">
+				/WEB-INF/jsp/user/space/blog.jsp
+			</result>
+			<result name="albumList">
+				/WEB-INF/jsp/user/space/albumList.jsp
+			</result>
+			<result name="albumDetail">
+				/WEB-INF/jsp/user/space/albumDetail.jsp
+			</result>
+			<result name="tag">
+				/WEB-INF/jsp/user/space/tag.jsp
+			</result>
+			<result name="notice">
+				/WEB-INF/jsp/user/infoCenter/notice.jsp
+			</result>
+			<result name="message">
+				/WEB-INF/jsp/user/infoCenter/message.jsp
+			</result>
+			<result name="sendMessage">
+				/WEB-INF/jsp/user/infoCenter/sendMessage.jsp
+			</result>
+			<result name="goToSendMessage" type="redirect">
+				/infoCenter/message/send/${toUser.id}
+			</result>
+			<result name="redirect" type="redirect">
+				/i/${spaceUser.id}
+			</result>
+	    </action>
+		<action name="admin" class="adminAction">
+		     <result name="index" type="freemarker">/WEB-INF/ftl/admin/index.ftl</result> 
+		</action>
+		<action name="search" class="searchAction">
+		     <result>/WEB-INF/jsp/search/index.jsp</result> 
+		</action>
+		<action name="tag" class="tagAction">
+		     <result name="all" >/WEB-INF/jsp/tag/all.jsp</result> 
+		      <result name="detail" >/WEB-INF/jsp/tag/detail.jsp</result> 
+		</action>
+		<action name="photoRepository" class="photoRepositoryAction">
+			<result type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="photo" class="photoAction">
+		    <result name="detail">
+				/WEB-INF/jsp/photo/photoViewer.jsp
+			</result>
+			<result name="goToComment" type="redirect">
+				/photo/${photo.id}#comment${photoComment.id}
+			</result>
+		</action>
+		<action name="helloWorld" class="helloWorldAction">
+			<result>HelloWorld.jsp</result>
+		</action>
+	</package>
+</struts>

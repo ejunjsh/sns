@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.GroupPostCommentMapper">
+<cache />
+  <resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="nickName" column="nickName"/>
+          <association property="avatar" javaType="Photo">
+  <id property="id" column="p_id"/>
+  <result property="url" column="p_url"/>
+</association>
+</resultMap>
+<resultMap id="commentResult" type="GroupPostComment">
+  <id property="id" column="id"/>
+  <result property="content" column="content"/>
+  <result property="postedByUserId" column="postedByUserId"/>
+  <result property="postedDate" column="postedDate"/>
+  <result property="groupPostId" column="groupPostId"/>
+  <association property="postedByUser" javaType="User" column="postedByUserId" select="getUser" />
+</resultMap>
+<select id="getUser" parameterType="long" resultMap="userResult">
+select u.id,u.nickName,p.url as p_url,p.id as p_id from user as u
+left outer join photo as p on u.photoId=p.Id
+ where u.id=#{postedByUserId}
+</select>
+<insert id="insertGroupPostComment" parameterType="GroupPostComment" useGeneratedKeys="true" keyProperty="id">
+insert into GroupPostComment (content,postedDate,postedByUserId,groupPostId)values(#{content},#{postedDate},#{postedByUserId},#{groupPostId})
+</insert>
+<delete id="deleteGroupPostComment" parameterType="long">
+delete from GroupPostComment where id=#{id}
+</delete>
+<select id="getGroupPostCommentByGroupPostId" resultMap="commentResult">
+  SELECT gpc.*
+  from GroupPostComment as gpc
+  left outer join user as u on gpc.postedByUserId=u.id
+  left outer join photo as p on u.photoId=p.Id
+  where gpc.groupPostId=#{id} order by gpc.postedDate asc
+  limit ${pageStart},${pageSize}
+</select>
+
+<select id="countGroupPostCommentByGroupPostId" parameterType="long" resultType="int">
+select count(a.id) from GroupPostComment as a where a.groupPostId=#{id}
+</select>
+<select id="getGroupPostCommentById" parameterType="long" resultMap="commentResult">
+  SELECT gpc.*
+  from GroupPostComment as gpc
+  left outer join user as u on gpc.postedByUserId=u.id
+  where gpc.id=#{id}
+</select>
+</mapper>

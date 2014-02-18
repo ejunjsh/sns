@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.QuestionMapper">
+<cache />
+  <resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="nickName" column="nickName"/>
+  <association property="avatar" javaType="Photo">
+  <id property="id" column="p_id"/>
+  <result property="url" column="p_url"/>
+</association>
+</resultMap>
+<resultMap id="tagResult" type="Tag">
+  <id property="id" column="id"/>
+  <result property="name" column="name"/>
+  <result property="cnSpell" column="cnSpell"/>
+</resultMap>
+<resultMap id="questionResult" type="Question">
+  <id property="id" column="id"/>
+  <result property="content" column="content"/>
+  <result property="lockDate" column="lockDate"/>
+  <result property="postedByUserId" column="postedByUserId"/>
+  <result property="postedDate" column="postedDate"/>
+  <result property="status" column="status"/>
+  <result property="title" column="title"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="viewCount" column="viewCount"/>
+  <result property="isFollow" column="isFollow"/>
+  <association property="followCount" column="id" select="getFollowCount"/>
+  <association property="commentCount" column="id" select="getCommentCount"/>
+   <association property="answerCount" column="id"  select="getAnswerCount"/>
+  <association property="postedByUser" javaType="User" column="postedByUserId" select="getUser"/>
+  <collection property="tags" ofType="Tag" column="id"  select="getTags" />
+</resultMap>
+<resultMap id="searchQuestionResult" type="Question">
+  <id property="id" column="id"/>
+  <result property="content" column="content"/>
+  <result property="lockDate" column="lockDate"/>
+  <result property="postedByUserId" column="postedByUserId"/>
+  <result property="postedDate" column="postedDate"/>
+  <result property="status" column="status"/>
+  <result property="title" column="title"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="viewCount" column="viewCount"/>
+  <result property="followCount" column="followCount"/>
+  <result property="commentCount" column="commentCount"/>
+   <result property="answerCount" column="answerCount"/>
+  <association property="postedByUser" javaType="User" column="postedByUserId" select="getUser"/>
+  <collection property="tags" ofType="Tag" column="id"  select="getTags" />
+</resultMap>
+<insert id="insertQuestion" parameterType="Question" useGeneratedKeys="true" keyProperty="id">
+  insert into question (content,lockDate,postedByUserId,postedDate,status,title,updatedDate,viewCount)
+  values (#{content},#{lockDate},#{postedByUserId},#{postedDate},#{status},#{title},#{updatedDate},#{viewCount})
+</insert>
+<insert id="addTags" >
+insert into question_tag (questionId,tagId)values(#{0},#{1})
+</insert>
+<delete id="deleteTags">
+delete from question_tag where questionId=#{0} and tagId=#{1}
+</delete>
+<insert id="follow" >
+insert into question_user (questionId,userId)values(#{0},#{1})
+</insert>
+<select id="isFollow" resultType="int">
+select count(questionId) from question_user  where questionId=#{0} and userId=#{1}
+</select>
+<delete id="unfollow">
+delete from question_user where questionId=#{0} and userId=#{1}
+</delete>
+<update id="updateQuestion" parameterType="Question">
+  update question set content=#{content},lockDate=#{lockDate},postedByUserId=#{postedByUserId},postedDate=#{postedDate},status=#{status},title=#{title},updatedDate=#{updatedDate},viewCount=#{viewCount}
+  where id=#{id}
+</update>
+<select id="getAllQuestions" resultMap="questionResult">
+select * from question
+</select>
+<select id="getCommentCount" parameterType="long" resultType="int">
+select count(refId) from questioncomment where refId=#{id} and commentType=1
+</select>
+<select id="getFollowCount" parameterType="long" resultType="int">
+select count(questionId) from question_user where questionId=#{id} 
+</select>
+<select id="getAnswerCount" parameterType="long" resultType="int">
+select count(id) from Answer where questionId=#{id} 
+</select>
+<select id="getPendingQuestion" resultMap="questionResult">
+select v.* from (select q.*,(select count(a.id) from Answer as a where a.questionId=q.id) as answerCount from question as q) as v where v.answerCount=0 order by v.postedDate desc limit ${pageStart},${pageSize}
+</select>
+<select id="countPendingQuestion" resultType="long">
+select count(v.id) from (select q.*,(select count(a.id) from Answer as a where a.questionId=q.id) as answerCount from question as q) as v where v.answerCount=0 
+</select>
+<select id="getNewestQuestion" resultMap="questionResult">
+select q.* from question as q order by q.postedDate desc limit ${pageStart},${pageSize}
+</select>
+<select id="getQuestionByUserId" resultMap="questionResult">
+select q.* from question as q where q.postedByUserId=#{id} order by q.postedDate desc limit ${pageStart},${pageSize}
+</select>
+<select id="countAllQuestion" resultType="long">
+select count(q.id) from question as q 
+</select>
+<select id="getHotQuestion" resultMap="questionResult">
+select q.*,max(a.updatedDate) as answerDate from question as q left outer join answer as a on a.questionId=q.id  group by q.id order by answerDate desc  limit ${pageStart},${pageSize}
+</select>
+<select id="getQuestionById" parameterType="long" resultMap="questionResult">
+  SELECT q.*
+  from question as q
+  where q.id=#{id}
+</select>
+<select id="getQuestionsByTagId" resultMap="questionResult">
+  SELECT q.*
+  from question as q left outer join question_tag as qt on qt.questionId=q.id
+  where qt.tagId=#{id}
+  group by q.id order by q.updatedDate desc
+  limit ${pageStart},${pageSize}
+</select>
+<select id="countQuestionsByTagId" resultType="long">
+ select count(v.id) from (SELECT q.id
+  from question as q left outer join question_tag as qt on qt.questionId=q.id
+  where qt.tagId=#{id}
+  group by q.id) as v
+</select>
+<select id="getQuestionDetailById" parameterType="long" resultMap="questionResult">
+  SELECT q.*,(select count(qu.userId) from question_user as qu where qu.questionId=q.id and qu.userId=#{userId}) as isFollow
+  from question as q
+  where q.id=#{id}
+</select>
+<select id="getTags" parameterType="long" resultMap="tagResult">
+    select t.id,t.name,t.cnSpell from  question_tag as qt left outer join tag as t on t.id=qt.tagId
+    where qt.questionId=#{id}
+</select>
+<select id="getUser" parameterType="long" resultMap="userResult">
+select u.id,u.nickName,p.url as p_url,p.id as p_id from user as u
+left outer join photo as p on u.photoId=p.Id
+ where u.id=#{postedByUserId}
+</select>
+<select id="searchQuestions" parameterType="SQuestion" resultMap="searchQuestionResult">
+select q.content, q.id, q.postedByUserId, q.postedDate, q.status, q.title, q.updatedDate, q.viewCount,
+(select count(c1.refId) from questioncomment as c1 where c1.refId=q.id and c1.commentType=1) as commentCount,
+(select count(c2.id) from Answer as c2 where c2.questionId=q.id) as answerCount,
+(select count(c3.userId) from question_user as c3 where c3.questionId=q.id) as followCount
+from question as q
+left outer join question_tag as qt on qt.questionId=q.Id
+left outer join tag as t on t.id=qt.tagId
+left outer join user as u on u.id=q.postedByUserId
+<where> 
+    <if test="status>0">
+    q.status=#{status}
+    </if>
+    <if test="content!=null and content!=''">
+        AND q.content like CONCAT('%',#{content},'%' )  
+    </if>
+    <if test="title!=null and title!=''">
+        AND q.title like CONCAT('%',#{title},'%' )  
+    </if>
+    <if test="postedByUser!=null and postedByUser.nickName!=null and postedByUser.nickName!=''">
+        AND u.nickName like CONCAT('%',#{postedByUser.nickName},'%' )  
+    </if>
+    <if test="postedDateMin!=null">
+        AND q.postedDate>#{postedDateMin}
+    </if>
+    <if test="postedDateMax!=null">
+        AND q.postedDate &lt; #{postedDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND q.updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND q.updatedDate &lt; #{updatedDateMax}
+    </if>
+    <if test="tagName!=null and tagName!=''">
+        AND t.name like CONCAT('%',#{tagName},'%' )  
+    </if>
+</where>
+group by  q.content, q.id, q.postedByUserId, q.postedDate, q.status, q.title, q.updatedDate, q.viewCount 
+order by ${sort} ${order} limit ${pageStart},${pageSize}
+</select>
+<select id="countQuestions" parameterType="SQuestion" resultType="long">
+select count(v.id) from (select q.id from question as q
+left outer join question_tag as qt on qt.questionId=q.Id
+left outer join tag as t on t.id=qt.tagId
+left outer join user as u on u.id=q.postedByUserId
+<where> 
+    <if test="status>0">
+    q.status=#{status}
+    </if>
+    <if test="content!=null and content!='' ">
+        AND q.content like CONCAT('%',#{content},'%' )  
+    </if>
+    <if test="title!=null and title!='' ">
+        AND q.title like CONCAT('%',#{title},'%' )  
+    </if>
+    <if test="postedByUser!=null and postedByUser.nickName!=null and postedByUser.nickName!='' ">
+        AND u.nickName like CONCAT('%',#{postedByUser.nickName},'%' )  
+    </if>
+    <if test="postedDateMin!=null">
+        AND q.postedDate>#{postedDateMin}
+    </if>
+    <if test="postedDateMax!=null">
+        AND q.postedDate &lt; #{postedDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND q.updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND q.updatedDate &lt; #{updatedDateMax}
+    </if>
+    <if test="tagName!=null and tagName!='' ">
+        AND t.name like CONCAT('%',#{tagName},'%' )  
+    </if>
+</where>
+group by q.id) as v
+</select>
+</mapper>

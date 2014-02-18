@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.BlogMapper">
+<cache />
+  <resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="nickName" column="nickName"/>
+        <association property="avatar" javaType="Photo">
+  <id property="id" column="p_id"/>
+  <result property="url" column="p_url"/>
+</association>
+</resultMap>
+<resultMap id="tagResult" type="Tag">
+  <id property="id" column="id"/>
+  <result property="name" column="name"/>
+  <result property="cnSpell" column="cnSpell"/>
+</resultMap>
+<resultMap id="blogCategoryResult" type="BlogCategory">
+  <id property="id" column="id"/>
+  <result property="name" column="name"/>
+</resultMap>
+<resultMap id="blogResult" type="Blog">
+  <id property="id" column="id"/>
+  <result property="content" column="content"/>
+  <result property="blogCategoryId" column="blogCategoryId"/>
+  <result property="postedByUserId" column="postedByUserId"/>
+  <result property="postedDate" column="postedDate"/>
+  <result property="status" column="status"/>
+  <result property="title" column="title"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="viewCount" column="viewCount"/>
+  <association property="recommendCount" column="id" select="getRecommendCount"/>
+  <association property="commentCount"  column="id" select="getCommentCount"/>
+  <association property="postedByUser" javaType="User" column="postedByUserId" select="getUser"/>
+   <association property="blogCategory" javaType="BlogCategory" column="blogCategoryId" select="getBlogCategory"/>
+  <collection property="tags" ofType="Tag" column="id"  select="getTags" />
+</resultMap>
+<resultMap id="searchBlogResult" type="Blog">
+  <id property="id" column="id"/>
+  <result property="content" column="content"/>
+  <result property="blogCategoryId" column="blogCategoryId"/>
+  <result property="postedByUserId" column="postedByUserId"/>
+  <result property="postedDate" column="postedDate"/>
+  <result property="status" column="status"/>
+  <result property="title" column="title"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="viewCount" column="viewCount"/>
+  <result property="recommendCount" column="recommendCount" />
+  <result property="commentCount"  column="commentCount" />
+  <association property="postedByUser" javaType="User" column="postedByUserId" select="getUser"/>
+   <association property="blogCategory" javaType="BlogCategory" column="blogCategoryId" select="getBlogCategory"/>
+  <collection property="tags" ofType="Tag" column="id"  select="getTags" />
+</resultMap>
+<insert id="insertBlog" parameterType="Blog" useGeneratedKeys="true" keyProperty="id">
+  insert into blog (content,postedByUserId,postedDate,status,title,updatedDate,viewCount,blogCategoryId)
+  values (#{content},#{postedByUserId},#{postedDate},#{status},#{title},#{updatedDate},#{viewCount},#{blogCategoryId})
+</insert>
+<insert id="addTags" >
+insert into blog_tag (blogId,tagId)values(#{0},#{1})
+</insert>
+<delete id="deleteTags">
+delete from blog_tag where blogId=#{0} and tagId=#{1}
+</delete>
+<update id="updateBlog" parameterType="Blog">
+  update blog set blogCategoryId=#{blogCategoryId},content=#{content},status=#{status},title=#{title},updatedDate=#{updatedDate},viewCount=#{viewCount}
+  where id=#{id}
+</update>
+<select id="getCommentCount" parameterType="long" resultType="int">
+select count(id) from blogComment where blogId=#{id}
+</select>
+<select id="getRecommendCount" parameterType="long" resultType="int">
+select count(blogId) from blog_user_recommend where blogId=#{id}
+</select>
+
+<select id="getBlogsByTagId" resultMap="blogResult">
+  SELECT b.*
+  from blog as b left outer join blog_tag as bt on bt.blogId=b.id
+  where bt.tagId=#{id}
+  group by b.id order by b.updatedDate desc
+  limit ${pageStart},${pageSize}
+</select>
+<select id="countBlogsByTagId" resultType="long">
+ select count(v.id) from (SELECT b.id
+  from blog as b left outer join blog_tag as bt on bt.blogId=b.id
+  where bt.tagId=#{id}
+  group by b.id) as v
+</select>
+<select id="getBlogById" parameterType="long" resultMap="blogResult">
+  SELECT b.*
+  from blog as b
+  where b.id=#{id}
+</select>
+<select id="getMyBlogByCategoryId"  resultMap="blogResult">
+  SELECT b.*
+  from blog as b
+  where b.postedByUserId=#{id} and (#{blogCategoryId}=-1 or (#{blogCategoryId} is null and b.blogCategoryId is null ) or b.blogCategoryId=#{blogCategoryId}) order by postedDate desc
+  limit ${pageStart},${pageSize}
+</select>
+<select id="countMyBlogByCategoryId"  resultType="long">
+  SELECT count(b.id)
+  from blog as b
+  where b.postedByUserId=#{id} and (#{blogCategoryId}=-1 or (#{blogCategoryId} is null and b.blogCategoryId is null ) or  b.blogCategoryId=#{blogCategoryId})
+</select>
+<select id="getTags" parameterType="long" resultMap="tagResult">
+    select t.id,t.name,t.cnSpell from  blog_tag as bt left outer join tag as t on t.id=bt.tagId
+    where bt.blogId=#{id}
+</select>
+<select id="getUser" parameterType="long" resultMap="userResult">
+select u.id,u.nickName,p.id as p_id,p.url as p_url from user as u 
+left outer join photo as p on u.photoId=p.Id
+where u.id=#{postedByUserId}
+</select>
+<select id="getBlogCategory" parameterType="long" resultMap="blogCategoryResult">
+select bc.id,bc.name from blogCategory as bc where bc.id=#{blogCategoryId}
+</select>
+<insert id="recommendBlog">
+insert into blog_user_recommend (blogId,userId)values(#{0},#{1})
+</insert>
+<select id="isRecommend" resultType="int">
+select count(blogId) from blog_user_recommend where blogId=#{0} and userId=#{1}
+</select>
+<select id="getAllBlogs" resultMap="blogResult">
+select * from blog
+</select>
+<select id="getAllBlogsPage" resultMap="blogResult">
+   select * from blog order by postedDate desc limit ${pageStart},${pageSize}
+</select>
+<select id="countAllBlogs" resultType="long">
+    select count(*) from blog
+</select>
+<select id="getOtherBlogs" resultMap="blogResult">
+    select * from blog where id &lt;> #{blogId} and postedByUserId=#{userId} order by postedDate desc limit ${count}
+</select>
+<select id="searchBlogs" parameterType="SBlog" resultMap="searchBlogResult">
+select b.content, b.id, b.postedByUserId, b.postedDate, b.status, b.title, b.updatedDate, b.viewCount,
+(select count(c1.id) from blogComment as c1 where c1.blogId=b.id) as commentCount,
+(select count(c2.blogId) from blog_user_recommend as c2 where c2.blogId=b.id) as recommendCount
+from blog as b
+left outer join blog_tag as bt on bt.blogId=b.Id
+left outer join tag as t on t.id=bt.tagId
+left outer join user as u on u.id=b.postedByUserId
+<where> 
+    <if test="status>0">
+    b.status=#{status}
+    </if>
+    <if test="content!=null and content!=''">
+        AND b.content like CONCAT('%',#{content},'%' )  
+    </if>
+    <if test="title!=null and title!=''">
+        AND b.title like CONCAT('%',#{title},'%' )  
+    </if>
+    <if test="postedByUser!=null and postedByUser.nickName!=null and postedByUser.nickName!=''">
+        AND u.nickName like CONCAT('%',#{postedByUser.nickName},'%' )  
+    </if>
+    <if test="postedDateMin!=null">
+        AND b.postedDate>#{postedDateMin}
+    </if>
+    <if test="postedDateMax!=null">
+        AND b.postedDate &lt; #{postedDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND b.updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND b.updatedDate &lt; #{updatedDateMax}
+    </if>
+    <if test="tagName!=null and tagName!=''">
+        AND t.name like CONCAT('%',#{tagName},'%' )  
+    </if>
+</where>
+group by b.content, b.id, b.postedByUserId, b.postedDate, b.status, b.title, b.updatedDate,b.viewCount 
+order by ${sort} ${order} limit ${pageStart},${pageSize}
+</select>
+<select id="countBlogs" parameterType="SBlog" resultType="long">
+select count(v.id) from (select b.id from blog as b
+left outer join blog_tag as bt on bt.blogId=b.Id
+left outer join tag as t on t.id=bt.tagId
+left outer join user as u on u.id=b.postedByUserId
+<where> 
+    <if test="status>0">
+    b.status=#{status}
+    </if>
+    <if test="content!=null and content!='' ">
+        AND b.content like CONCAT('%',#{content},'%' )  
+    </if>
+    <if test="title!=null and title!='' ">
+        AND b.title like CONCAT('%',#{title},'%' )  
+    </if>
+    <if test="postedByUser!=null and postedByUser.nickName!=null and postedByUser.nickName!='' ">
+        AND u.nickName like CONCAT('%',#{postedByUser.nickName},'%' )  
+    </if>
+    <if test="postedDateMin!=null">
+        AND b.postedDate>#{postedDateMin}
+    </if>
+    <if test="postedDateMax!=null">
+        AND b.postedDate &lt; #{postedDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND b.updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND b.updatedDate &lt; #{updatedDateMax}
+    </if>
+    <if test="tagName!=null and tagName!='' ">
+        AND t.name like CONCAT('%',#{tagName},'%' )  
+    </if>
+</where>
+group by b.id) as v
+</select>
+</mapper>

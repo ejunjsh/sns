@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.AlbumMapper">
+<cache />
+  <resultMap id="albumResult" type="Album">
+  <id property="id" column="id"/>
+  <result property="createdDate" column="createdDate"/>
+    <result property="updatedDate" column="updatedDate"/>
+     <result property="description" column="description"/>
+     <result property="title" column="title"/>
+     <result property="userId" column="userId"/>
+     <result property="isFixed" column="isFixed"/>
+     <result property="isPrivate" column="isPrivate"/>
+  <association property="photoCount" column="id" select="getPhotoCount"/>
+  <association property="cover" javaType="Photo" column="id" select="getCover" />
+  <association property="user" javaType="User" column="userId" select="getUser" />
+</resultMap>
+  <resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="nickName" column="nickName"/>
+  <association property="avatar" javaType="Photo">
+  <id property="id" column="p_id"/>
+  <result property="url" column="p_url"/>
+</association>
+</resultMap>
+ <resultMap id="photoResult" type="Photo">
+     <id property="id" column="id"/>
+  <result property="url" column="url"/>
+   </resultMap>
+<select id="getPhotoCount" parameterType="long" resultType="int">
+select count(*) from photo where albumId=#{id} 
+</select>
+<select id="getCover" parameterType="long" resultMap="photoResult">
+select * from photo where albumId=#{id} order by createdDate desc limit 1
+</select>
+<select id="getUser" parameterType="long" resultMap="userResult">
+select u.id,u.nickName,p.url as p_url,p.id as p_id from user as u
+left outer join photo as p on u.photoId=p.Id
+ where u.id=#{createdByUserId}
+</select>
+<insert id="insertAlbum" parameterType="album" useGeneratedKeys="true" keyProperty="id">
+  insert into album (createdDate,updatedDate,description,title,userId,isFixed,isPrivate)
+  values (now(),now(),#{description},#{title},#{userId},#{isFixed},#{isPrivate})
+</insert>
+<update id="updateAlbum" parameterType="album" >
+  update album set updatedDate=now(),description=#{description},title=#{title},userId=#{userId},isFixed=#{isFixed},isPrivate=#{isPrivate}
+</update>
+<select id="getAlbumsByUserId"  resultMap="albumResult">
+  SELECT * FROM album WHERE userId = #{id} order by updatedDate desc  limit ${pageStart},${pageSize}
+</select>
+<select id="countAlbumsByUserId"  resultType="int">
+  SELECT count(*) FROM album WHERE userId = #{id}
+</select>
+<select id="getAlbumById"  resultMap="albumResult">
+select * from album where id=#{id}
+</select>
+<update id="updateAlbumDate" parameterType="long" >
+  update album set updatedDate=now() where id=#{id}
+</update>
+</mapper>

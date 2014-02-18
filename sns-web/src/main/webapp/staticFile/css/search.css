@@ -1,0 +1,270 @@
+/* @generated */
+.search-page .main {
+	min-height: 500px;
+	margin-bottom: 50px
+}
+
+.search-page .main .gpages {
+	font-size: 12px
+}
+
+.search-page .garrow_up {
+	width: 0;
+	height: 0;
+	font-size: 0;
+	border-width: 10px;
+	border-style: dashed dashed solid;
+	border-color: transparent transparent #FFF
+}
+
+.search-page .form-wp {
+	height: 70px;
+	background-color: #f4f4f4;
+	border-top: 1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb
+}
+
+.search-page .form-wp form {
+	margin: 20px auto
+}
+
+.search-page .form-wp form .search-text {
+	margin-right: 10px;
+	padding: 7px 5px;
+	vertical-align: middle;
+	border: 1px solid #DDD;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-box-shadow: 1px 1px 1px #DDD inset;
+	-moz-box-shadow: 1px 1px 1px #ddd inset;
+	-o-box-shadow: 1px 1px 1px #ddd inset;
+	box-shadow: 1px 1px 1px #DDD inset;
+	height: 16px
+}
+
+.search-page .form-wp form .search-submit {
+	width: 80px;
+	height: 32px;
+	border: 0;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url("../img/4-button.png") no-repeat scroll -222px -33px
+}
+
+.search-page .form-wp form .search-submit:hover {
+	background-position: -222px -65px
+}
+
+.search-page .tabs-wp {
+	margin-bottom: 10px;
+	height: 20px;
+	padding: 15px 0;
+	font-size: 16px;
+	line-height: 20px;
+	border: 1px solid #ebebeb
+}
+
+.search-page .tabs-wp ul li {
+	float: left;
+	font-family: verdana, helvetica, microsoft yahei;
+	position: relative;
+	padding: 0 30px
+}
+
+.search-page .tabs-wp ul li a {
+	color: #666
+}
+
+.search-page .tabs-wp ul li b {
+	position: absolute;
+	visibility: hidden
+}
+
+.search-page .tabs-wp ul li .arrow1 {
+	z-index: 1;
+	border-bottom-color: #ebebeb;
+	top: 16px;
+	left: 36px;
+	_top:-4px;
+}
+
+.search-page .tabs-wp ul li .arrow2 {
+	z-index: 2;
+	top: 17px;
+	left: 36px;
+	_top:-3px;
+}
+
+.search-page .tabs-wp .current a {
+	color: #4ba733;
+	font-size: 18px
+}
+
+.search-page .tabs-wp .current b {
+	visibility: visible;
+}
+
+.search-page .items {
+	overflow: hidden;
+	_zoom: 1
+}
+
+.search-page .items li {
+	overflow: hidden;
+	_zoom: 1;
+	padding: 20px 20px 25px;
+	margin-bottom: 5px;
+	border-bottom: 1px dotted #BBB
+}
+
+.search-page .items li strong {
+	color: #f16623;
+	font-weight: normal
+}
+
+.search-page .items li h2 {
+	font-weight: normal
+}
+
+.search-page .items li h2 span {
+	color: #999
+}
+
+.search-page .items li p {
+	color: #999;
+	line-height: 1.8;
+	margin-top: 3px;
+	font-size: 12px;
+	word-wrap: break-word
+}
+
+.search-page .items .items-sticky {
+	padding: 30px 0
+}
+
+.search-page .items .items-sticky .item-sticky {
+	background: #f4f4f4;
+	padding: 18px 20px;
+	overflow: hidden;
+	*zoom: 1
+}
+
+.search-page .items .items-sticky .item-pic {
+	float: left
+}
+
+.search-page .items .items-sticky .group-desc {
+	float: right;
+	width: 520px
+}
+
+.search-page .items .items-sticky .gicon-sai {
+	float: none
+}
+
+.search-page .items .items-sticky h2 span {
+	font-size: 12px
+}
+
+.search-page .items .items-sticky span {
+	margin-left: 8px
+}
+
+.search-page .items .items-guy .item-content {
+	overflow: hidden;
+	*zoom: 1
+}
+
+.search-page .items .items-guy a {
+	float: left
+}
+
+.search-page .items .items-guy .guy-desc {
+	float: right;
+	width: 520px
+}
+
+.search-page .items .items-guy .gicon-sai {
+	float: none
+}
+
+.search-page .items .items-guy span {
+	margin-left: 8px
+}
+
+.search-page .error_msg {
+	font-size: 18px;
+	margin: 30px 0 30px 27px;
+	color: #4ba733;
+	font-family: Microsoft YaHei
+}
+
+.search-page .error_reco {
+	border: 1px solid #d7dcd2;
+	border-radius: 5px;
+	margin: 30px 0 50px;
+	padding: 30px 20px;
+	background-size: 80px;
+	background-color: #fafafa;
+	background-repeat: no-repeat;
+	background-position: 528px 6px;
+	background-position: 470px 6px\9;
+	background-position: 528px 6px\9\0;
+	background-image: url("../img/defaultAvatar.gif");
+	font-family: Microsoft YaHei
+}
+
+.search-page .error_reco p {
+	color: #888;
+	font-size: 16px
+}
+
+.search-page .error_reco h2 {
+	color: #333;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 10px 0 5px
+}
+
+.search-page .error_reco a {
+	color: #0078b6;
+	font-size: 13px;
+	line-height: 1.2em
+}
+
+.search-page .error_reco li {
+	margin-bottom: 2px
+}
+
+.search-page .error_reco .error_reco-keywords {
+	overflow: hidden;
+	_zoom: 1
+}
+
+.search-page .error_reco .error_reco-keywords li {
+	float: left;
+	margin-right: 10px
+}
+
+.search-page .side {
+	margin-top: 3px
+}
+
+.search-page .side-link {
+	font-size: 12px;
+	display: block;
+	margin: 13px 0
+}
+
+.search-page .side div {
+	margin-top: 40px
+}
+
+.search-page .side .side-title h2 {
+color: #4BA733;
+font-size: 14px;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+}

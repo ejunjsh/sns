@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.UserMapper">
+<cache />
+   <resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="photoId" column="photoId"/>
+  <result property="blogUrl" column="blogUrl"/>
+  <result property="description" column="description"/>
+  <result property="email" column="email"/>
+  <result property="gender" column="gender"/>
+  <result property="ip" column="ip"/>
+  <result property="isWaterMark" column="isWaterMark"/>
+  <result property="lastLoginDate" column="lastLoginDate"/>
+  <result property="nickName" column="nickName"/>
+  <result property="regesiterDate" column="regesiterDate"/>
+  <result property="status" column="status"/>
+  <result property="title" column="title"/>
+  <result property="isFollow" column="isFollow" />
+  <association property="followingCount" column="id" select="getFollowingCount"/>
+  <association property="followedCount" column="id" select="getFollowedCount"/>
+  <association property="blogCount" column="id" select="getBlogCount"/>
+  <association property="answerCount" column="id" select="getAnswerCount"/>
+  <association property="questionCount" column="id" select="getQuestionCount"/>
+  <association property="postCount" column="id" select="getPostCount"/>
+  <association property="activityCount" column="id" select="getActivityCount"/>
+  <association property="tagCount" column="id" select="getTagCount"/>
+  <association property="groupCount" column="id" select="getGroupCount"/>
+  <association property="photoCount" column="id" select="getPhotoCount"/>
+  <association property="avatar" javaType="Photo" column="photoId" select="getPhoto" />
+</resultMap>
+   <resultMap id="photoResult" type="Photo">
+     <id property="id" column="id"/>
+  <result property="url" column="url"/>
+   </resultMap>
+<select id="getPhoto" resultMap="photoResult">
+select id,url from photo where id=#{photoId}
+</select>
+<insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+  insert into user (email,passWord,ip,lastLoginDate,nickName,regesiterDate,status)
+  values (#{email},#{passWord},#{ip},#{lastLoginDate},#{nickName},#{regesiterDate},#{status})
+</insert>
+<insert id="follow" >
+insert into followUser (userId,followUserId)values(#{0},#{1})
+</insert>
+<insert id="cacelFollow" >
+delete from followUser where userId=#{0} and followUserId=#{1}
+</insert>
+<select id="isFollow" resultType="int">
+select count(userId) from followUser  where userId=#{0} and followUserId=#{1}
+</select>
+<select id="getFollowing" resultMap="userResult">
+select u.*,(select count(fu1.userId) from followUser as fu1 where fu1.userId=#{curId} and fu1.followUserId=u.id) as isFollow  from followUser as fu left outer join user as u on u.id=fu.followUserId where fu.userId=#{id} limit ${pageStart},${pageSize}
+</select>
+<select id="getFollowed" resultMap="userResult">
+select u.*,(select count(fu1.userId) from followUser as fu1 where fu1.userId=#{curId} and fu1.followUserId=u.id) as isFollow  from followUser as fu left outer join user as u on u.id=fu.userId where fu.followUserId=#{id} limit ${pageStart},${pageSize}
+</select>
+<select id="getAllUsers" resultMap="userResult">
+select * from user
+</select>
+<update id="updateUser" parameterType="User">
+  update user set
+    email = #{email},
+    passWord = #{passWord},
+    ip = #{ip},
+    lastLoginDate = #{lastLoginDate},
+     nickName = #{nickName},
+      status = #{status},
+      photoId=#{photoId},
+      blogUrl=#{blogUrl},
+      description=#{description},
+      gender=#{gender},
+      title=#{title},
+      isWaterMark=#{isWaterMark}
+  where id = #{id}
+</update>
+<select id="getUserById" parameterType="long" resultMap="userResult">
+  SELECT * FROM user WHERE id = #{id}
+</select>
+<select id="getUserDetailById" parameterType="long" resultMap="userResult">
+  SELECT u.*,(select count(fu.userId) from followUser as fu where fu.userId=#{curId} and fu.followUserId=u.id) as isFollow FROM user as u WHERE u.id = #{id}
+</select>
+<select id="getFollowingCount" parameterType="long" resultType="int">
+  SELECT count(userId) FROM followUser WHERE userId = #{id}
+</select>
+<select id="getFollowedCount" parameterType="long" resultType="int">
+  SELECT count(followUserId) FROM followUser WHERE followUserId = #{id}
+</select>
+<select id="getBlogCount" parameterType="long" resultType="int">
+  SELECT count(postedByUserId) FROM blog WHERE postedByUserId = #{id}
+</select>
+<select id="getAnswerCount" parameterType="long" resultType="int">
+  SELECT count(createdByUserId) FROM answer WHERE createdByUserId = #{id}
+</select>
+<select id="getQuestionCount" parameterType="long" resultType="int">
+  SELECT count(postedByUserId) FROM question WHERE postedByUserId = #{id}
+</select>
+<select id="getPostCount" parameterType="long" resultType="int">
+  SELECT count(postedByUserId) FROM groupPost WHERE postedByUserId = #{id}
+</select>
+<select id="getActivityCount" parameterType="long" resultType="int">
+  SELECT count(userId) FROM activity WHERE userId = #{id}
+</select>
+<select id="getTagCount" parameterType="long" resultType="int">
+  SELECT count(userId) FROM user_tag WHERE userId = #{id}
+</select>
+<select id="getGroupCount" parameterType="long" resultType="int">
+  SELECT count(userId) FROM group_user_join WHERE userId = #{id}
+</select>
+<select id="getPhotoCount" parameterType="long" resultType="int">
+  SELECT count(userId) FROM photo WHERE userId = #{id}
+</select>
+<select id="getUserByEmail" parameterType="String" resultMap="userResult">
+  SELECT * FROM user WHERE email = #{email}
+</select>
+<select id="getUserByNickName" parameterType="String" resultMap="userResult">
+  SELECT * FROM user WHERE nickName = #{nickName}
+</select>
+<select id="getUsersByTagId" resultMap="userResult">
+  SELECT u.*,(select count(fu.userId) from followUser as fu where fu.userId=#{uid} and fu.followUserId=u.id) as isFollow 
+  from user as u left outer join user_tag as ut on ut.userId=u.id
+  where ut.tagId=#{id}
+  group by u.id order by u.lastLoginDate desc
+  limit ${pageStart},${pageSize}
+</select>
+<select id="countUsersByTagId" resultType="long">
+ select count(v.id) from (SELECT u.id
+  from user as u left outer join user_tag as ut on ut.userId=u.id
+  where ut.tagId=#{id}
+  group by u.id) as v
+</select>
+<select id="getUserByNickNameExceptCurUser"  resultType="User">
+  SELECT * FROM user WHERE nickName = #{0} and id &lt;>#{1}
+</select>
+<select id="searchUsers" parameterType="SUser" resultType="User">
+SELECT id,email,ip,lastLoginDate,nickName,regesiterDate,status FROM user
+  <where> 
+    <if test="status>0">
+         status = #{status}
+    </if> 
+    <if test="nickName != null and nickName!='' ">
+        AND nickName like CONCAT('%',#{nickName},'%' )  
+    </if>
+    <if test="ip != null and ip!='' ">
+        AND ip like CONCAT('%',#{ip},'%' )  
+    </if>
+    <if test="email != null and email!='' ">
+        AND email like CONCAT('%',#{email},'%' )  
+    </if>
+    <if test="lastLoginDateMax != null">
+        AND lastLoginDate  &lt; #{lastLoginDateMax}
+    </if>
+    <if test="lastLoginDateMin != null">
+        AND lastLoginDate > #{lastLoginDateMin}
+    </if>
+    <if test="regesiterDateMax != null">
+        AND regesiterDate  &lt; #{regesiterDateMax}
+    </if>
+    <if test="regesiterDateMin != null">
+        AND regesiterDate > #{regesiterDateMin}
+    </if>
+  </where>
+  order by ${sort} ${order} limit ${pageStart},${pageSize}
+</select>
+<select id="countUsers" parameterType="SUser" resultType="long">
+SELECT count(id) FROM user
+  <where> 
+    <if test="status>0">
+         status = #{status}
+    </if> 
+    <if test="nickName != null and nickName!=''">
+        AND nickName like CONCAT('%',#{nickName},'%' )  
+    </if>
+    <if test="email != null and email!=''">
+        AND email like CONCAT('%',#{email},'%' )  
+    </if>
+    <if test="lastLoginDateMax != null">
+        AND lastLoginDate  &lt; #{lastLoginDateMax}
+    </if>
+    <if test="lastLoginDateMin != null">
+        AND lastLoginDate > #{lastLoginDateMin}
+    </if>
+    <if test="regesiterDateMax != null">
+        AND regesiterDate  &lt; #{regesiterDateMax}
+    </if>
+    <if test="regesiterDateMin != null">
+        AND regesiterDate > #{regesiterDateMin}
+    </if>
+  </where>
+</select>
+</mapper>

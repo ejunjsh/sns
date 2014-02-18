@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.TagMapper">
+<cache />
+<resultMap id="photoResult" type="Photo">
+<id property="id" column="id"/>
+<result property="url" column="url"/>
+</resultMap>
+<resultMap id="tagResult" type="Tag">
+  <id property="id" column="id"/>
+  <result property="photoId" column="photoId"/>
+  <result property="name" column="name"/>
+  <result property="description" column="description"/>
+  <result property="createdDate" column="createdDate"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="cnSpell" column="cnSpell"/>
+  <association property="cover" javaType="Photo" column="photoId" select="getPhoto"/>
+</resultMap>
+<select id="getPhoto" resultMap="photoResult">
+select id,url from photo where id=#{photoId}
+</select>
+<insert id="insertTag" parameterType="Tag" useGeneratedKeys="true" keyProperty="id">
+  insert into tag (name,cnSpell,description,createdDate,updatedDate,photoId)
+  values (#{name},#{cnSpell},#{description},now(),now(),#{photoId})
+</insert>
+<update id="updateTag" parameterType="Tag">
+  update Tag set name=#{name},cnSpell=#{cnSpell},description=#{description},photoId=#{photoId},updatedDate=now()
+  where id=#{id}
+</update>
+<insert id="followTag">
+    insert into user_tag (userId,tagId) values (#{0},#{1})
+</insert>
+<delete id="unfollowTag">
+    delete from user_tag where userId=#{0} and tagId=#{1}
+</delete>
+<select id="isFollowTag" resultType="int">
+    select count(tagId) from user_tag where userId=#{0} and tagId=#{1}
+</select>
+<select id="getTagById" parameterType="long" resultMap="tagResult">
+  SELECT * FROM tag WHERE id = #{id}
+</select>
+<select id="getTagByName" parameterType="string" resultMap="tagResult">
+  SELECT t.*,(select count(ut.userId) from user_tag as ut where ut.tagId=t.id) as followCount FROM tag as t WHERE t.name like CONCAT(#{name},'%' )  or t.cnSpell like CONCAT(#{name},'%' )
+</select>
+<select id="getMyTags" resultMap="tagResult">
+ select t.*,(select count(ut1.userId) from user_tag as ut1 where ut1.userId=#{uid} and ut1.tagId=t.id) as isFollowed,(select count(ut.userId) from user_tag as ut where ut.tagId=t.id) as followCount
+ from user_tag as ut left outer join tag as t on t.id=ut.tagId 
+ where ut.userId=#{id}
+ limit ${pageStart},${pageSize}
+</select>
+<select id="getTagBySpell"  resultMap="tagResult">
+  SELECT t.*,(select count(ut.userId) from user_tag as ut where ut.tagId=t.id) as followCount,
+  (select count(ut1.userId) from user_tag as ut1 where ut1.tagId=t.id and ut1.userId=#{uid}) as isFollowed
+  FROM tag as t WHERE cnSpell=#{spell}
+</select>
+<select id="isExisting"  resultType="int">
+  SELECT count(*) FROM tag WHERE name=#{name}
+  <if test="id>0">
+     and id &lt;>#{id}
+  </if>
+</select>
+<select id="getAllTags" resultMap="tagResult">
+  SELECT t.*,(select count(ut.userId) from user_tag as ut where ut.tagId=t.id) as followCount,
+  (select count(ut1.userId) from user_tag as ut1 where ut1.tagId=t.id and ut1.userId=#{uid}) as isFollowed
+  FROM tag as t 
+  <where>
+      <if test="key != null and key!='' ">
+         t.cnSpell like CONCAT('%',#{key},'%' )
+         or t.name like CONCAT('%',#{key},'%' )
+         or t.description like CONCAT('%',#{key},'%' )
+      </if>
+  </where>
+   order by followCount desc limit ${pageStart},${pageSize} 
+</select>
+<select id="countAllTags" resultType="long">
+  SELECT count(t.id)
+  FROM tag as t 
+  <where>
+      <if test="key != null and key!='' ">
+         t.cnSpell like CONCAT('%',#{key},'%' )  
+         or t.name like CONCAT('%',#{key},'%' )
+         or t.description like CONCAT('%',#{key},'%' )
+      </if>
+  </where>
+</select>
+<select id="searchTags" parameterType="STag" resultMap="tagResult">
+SELECT id,name,cnSpell,createdDate,updatedDate,description,(select count(ut.userId) from user_tag as ut where ut.tagId=id) as followCount FROM tag
+  <where> 
+    <if test="cnSpell != null and cnSpell!='' ">
+         cnSpell like CONCAT('%',#{cnSpell},'%' )  
+    </if>
+    <if test="name != null and name!='' ">
+        AND name like CONCAT('%',#{name},'%' )  
+    </if>
+    <if test="createdDateMax != null">
+        AND createdDate  &lt; #{createdDateMax}
+    </if>
+    <if test="createdDateMin != null">
+        AND createdDate > #{createdDateMin}
+    </if>
+        <if test="updatedDateMin!=null">
+        AND updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND updatedDate &lt; #{updatedDateMax}
+    </if>
+    <if test="description != null and description!='' ">
+        AND description like CONCAT('%',#{description},'%' )  
+    </if>
+  </where>
+  order by ${sort} ${order} limit ${pageStart},${pageSize}
+</select>
+<select id="countTags" parameterType="STag" resultType="long">
+SELECT count(id) FROM tag
+  <where> 
+   <if test="cnSpell != null and cnSpell!='' ">
+         cnSpell like CONCAT('%',#{cnSpell},'%' )  
+    </if>
+    <if test="name != null and name!='' ">
+        AND name like CONCAT('%',#{name},'%' )  
+    </if>
+    <if test="createdDateMax != null">
+        AND createdDate  &lt; #{createdDateMax}
+    </if>
+    <if test="createdDateMin != null">
+        AND createdDate > #{createdDateMin}
+    </if>
+        <if test="updatedDateMin!=null">
+        AND updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND updatedDate &lt; #{updatedDateMax}
+    </if>
+    <if test="description != null and description!='' ">
+        AND description like CONCAT('%',#{description},'%' )  
+    </if>
+  </where>
+</select>
+</mapper>

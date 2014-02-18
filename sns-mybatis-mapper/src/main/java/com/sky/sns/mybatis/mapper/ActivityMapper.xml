@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.ActivityMapper">
+<cache />
+<insert id="insertActivity" parameterType="activity" useGeneratedKeys="true" keyProperty="id">
+  insert into activity (activityType,createdDate,description,refId,title,userId,pic)
+  values (#{activityType},now(),#{description},#{refId},#{title},#{userId},#{pic})
+</insert>
+<select id="getActivityByUserId"  resultType="Activity">
+  SELECT * FROM activity WHERE userId = #{id} order by createdDate desc  limit ${pageStart},${pageSize}
+</select>
+</mapper>

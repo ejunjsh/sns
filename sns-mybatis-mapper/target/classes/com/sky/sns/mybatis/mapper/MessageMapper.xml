@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.MessageMapper">
+<cache />
+ <resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="nickName" column="nickName"/>
+            <association property="avatar" javaType="Photo">
+  <id property="id" column="p_id"/>
+  <result property="url" column="p_url"/>
+</association>
+</resultMap>
+<resultMap id="messageResult" type="Message">
+  <id property="id" column="id"/>
+  <result property="content" column="content"/>
+  <result property="fromUserId" column="fromUserId"/>
+  <result property="toUserId" column="toUserId"/>
+  <result property="createdDate" column="createdDate"/>
+  <result property="status" column="status"/>
+  <result property="group" column="group"/>
+  <result property="isRead" column="isRead"/>
+  <result property="messageCount" column="messageCount"/>
+  <association property="fromUser" javaType="User" column="fromUserId" select="getUser"/>
+<association property="toUser" javaType="User" column="toUserId" select="getUser"/>
+</resultMap>
+<select id="getUser" parameterType="long" resultMap="userResult">
+select u.id,u.nickName,p.id as p_id,p.url as p_url from user as u
+left outer join photo as p on u.photoId=p.Id
+ where u.id=#{postedByUserId}
+</select>
+<insert id="insertMessage" parameterType="message" useGeneratedKeys="true" keyProperty="id">
+  insert into message (createdDate,content,`group`,fromUserId,toUserId,isRead,isFromDelete,isToDelete)
+  values (now(),#{content},#{group},#{fromUserId},#{toUserId},0,0,0)
+</insert>
+<update id="updateMessageToRead" >
+  update message set isRead=1 where fromUserId=#{0} and toUserId=#{1} and isRead=0
+</update>
+<update id="deleteMessageById">
+  update message set isFromDelete=(case when fromUserId=#{1}  or isFromDelete=1 then 1 else 0 end),
+  isToDelete=(case when toUserId=#{1}  or isToDelete=1 then 1 else 0 end) 
+  where id=#{0}
+</update>
+<update id="deleteMessageByGroup">
+  update message set isFromDelete=(case when fromUserId=#{1} or isFromDelete=1 then 1 else 0 end),
+  isToDelete=(case when toUserId=#{1}  or isToDelete=1 then 1 else 0 end) 
+  where `group`=#{0}
+</update>
+<select id="getGroupByUserId" resultType="String">
+  select `group` from message where (fromUserId=#{0} and toUserId=#{1}) or (fromUserId=#{1} and toUserId=#{0})
+  limit 1
+</select>
+<select id="getUnreadMessage" resultMap="messageResult">
+  select *,count(`group`) as messageCount  from message where toUserId=#{0} and isToDelete &lt;>1 and isRead=0 group by `group` order by createdDate desc
+</select>
+<select id="getMessageByUserId" resultMap="messageResult">
+  select * from message where (fromUserId=#{fromUserId} and isFromDelete &lt;>1 and toUserId=#{toUserId}) or (toUserId=#{fromUserId} and isToDelete &lt;>1 and fromUserId=#{toUserId})  order by createdDate desc
+  limit ${pageStart},${pageSize}
+</select>
+<select id="countMessageByUserId" resultType="long">
+  select count(*) from message where (fromUserId=#{fromUserId} and isFromDelete &lt;>1 and toUserId=#{toUserId}) or (toUserId=#{fromUserId} and isToDelete &lt;>1 and fromUserId=#{toUserId}) 
+</select>
+<select id="getMessageByGroup" resultMap="messageResult">
+ select v.*,count(`group`) as messageCount  from (select * from message where (fromUserId=#{fromUserId} and isFromDelete &lt;>1) or (toUserId=#{fromUserId} and isToDelete &lt;>1) order by createdDate desc) as v  group by v.`group` order by v.createdDate desc
+  limit ${pageStart},${pageSize}
+</select>
+<select id="countMessageByGroup" resultType="long">
+ select count(v.`group`) from (select * from message where (fromUserId=#{fromUserId} and isFromDelete &lt;>1) or (toUserId=#{fromUserId} and isToDelete &lt;>1) group by `group` ) as v
+</select>
+</mapper>

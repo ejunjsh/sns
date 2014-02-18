@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+.tag {
+    background-color: #E6E6E6;
+    border-radius: 15px 15px 15px 15px;
+    color: #777777;
+    float: left;
+    line-height: 20px;
+    margin-right: 5px;
+    margin-left:5px;
+    display:inline-block;
+    padding: 0 6px;
+}

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.AnswerMapper">
+<cache />
+  <resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="nickName" column="nickName"/>
+  <association property="avatar" javaType="Photo">
+  <id property="id" column="p_id"/>
+  <result property="url" column="p_url"/>
+</association>
+</resultMap>
+<resultMap id="questionResult" type="Question">
+  <id property="id" column="id"/>
+  <result property="title" column="title"/>
+</resultMap>
+ <resultMap id="answerResult" type="Answer">
+  <id property="id" column="id"/>
+  <result property="content" column="content"/>
+  <result property="createdByUserId" column="createdByUserId"/>
+  <result property="postedDate" column="postedDate"/>
+  <result property="questionId" column="questionId"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <association property="uselessCount" column="id" select="getUselessCount"/>
+  <association property="votedDownCount" column="id" select="getVotedDownCount"/>
+  <association property="votedUpCount" column="id" select="getVotedUpCount"/>
+   <association property="commentCount" column="id" select="getCommentCount"/>
+  <association property="createdByUser" javaType="User" column="createdByUserId" select="getUser" />
+  <association property="question" javaType="Question" column="questionId" select="getQuestion" />
+</resultMap>
+<insert id="insertAnswer" parameterType="Answer" useGeneratedKeys="true" keyProperty="id">
+  insert into answer (content,createdByUserId,postedDate,questionId,updatedDate)
+  values (#{content},#{createdByUserId},#{postedDate},#{questionId},#{updatedDate})
+</insert>
+<update id="updateAnswer" parameterType="Answer">
+  update answer set content=#{content},createdByUserId=#{createdByUserId},postedDate=#{postedDate},questionId=#{questionId},updatedDate=#{updatedDate}
+  where  id=#{id}
+</update>
+<select id="getAnswerById" parameterType="long" resultMap="answerResult">
+   select a.*
+   from  answer as a
+   left outer join user as u on a.createdByUserId=u.id
+   where a.id=#{id}
+</select>
+<select id="getQuestion" parameterType="long" resultMap="questionResult">
+select id,title from question where id=#{questionId}
+</select>
+<select id="getAnswersByQuestionId" parameterType="long" resultMap="answerResult">
+   select a.*
+   from  answer as a
+   where a.questionId=#{id}
+</select>
+<select id="getUser" parameterType="long" resultMap="userResult">
+select u.id,u.nickName,p.url as p_url,p.id as p_id from user as u
+left outer join photo as p on u.photoId=p.Id
+ where u.id=#{createdByUserId}
+</select>
+<select id="getUselessCount" parameterType="long" resultType="int">
+select count(answerId) from user_answer_useless where answerId=#{id}
+</select>
+<select id="getVotedDownCount" parameterType="long" resultType="int">
+select count(answerId) from user_answer_vote where answerId=#{id} and value=2
+</select>
+<select id="getVotedUpCount" parameterType="long" resultType="int">
+select count(answerId) from user_answer_vote where answerId=#{id} and value=1
+</select>
+<select id="getCommentCount" parameterType="long" resultType="int">
+select count(refId) from questioncomment where refId=#{id} and commentType=2
+</select>
+<insert id="addVote">
+ insert into user_answer_vote (answerId,userId,value)values(#{0},#{1},#{2})
+</insert>
+<delete id="deleteVote" parameterType="long">
+delete from user_answer_vote where answerId=#{id} 
+</delete>
+<insert id="addUseless">
+ insert into user_answer_useless (answerId,userId)values(#{0},#{1})
+</insert>
+<delete id="deleteUseless" parameterType="long">
+delete from user_answer_useless where answerId=#{id}
+</delete>
+<select id="isVoted" resultType="int">
+select count(*) from user_answer_vote where answerId=#{0} and userId=#{1}
+</select>
+<select id="isUseless" resultType="int">
+select count(*) from user_answer_useless where answerId=#{0} and userId=#{1}
+</select>
+<delete id="deleteAnswer" parameterType="long">
+delete from answer where id=#{id}
+</delete>
+<select id="getAnswersByUserId" resultMap="answerResult">
+   select a.*
+   from  answer as a
+   where a.createdByUserId=#{id} order by a.postedDate desc limit ${pageStart},${pageSize}
+</select>
+<select id="countAnswersByUserId" resultType="long">
+   select count(a.id)
+   from  answer as a
+   where a.createdByUserId=#{id}
+</select>
+</mapper>

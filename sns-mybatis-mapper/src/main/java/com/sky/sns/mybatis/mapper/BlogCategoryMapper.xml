@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.BlogCategoryMapper">
+<cache />
+<insert id="insertBlogCategory" parameterType="BlogCategory" useGeneratedKeys="true" keyProperty="id">
+  insert into BlogCategory (name,createdByUserId,createdDate,updatedDate)
+  values (#{name},#{createdByUserId},#{createdDate},#{updatedDate})
+</insert>
+<select id="getBlogCategoryByName" resultType="int">
+  SELECT count(id) FROM BlogCategory WHERE createdByUserId = #{0} and name=#{1}
+</select>
+<select id="getBlogCategoryByNameForUpdate" resultType="int">
+  SELECT count(id) FROM BlogCategory WHERE createdByUserId = #{0} and name=#{1} and id &lt;>#{2}
+</select>
+<select id="getBlogCategoryByUserId" parameterType="long" resultType="BlogCategory">
+  SELECT * FROM BlogCategory WHERE createdByUserId = #{uid}
+</select>
+<select id="getBlogCategoryById" parameterType="long" resultType="BlogCategory">
+  SELECT * FROM BlogCategory WHERE id = #{id}
+</select>
+<update id="updateBlogCategory" parameterType="BlogCategory">
+update BlogCategory set name=#{name},updatedDate=#{updatedDate} where id=#{id}
+</update>
+<delete id="deleteBlogCategory" parameterType="long">
+delete from BlogCategory  where id=#{id}
+</delete>
+</mapper>

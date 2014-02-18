@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.NoticeMapper">
+<cache />
+<insert id="insertNotice" parameterType="notice" useGeneratedKeys="true" keyProperty="id">
+  insert into notice (noticeType,createdDate,content,refId,title,userId,isRead,updatedDate)
+  values (#{noticeType},now(),#{content},#{refId},#{title},#{userId},0,now())
+</insert>
+<update id="updateNoticeToRead" parameterType="notice">
+  update notice set isRead=1 where userId=#{id}
+</update>
+<select id="getUnreadNotice" resultType="Notice">
+  SELECT *,count(refId) as count FROM notice WHERE userId = #{id} and isRead=0
+  group by noticeType,refId
+  order by createdDate desc
+</select>
+<select id="getNoticeByUserId" resultType="Notice">
+  SELECT *,count(refId) as count FROM notice WHERE userId = #{id}
+  group by noticeType,refId
+  order by createdDate desc  limit ${pageStart},${pageSize}
+</select>
+<select id="getNoticeById" parameterType="long" resultType="Notice">
+  SELECT * FROM notice WHERE id=#{id}
+</select>
+<select id="countNoticeByUserId" parameterType="long" resultType="long">
+ select count(v.refId) from (SELECT refId FROM notice WHERE userId = #{id}
+  group by noticeType,refId) as v
+</select>
+<select id="getSysNotice" parameterType="SNotice" resultType="Notice">
+  SELECT * FROM notice
+  <where> 
+    noticeType=1
+    <if test="content!=null and content!=''">
+        AND content like CONCAT('%',#{content},'%' )  
+    </if>
+    <if test="title!=null and title!=''">
+        AND title like CONCAT('%',#{title},'%' )  
+    </if>
+    <if test="createdDateMin!=null">
+        AND createdDate>#{createdDateMin}
+    </if>
+    <if test="createdDateMax!=null">
+        AND createdDate &lt; #{createdDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND updatedDate &lt; #{updatedDateMax}
+    </if>
+</where>
+order by ${sort} ${order} limit ${pageStart},${pageSize}
+</select>
+<select id="countSysNotice"  parameterType="SNotice" resultType="long">
+  SELECT count(id) FROM notice
+  <where> 
+    noticeType=1
+    <if test="content!=null and content!=''">
+        AND content like CONCAT('%',#{content},'%' )  
+    </if>
+    <if test="title!=null and title!=''">
+        AND title like CONCAT('%',#{title},'%' )  
+    </if>
+    <if test="createdDateMin!=null">
+        AND createdDate>#{createdDateMin}
+    </if>
+    <if test="createdDateMax!=null">
+        AND createdDate &lt; #{createdDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND updatedDate &lt; #{updatedDateMax}
+    </if>
+</where>
+</select>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.ArticleCommentMapper">
+<cache />
+  <resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="nickName" column="nickName"/>
+    <association property="avatar" javaType="Photo">
+  <id property="id" column="p_id"/>
+  <result property="url" column="p_url"/>
+</association>
+</resultMap>
+<resultMap id="commentResult" type="ArticleComment">
+  <id property="id" column="id"/>
+  <result property="content" column="content"/>
+  <result property="postedByUserId" column="postedByUserId"/>
+  <result property="postedDate" column="postedDate"/>
+  <result property="articleId" column="articleId"/>
+  <association property="postedByUser" javaType="User" column="postedByUserId" select="getUser"/>
+</resultMap>
+
+<select id="getUser" parameterType="long" resultMap="userResult">
+select u.id,u.nickName,p.url as p_url,p.id as p_id from user as u
+left outer join photo as p on u.photoId=p.Id
+ where u.id=#{postedByUserId}
+</select>
+<insert id="insertArticleComment" parameterType="ArticleComment" useGeneratedKeys="true" keyProperty="id">
+insert into ArticleComment (content,postedDate,postedByUserId,articleId)values(#{content},#{postedDate},#{postedByUserId},#{articleId})
+</insert>
+<delete id="deleteArticleComment" parameterType="long">
+delete from ArticleComment where id=#{id}
+</delete>
+<select id="getArticleCommentByArticleId" resultMap="commentResult">
+  SELECT a.*
+  from ArticleComment as a
+  where a.articleId=#{id} order by a.postedDate asc
+  limit ${pageStart},${pageSize}
+</select>
+
+<select id="countArticleCommentsByArticleId" resultType="int">
+select count(a.id) from ArticleComment as a where a.articleId=#{id}
+</select>
+<select id="getArticleCommentById" parameterType="long" resultMap="commentResult">
+  SELECT a.*
+  from ArticleComment as a
+  where a.id=#{id}
+</select>
+</mapper>

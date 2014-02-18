@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">  
+  
+  <!--  <appender name="MONGODB" class="org.springframework.data.mongodb.log4j.MongoLog4jAppender">
+       <layout class="org.apache.log4j.PatternLayout"> 
+          <param name="ConversionPattern" value="%d %p [%c] - [%m]%n"/> 
+       </layout> 
+      <param name="host" value="localhost"/>
+      <param name="port" value="27017"/>
+      <param name="database" value="Logs"/>
+      <param name="collectionPattern" value="%X{year}%X{month}"/>
+      <param name="applicationId" value="my.application"/>
+      <param name="warnOrHigherWriteConcern" value="FSYNC_SAFE"/>
+    </appender>
+
+ <logger name="org.apache.activemq">
+	<level value="ERROR"></level>
+	<appender-ref ref="MONGODB" />
+</logger>
+	<logger name="org.springframework.batch">
+		<level value="DEBUG"></level>
+		<appender-ref ref="MONGODB" />
+	</logger>
+	
+	<logger name="org.springframework.transaction">
+		<level value="INFO"></level>
+		<appender-ref ref="MONGODB" />
+	</logger>   
+ <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+       <layout class="org.apache.log4j.PatternLayout"> 
+          <param name="ConversionPattern" value="%d %-5p %c.%M:%L - %m%n"/>
+       </layout> 
+    </appender>
+
+    <logger name="com.opensymphony">
+    	<level value="DEBUG" />
+    </logger>
+
+    <logger name="org.apache.struts2">
+    	 <level value="DEBUG" />
+    </logger>
+     <root>
+        <priority value="INFO"/> 
+        <appender-ref ref="STDOUT" /> 
+     </root>  -->
+
+<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+       <layout class="org.apache.log4j.PatternLayout"> 
+          <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss,SSS} [%c]-[%p] %m%n"/> 
+       </layout> 
+</appender>
+<appender name="FILE" class="org.apache.log4j.FileAppender">
+       <layout class="org.apache.log4j.PatternLayout"> 
+          <param name="ConversionPattern" value="Hibernate: %m%n"/> 
+       </layout> 
+</appender>
+
+<!--  <logger name="com.opensymphony"> -->
+ 
+<!--     </logger> -->
+
+<!--     <logger name="org.apache.struts2"> -->
+    	
+<!--     </logger> -->
+
+ <logger name="org.hibernate.tool.hbm2ddl">
+  
+    </logger>
+
+<logger name="org.hibernate.SQL ">
+
+</logger>
+
+<!-- <logger name="com.sky.sns.mybatis.mapper.UserMapper"> -->
+    	
+<!-- </logger> -->
+
+<!-- <logger name="com.sky.sns.mybatis.mapper.TagMapper"> -->
+    
+<!-- </logger> -->
+
+<!-- <logger name="com.sky.sns.mybatis.mapper.QuestionMapper"> -->
+
+<!-- </logger> -->
+<!-- <logger name="com.sky.sns.mybatis.mapper.AnswerMapper"> -->
+
+<!-- </logger> -->
+<!-- <logger name="com.sky.sns.mybatis.mapper.QuestionCommentMapper"> -->
+
+<!-- </logger> -->
+<!-- <logger name="com.sky.sns.mybatis.mapper.BlogCommentMapper"> -->
+
+<!-- </logger> -->
+<!-- <logger name="com.sky.sns.mybatis.mapper.BlogMapper"> -->
+
+<!-- </logger> -->
+<!-- <logger name="com.sky.sns.mybatis.mapper.BlogCategoryMapper"> -->
+
+<!-- </logger> -->
+
+<!-- <logger name="org.springframework.data.mongodb"> -->
+<!-- 	</logger> -->
+
+ <root>
+        <priority value="DEBUG"/> 
+        <appender-ref ref="STDOUT" /> 
+     </root>
+	   
+</log4j:configuration> 

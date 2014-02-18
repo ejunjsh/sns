@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mongo="http://www.springframework.org/schema/data/mongo"    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"  
+     xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans     
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd    
+            http://www.springframework.org/schema/context    
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+            http://www.springframework.org/schema/data/mongo  
+          http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd
+          http://www.springframework.org/schema/data/repository
+          http://www.springframework.org/schema/data/repository/spring-repository-1.5.xsd
+            http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	 
+    	
+    	
+    <mongo:mongo host="localhost" port="27017">   
+  </mongo:mongo>  
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">  
+    <constructor-arg ref="mongo"/>  
+    <constructor-arg name="databaseName" value="sky"/>  
+  </bean>  
+    <bean id="searchKeyWordRepository" class="com.sky.sns.mongo.repository.SearchKeyWordRepository">  
+        <property name="mongoTemplate" ref="mongoTemplate"></property>  
+    </bean>  
+    
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/sky?characterEncoding=UTF-8" />
+		<property name="username" value="root" />
+		<property name="password" value="sjj!@#$%^" />
+	</bean>
+	
+	 <bean id="transactionManager"  
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean>  
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />  
+        <property name="configLocation" value="/WEB-INF/classes/MybatisConfig.xml" /> 
+    </bean>
+     <bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		destroy-method="destroy">
+		<property name="dataSource" ref="dataSource" />
+
+		 <property name="annotatedClasses">
+			<list>
+				<value>com.sky.sns.hibernate.entity.Question</value>
+				<value>com.sky.sns.hibernate.entity.Tag</value>
+				<value>com.sky.sns.hibernate.entity.Answer</value>
+				<value>com.sky.sns.hibernate.entity.AnswerVote</value>
+				<value>com.sky.sns.hibernate.entity.User</value>
+				<value>com.sky.sns.hibernate.entity.QuestionComment</value>
+				<value>com.sky.sns.hibernate.entity.Blog</value>
+				<value>com.sky.sns.hibernate.entity.BlogComment</value>
+				<value>com.sky.sns.hibernate.entity.BlogCategory</value>
+				<value>com.sky.sns.hibernate.entity.Group</value>
+				<value>com.sky.sns.hibernate.entity.GroupCategory</value>
+				<value>com.sky.sns.hibernate.entity.GroupPost</value>
+				<value>com.sky.sns.hibernate.entity.GroupPostComment</value>
+				<value>com.sky.sns.hibernate.entity.Article</value>
+				<value>com.sky.sns.hibernate.entity.ArticleComment</value>
+				<value>com.sky.sns.hibernate.entity.ArticleTopic</value>
+				<value>com.sky.sns.hibernate.entity.Activity</value>
+				<value>com.sky.sns.hibernate.entity.Notice</value>
+				<value>com.sky.sns.hibernate.entity.Message</value>
+				<value>com.sky.sns.hibernate.entity.Photo</value>
+				<value>com.sky.sns.hibernate.entity.Album</value>
+				<value>com.sky.sns.hibernate.entity.PhotoComment</value>
+			</list>
+		</property>
+	<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.c3p0.min_size">5</prop>
+			    <prop key="hibernate.c3p0.max_size">20</prop>
+			    <prop key="hibernate.c3p0.timeout">1800</prop>
+			    <prop key="hibernate.c3p0.max_statements">50</prop>
+			</props>
+		</property>
+	</bean>
+    
+   <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.UserMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  <bean id="tagMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.TagMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  <bean id="answerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.AnswerMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  <bean id="questionMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.QuestionMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  <bean id="questionCommentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.QuestionCommentMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+    <bean id="blogCommentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.BlogCommentMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+    <bean id="blogMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.BlogMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+    <bean id="blogCategoryMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.BlogCategoryMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+   <bean id="groupMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.GroupMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+   <bean id="groupCategoryMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.GroupCategoryMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+  <bean id="groupPostMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.GroupPostMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+    
+  <bean id="groupPostCommentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.GroupPostCommentMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+   <bean id="articleCommentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.ArticleCommentMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+    <bean id="articleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.ArticleMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+   <bean id="activityMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.ActivityMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  <bean id="noticeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.NoticeMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+  <bean id="messageMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.MessageMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+    <bean id="articleTopicMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.ArticleTopicMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+   <bean id="albumMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.AlbumMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+   <bean id="photoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.PhotoMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  <bean id="photoCommentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  <property name="mapperInterface" value="com.sky.sns.mybatis.mapper.PhotoCommentMapper" />
+  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+  </bean>
+  
+  <bean id="userService" class="com.sky.sns.mybatis.service.UserService">
+  <property name="userMapper" ref="userMapper" />
+</bean>
+
+<bean id="tagService" class="com.sky.sns.mybatis.service.TagService">
+  <property name="tagMapper" ref="tagMapper" />
+</bean>
+<bean id="activityService" class="com.sky.sns.mybatis.service.ActivityService">
+  <property name="activityMapper" ref="activityMapper" />
+</bean>
+<bean id="noticeService" class="com.sky.sns.mybatis.service.NoticeService">
+  <property name="noticeMapper" ref="noticeMapper" />
+</bean>
+
+<bean id="messageService" class="com.sky.sns.mybatis.service.MessageService">
+  <property name="messageMapper" ref="messageMapper" />
+</bean>
+
+<bean id="questionService" class="com.sky.sns.mybatis.service.QuestionService">
+  <property name="questionMapper" ref="questionMapper" />
+   <property name="tagMapper" ref="tagMapper" />
+   <property name="activityMapper" ref="activityMapper" />
+   <property name="userMapper" ref="userMapper" />
+   <property name="noticeMapper" ref="noticeMapper" />
+</bean>
+<bean id="answerService" class="com.sky.sns.mybatis.service.AnswerService">
+  <property name="answerMapper" ref="answerMapper" />
+  <property name="questionMapper" ref="questionMapper" />
+  <property name="activityMapper" ref="activityMapper" />
+  <property name="userMapper" ref="userMapper" />
+   <property name="noticeMapper" ref="noticeMapper" />
+</bean>
+
+<bean id="questionCommentService" class="com.sky.sns.mybatis.service.QuestionCommentService">
+    <property name="questionCommentMapper" ref="questionCommentMapper" />
+    <property name="userMapper" ref="userMapper" />
+   <property name="noticeMapper" ref="noticeMapper" />
+</bean>
+
+<bean id="blogCommentService" class="com.sky.sns.mybatis.service.BlogCommentService">
+  <property name="blogCommentMapper" ref="blogCommentMapper" />
+  <property name="blogMapper" ref="blogMapper" />
+  <property name="activityMapper" ref="activityMapper" />
+  <property name="userMapper" ref="userMapper" />
+   <property name="noticeMapper" ref="noticeMapper" />
+</bean>
+
+<bean id="blogService" class="com.sky.sns.mybatis.service.BlogService">
+  <property name="blogMapper" ref="blogMapper" />
+  <property name="tagMapper" ref="tagMapper" />
+  <property name="activityMapper" ref="activityMapper" />
+  <property name="userMapper" ref="userMapper" />
+   <property name="noticeMapper" ref="noticeMapper" />
+</bean>
+<bean id="blogCategoryService" class="com.sky.sns.mybatis.service.BlogCategoryService">
+  <property name="blogCategoryMapper" ref="blogCategoryMapper" />
+</bean>
+<bean id="groupService" class="com.sky.sns.mybatis.service.GroupService">
+  <property name="groupMapper" ref="groupMapper" />
+  <property name="groupCategoryMapper" ref="groupCategoryMapper" />
+</bean>		
+
+<bean id="groupCategoryService" class="com.sky.sns.mybatis.service.GroupCategoryService">
+  <property name="groupCategoryMapper" ref="groupCategoryMapper" />
+</bean>	
+
+<bean id="groupPostService" class="com.sky.sns.mybatis.service.GroupPostService">
+  <property name="groupPostMapper" ref="groupPostMapper" />
+  <property name="tagMapper" ref="tagMapper" />
+  <property name="activityMapper" ref="activityMapper" />
+  <property name="userMapper" ref="userMapper" />
+   <property name="noticeMapper" ref="noticeMapper" />
+</bean>	
+
+<bean id="groupPostCommentService" class="com.sky.sns.mybatis.service.GroupPostCommentService">
+  <property name="groupPostCommentMapper" ref="groupPostCommentMapper" />
+  <property name="groupPostMapper" ref="groupPostMapper" />
+  <property name="activityMapper" ref="activityMapper" />
+  <property name="userMapper" ref="userMapper" />
+   <property name="noticeMapper" ref="noticeMapper" />
+</bean>	
+
+
+<bean id="articleCommentService" class="com.sky.sns.mybatis.service.ArticleCommentService">
+  <property name="articleCommentMapper" ref="articleCommentMapper" />
+  <property name="articleMapper" ref="articleMapper" />
+  <property name="activityMapper" ref="activityMapper" />
+  <property name="userMapper" ref="userMapper" />
+   <property name="noticeMapper" ref="noticeMapper" />
+</bean>
+
+<bean id="articleService" class="com.sky.sns.mybatis.service.ArticleService">
+  <property name="articleMapper" ref="articleMapper" />
+  <property name="tagMapper" ref="tagMapper" />
+  <property name="activityMapper" ref="activityMapper" />
+  <property name="userMapper" ref="userMapper" />
+   <property name="noticeMapper" ref="noticeMapper" />
+</bean>
+<bean id="articleTopicService" class="com.sky.sns.mybatis.service.ArticleTopicService">
+  <property name="articleTopicMapper" ref="articleTopicMapper" />
+</bean>
+	
+  <!-- <bean id="transactionManager"
+            class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <property name="sessionFactory" ref="sessionFactory"/>
+  </bean>-->
+  
+   <tx:annotation-driven/>
+	
+	<!-- <bean id="userDao" class="com.sky.sns.hibernate.dao.UserDao">
+	<property name="sessionFactory"
+			ref="sessionFactory">
+		</property>
+	</bean>
+	
+	<bean id="answerDao" class="com.sky.sns.hibernate.dao.AnswerDao">
+	<property name="sessionFactory"
+			ref="sessionFactory">
+		</property>
+	</bean>
+	
+	<bean id="tagDao" class="com.sky.sns.hibernate.dao.TagDao">
+	<property name="sessionFactory"
+			ref="sessionFactory">
+		</property>
+	</bean>
+	
+	<bean id="questionDao" class="com.sky.sns.hibernate.dao.QuestionDao">
+	<property name="sessionFactory"
+			ref="sessionFactory">
+		</property>
+	</bean>
+	
+	<bean id="userService" class="com.sky.sns.hibernate.service.UserService">
+	<property name="dao"
+			ref="userDao">
+		</property>
+	</bean>
+	
+	<bean id="tagService" class="com.sky.sns.hibernate.service.TagService">
+	<property name="dao"
+			ref="tagDao">
+		</property>
+	</bean>
+	
+	<bean id="answerService" class="com.sky.sns.hibernate.service.AnswerService">
+	<property name="dao"
+			ref="answerDao">
+		</property>
+	</bean>
+	
+	<bean id="questionService" class="com.sky.sns.hibernate.service.QuestionService">
+	<property name="dao"
+			ref="questionDao">
+		</property>
+	</bean>-->
+	
+	<bean id="securityFilter" class="com.sky.sns.web.utility.SecurityFilter">
+        <property name="userService" ref="userService" />
+        <property name="loginUrls">
+        <list>
+        <value>/question/ask/?</value>
+        <value>/group/apply/?</value>
+        <value>/site/\d+/post/?</value>
+        <value>/blog/post/?</value>
+        <value>/ajax/[a-zA-Z]+/(do|add|delete)[a-zA-Z]+/?</value>
+        <value>/ajax/[a-zA-Z]+/[a-zA-Z]+/(do|add|delete)[a-zA-Z]+/?</value>
+        <value>/blog/\d+/newComment/?</value>
+        <value>/photo/\d+/newComment/?</value>
+        <value>/question/\d+/newAnswer/?</value>
+        <value>/group/post/\d+/newComment/?</value>
+        <value>/post/\d+/edit/?</value>
+        <value>/group/\d+/post/?</value>
+        <value>/admin/index/?</value>
+        <value>/settings/[a-zA-Z]+/?</value>
+        <value>/infoCenter/notice/?</value>
+        <value>/infoCenter/message/send/[0-9]+/?</value>
+        <value>/infoCenter/message/send/?</value>
+        <value>/infoCenter/message/?</value>
+        
+        
+<!--         <value>/admin/embedPage/[a-zA-Z]+/[a-zA-Z]+/?</value> -->
+        </list>
+        </property>
+	</bean>
+    <bean id="luceneUtil" class="com.sky.sns.web.utility.LuceneUtil">
+	   <property name="indexPath" value="/luceneIndex" />
+	   <property name="maxRecordNumber" value="1000" />
+	   <property name="searchKeyWordRepository" ref="searchKeyWordRepository"/>
+	</bean>
+	
+	<bean id="statisticObject" class="com.sky.sns.web.utility.StatisticObject">
+	</bean>
+    
+    <bean id="statisticJob" class="com.sky.sns.web.utility.StatisticJob">
+       <property name="searchKeyWordRepository" ref="searchKeyWordRepository"/>
+       <property name="statisticObject" ref="statisticObject"/>
+	</bean>
+    <bean id="luceneJob" class="com.sky.sns.web.utility.LuceneJob">
+    <property name="luceneUtil" ref="luceneUtil" />
+     <property name="blogService" ref="blogService" />
+     <property name="articleService" ref="articleService" />
+     <property name="groupService" ref="groupService" />
+     <property name="groupPostService" ref="groupPostService" />
+     <property name="userService" ref="userService" />
+     <property name="questionService" ref="questionService" />
+    </bean>
+    <bean id="luceneJobTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+            <!-- 调用的类 -->
+            <property name="targetObject">
+                <ref bean="luceneJob"/>
+            </property>
+            <!-- 调用类中的方法 -->
+            <property name="targetMethod">
+                <value>work</value>
+            </property>
+   </bean>
+   <bean id="statisticJobTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+            <!-- 调用的类 -->
+            <property name="targetObject">
+                <ref bean="statisticJob"/>
+            </property>
+            <!-- 调用类中的方法 -->
+            <property name="targetMethod">
+                <value>work</value>
+            </property>
+   </bean>
+   <bean id="luceneDoTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+            <property name="jobDetail">
+                <ref bean="luceneJobTask"/>
+            </property>
+            <property name="cronExpression">
+                <value>0 0/1 * * * ?</value>
+            </property>
+   </bean>
+   <bean id="statisticDoTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+            <property name="jobDetail">
+                <ref bean="statisticJobTask"/>
+            </property>
+            <property name="cronExpression">
+                <value>0 0/1 * * * ?</value>
+            </property>
+   </bean>
+   <bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+            <property name="triggers">
+                <list>
+                    <ref bean="luceneDoTime"/>
+                    <ref bean="statisticDoTime"/>
+                </list>
+            </property>
+    </bean>
+	
+	<bean id="helloWorldAction" class="com.sky.sns.web.action.HelloWorldAction">
+        <property name="userService" ref="userService" />
+	</bean>
+	<bean id="randomImgAction" class="com.sky.sns.web.action.RandomImgAction">
+	</bean>
+	<bean id="notFoundAction" class="com.sky.sns.web.action.NotFoundAction">
+	</bean>
+	
+    <bean id="userAjaxAction" class="com.sky.sns.web.action.UserAjaxAction" scope="prototype">
+         <property name="userService" ref="userService" />
+         <property name="noticeService" ref="noticeService" />
+         <property name="messageService" ref="messageService" />
+	</bean>
+
+	<bean id="questionAjaxAction" class="com.sky.sns.web.action.QuestionAjaxAction" scope="prototype">
+         <property name="questionService" ref="questionService" />
+          <property name="answerService" ref="answerService" />
+          <property name="questionCommentService" ref="questionCommentService" />
+	</bean>
+	 <bean id="questionAction" class="com.sky.sns.web.action.QuestionAction" scope="prototype">
+          <property name="questionService" ref="questionService" /> 
+            <property name="tagService" ref="tagService" />
+            <property name="answerService" ref="answerService" />
+	</bean>
+	
+	<bean id="blogAjaxAction" class="com.sky.sns.web.action.BlogAjaxAction" scope="prototype">
+          <property name="blogCategoryService" ref="blogCategoryService" />
+          <property name="blogCommentService" ref="blogCommentService" />
+          <property name="blogService" ref="blogService" />
+	</bean>
+    <bean id="blogAction" class="com.sky.sns.web.action.BlogAction" scope="prototype">
+          <property name="blogService" ref="blogService" /> 
+            <property name="tagService" ref="tagService" />
+            <property name="blogCommentService" ref="blogCommentService" />
+            <property name="blogCategoryService" ref="blogCategoryService" />
+	</bean>
+	
+	<bean id="groupAction" class="com.sky.sns.web.action.GroupAction" scope="prototype">
+          <property name="groupService" ref="groupService" />
+           <property name="userService" ref="userService" />
+           <property name="groupCategoryService" ref="groupCategoryService" />
+           <property name="groupPostService" ref="groupPostService" />
+           <property name="groupPostCommentService" ref="groupPostCommentService" />
+           <property name="tagService" ref="tagService" />
+	</bean>
+	<bean id="adminAction" class="com.sky.sns.web.action.AdminAction" scope="prototype">
+	</bean>
+	<bean id="userAdminAction" class="com.sky.sns.web.action.UserAdminAction" scope="prototype">
+	<property name="userService" ref="userService" />
+	</bean>
+	<bean id="userAction" class="com.sky.sns.web.action.UserAction" scope="prototype">
+	<property name="userService" ref="userService" />
+	<property name="answerService" ref="answerService" />
+	<property name="questionService" ref="questionService" />
+	<property name="groupPostService" ref="groupPostService" />
+	<property name="activityService" ref="activityService" />
+	<property name="groupService" ref="groupService" />
+	<property name="blogService" ref="blogService" />
+	<property name="blogCategoryService" ref="blogCategoryService" />
+	<property name="noticeService" ref="noticeService" />
+	<property name="tagService" ref="tagService" />
+	<property name="messageService" ref="messageService" />
+	<property name="albumService" ref="albumService" />
+	<property name="photoService" ref="photoService" />
+	</bean>
+	<bean id="questionAdminAction" class="com.sky.sns.web.action.QuestionAdminAction" scope="prototype">
+	<property name="questionService" ref="questionService" />
+	<property name="tagService" ref="tagService" />
+	</bean>
+	<bean id="blogAdminAction" class="com.sky.sns.web.action.BlogAdminAction" scope="prototype">
+	<property name="blogService" ref="blogService" />
+	<property name="tagService" ref="tagService" />
+	</bean>
+	<bean id="articleAction" class="com.sky.sns.web.action.ArticleAction" scope="prototype">
+	<property name="articleService" ref="articleService" />
+	<property name="articleTopicService" ref="articleTopicService" />
+	<property name="articleCommentService" ref="articleCommentService" />
+	<property name="tagService" ref="tagService" />
+	</bean>
+	<bean id="articleAjaxAction" class="com.sky.sns.web.action.ArticleAjaxAction" scope="prototype">
+	<property name="articleService" ref="articleService" />
+	<property name="articleCommentService" ref="articleCommentService" />
+	</bean>
+	<bean id="groupAjaxAction" class="com.sky.sns.web.action.GroupAjaxAction" scope="prototype">
+	<property name="groupPostService" ref="groupPostService" />
+	<property name="groupService" ref="groupService" />
+	<property name="groupPostCommentService" ref="groupPostCommentService" />
+	</bean>
+	<bean id="tagAdminAction" class="com.sky.sns.web.action.TagAdminAction" scope="prototype">
+	<property name="tagService" ref="tagService" />
+	</bean>
+	<bean id="noticeAdminAction" class="com.sky.sns.web.action.NoticeAdminAction" scope="prototype">
+	<property name="noticeService" ref="noticeService" />
+	</bean>
+	<bean id="searchAction" class="com.sky.sns.web.action.SearchAction" scope="prototype">
+	 <property name="luceneUtil" ref="luceneUtil" />
+	  <property name="statisticObject" ref="statisticObject"/>
+	</bean>
+    <bean id="tagAction" class="com.sky.sns.web.action.TagAction" scope="prototype">
+	 <property name="tagService" ref="tagService" />
+	 <property name="questionService" ref="questionService" />
+	 <property name="groupPostService" ref="groupPostService" />
+	 <property name="blogService" ref="blogService" />
+	 <property name="articleService" ref="articleService" />
+	 <property name="userService" ref="userService" />
+	</bean>
+	
+	
+	<context:component-scan base-package="com.sky.sns.web.action" />
+    <context:component-scan base-package="com.sky.sns.mybatis.service" />
+</beans>  

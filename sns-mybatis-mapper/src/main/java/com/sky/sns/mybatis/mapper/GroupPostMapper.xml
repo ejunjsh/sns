@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.GroupPostMapper">
+<cache />
+  <resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="nickName" column="nickName"/>
+ <association property="avatar" javaType="Photo" resultMap="photoResult" columnPrefix="p_"/>
+</resultMap>
+<resultMap id="photoResult" type="Photo">
+     <id property="id" column="id"/>
+  <result property="url" column="url"/>
+</resultMap>
+<resultMap id="tagResult" type="Tag">
+  <id property="id" column="id"/>
+  <result property="name" column="name"/>
+    <result property="cnSpell" column="cnSpell"/>
+</resultMap>
+<resultMap id="groupResult" type="Group">
+  <id property="id" column="id"/>
+  <result property="name" column="name"/>
+  <result property="joinedUserCount" column="joinedUserCount"/>
+  <result property="createdByUserId" column="createdByUserId"/>
+   <association property="cover" javaType="Photo" resultMap="photoResult" columnPrefix="p_"/>
+</resultMap>
+<resultMap id="groupPostResult" type="GroupPost">
+  <id property="id" column="id"/>
+  <result property="content" column="content"/>
+  <result property="groupId" column="groupId"/>
+  <result property="postedByUserId" column="postedByUserId"/>
+  <result property="postedDate" column="postedDate"/>
+  <result property="status" column="status"/>
+  <result property="title" column="title"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="viewCount" column="viewCount"/>
+  <result property="isTop" column="isTop"/>
+  <result property="isBest" column="isBest"/>
+  <result property="lastCommentDate" column="lastCommentDate"/>
+  <association property="recommendCount" column="id" select="getRecommendCount"/>
+  <association property="commentCount"  column="id" select="getCommentCount"/>
+  <association property="postedByUser" javaType="User" column="postedByUserId" select="getUser"/>
+   <association property="group" javaType="Group" column="groupId" select="getGroup"/>
+  <collection property="tags" ofType="Tag" column="id"  select="getTags" />
+</resultMap>
+<resultMap id="searchGroupPostResult" type="GroupPost">
+  <id property="id" column="id"/>
+  <result property="content" column="content"/>
+  <result property="groupId" column="groupId"/>
+  <result property="postedByUserId" column="postedByUserId"/>
+  <result property="postedDate" column="postedDate"/>
+  <result property="status" column="status"/>
+  <result property="title" column="title"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="viewCount" column="viewCount"/>
+  <result property="recommendCount" column="recommendCount" />
+  <result property="commentCount"  column="commentCount" />
+   <result property="lastCommentDate" column="lastCommentDate"/>
+  <association property="postedByUser" javaType="User" column="postedByUserId" select="getUser"/>
+   <association property="group" javaType="Group" column="groupId" select="getGroup"/>
+  <collection property="tags" ofType="Tag" column="id"  select="getTags" />
+</resultMap>
+<insert id="insertGroupPost" parameterType="GroupPost" useGeneratedKeys="true" keyProperty="id">
+  insert into GroupPost (content,postedByUserId,postedDate,status,title,updatedDate,viewCount,groupId,isBest,isTop)
+  values (#{content},#{postedByUserId},#{postedDate},#{status},#{title},#{updatedDate},#{viewCount},#{groupId},#{isBest},#{isTop})
+</insert>
+<insert id="addTags" >
+insert into groupPost_tag (groupPostId,tagId)values(#{0},#{1})
+</insert>
+<delete id="deleteTags">
+delete from groupPost_tag where groupPostId=#{0} and tagId=#{1}
+</delete>
+<update id="updateGroupPost" parameterType="GroupPost">
+  update GroupPost set content=#{content},status=#{status},title=#{title},updatedDate=#{updatedDate},viewCount=#{viewCount},groupId=#{groupId},isBest=#{isBest},isTop=#{isTop}
+  where id=#{id}
+</update>
+<select id="getGroupPostById" parameterType="long" resultMap="groupPostResult">
+  SELECT gp.*
+  from groupPost as gp
+  where gp.id=#{id}
+</select>
+<select id="getGroupPostInGroup" resultMap="groupPostResult">
+select v.*,(case when v.lastCommentDate is null then v.postedDate else v.lastCommentDate end) as orderDate from (select gp.*,(select gpc.postedDate from groupPostComment as gpc where  gpc.groupPostId=gp.id order by gpc.postedDate desc limit 1) as lastCommentDate from groupPost as gp where gp.groupId=#{id} and (#{isBest}=0 or gp.isBest=#{isBest})) as v
+order by v.isTop desc,v.isBest desc,orderDate desc limit ${pageStart},${pageSize}
+</select>
+<select id="getGroupPostByUserId" resultMap="groupPostResult">
+select v.*,(case when v.lastCommentDate is null then v.postedDate else v.lastCommentDate end) as orderDate from (select gp.*,(select gpc.postedDate from groupPostComment as gpc where  gpc.groupPostId=gp.id order by gpc.postedDate desc limit 1) as lastCommentDate from groupPost as gp where gp.postedByUserId=#{id}) as v
+order by orderDate desc limit ${pageStart},${pageSize}
+</select>
+<select id="countGroupPostInGroup" resultType="long">
+select count(gp.id) from groupPost as gp where gp.groupId=#{id} and (#{isBest}=0 or gp.isBest=#{isBest})
+</select>
+<select id="getHottestPostsInPeriod" resultMap="searchGroupPostResult">
+select v.* from (select gp.id,gp.content,gp.postedByUserId,gp.postedDate,gp.status,gp.title,gp.updatedDate,gp.viewCount,gp.groupId,gp.isBest,gp.isTop,(select count(gpc.id) from groupPostComment gpc where gpc.groupPostId=gp.id) as commentCount,(select gpc.postedDate from groupPostComment as gpc where  gpc.groupPostId=gp.id order by gpc.postedDate desc limit 1) as lastCommentDate from groupPost as gp) as v
+where (v.postedDate &lt; #{maxDate} and v.postedDate>#{minDate}) or (v.lastCommentDate &lt; #{maxDate} and v.lastCommentDate>#{minDate})
+order by v.viewCount desc,v.commentCount desc
+limit ${pageStart},${pageSize}
+</select>
+<select id="countHottestPostsInPeriod" resultType="long">
+select count(v.id)  from (select gp.*,(select gpc.postedDate from groupPostComment as gpc where  gpc.groupPostId=gp.id order by gpc.postedDate desc limit 1) as lastCommentDate from groupPost as gp) as v where (v.postedDate &lt; #{maxDate} and v.postedDate>#{minDate}) or (v.lastCommentDate &lt; #{maxDate} and v.lastCommentDate > #{minDate})
+</select>
+<select id="getCommentCount" parameterType="long" resultType="int">
+select count(id) from groupPostComment where groupPostId=#{id}
+</select>
+<select id="getRecommendCount" parameterType="long" resultType="int">
+select count(groupPostId) from groupPost_user_recommend where groupPostId=#{id}
+</select>
+<select id="getRecommendPosts"  resultMap="groupPostResult">
+select * from groupPost where groupId=#{id} and (#{curPostId}=0 or id &lt;>#{curPostId}) order by viewCount desc  limit ${pageStart},${pageSize}
+</select>
+<select id="getTags" parameterType="long" resultMap="tagResult">
+    select t.id,t.name,t.cnSpell  from  groupPost_tag as gpt left outer join tag as t on t.id=gpt.tagId
+    where gpt.groupPostId=#{id}
+</select>
+<select id="getUser" parameterType="long" resultMap="userResult">
+select u.id,u.nickName,p.id as p_id,p.url as p_url from user as u
+left outer join photo as p on u.photoId=p.Id
+ where u.id=#{postedByUserId}
+</select>
+<select id="getGroup" parameterType="long" resultMap="groupResult">
+select g.id,g.name,p.id as p_id,p.url as p_url,g.createdByUserId,(select count(userId) from group_user_join as guj where guj.groupId=g.id) as joinedUserCount
+ from  `group` as g
+ left outer join photo as p on p.id=g.photoId
+  where g.id=#{groupId}
+</select>
+<insert id="recommendGroupPost">
+insert into groupPost_user_recommend (groupPostId,userId)values(#{0},#{1})
+</insert>
+<select id="getAllGroupPosts" resultMap="groupPostResult">
+select * from groupPost
+</select>
+<select id="getGroupPostsByTagId" resultMap="groupPostResult">
+ select v.*,(case when v.lastCommentDate is null then v.postedDate else v.lastCommentDate end) as orderDate from (select gp.*,(select gpc.postedDate from groupPostComment as gpc where  gpc.groupPostId=gp.id order by gpc.postedDate desc limit 1) as lastCommentDate from groupPost as gp left outer join groupPost_tag as gt on gt.groupPostId=gp.id where gt.tagId=#{id} group by gp.id) as v
+order by orderDate desc limit ${pageStart},${pageSize}
+</select>
+<select id="countGroupPostsByTagId" resultType="long">
+ select count(v.id) from (SELECT gp.id
+  from groupPost as gp left outer join groupPost_tag as gt on gt.groupPostId=gp.id
+  where gt.tagId=#{id}
+  group by gp.id) as v
+</select>
+<select id="isRecommend" resultType="int">
+select count(groupPostId) from groupPost_user_recommend where groupPostId=#{0} and userId=#{1}
+</select>
+<select id="searchGroupPosts" parameterType="SGroup" resultMap="searchGroupPostResult">
+select gp.groupId,gp.content, gp.id, gp.postedByUserId,gp.postedDate,gp.status,gp.title,gp.updatedDate,gp.viewCount,
+(select count(c1.id) from groupPostComment as c1 where c1.groupPostId=gp.id) as commentCount,
+(select count(c2.groupPostId) from groupPost_user_recommend as c2 where c2.groupPostId=gp.id) as recommendCount
+from GroupPost as gp
+left outer join grouppost_tag as gpt on gpt.grouppostid=gp.Id
+left outer join tag as t on t.id=gpt.tagId
+left outer join user as u on u.id=gp.postedByUserId
+left outer join `group` as g on g.id =gp.groupId
+<where> 
+    <if test="status>0">
+    gp.status=#{status}
+    </if>
+    
+    <if test="group!=null and group.name!=null and group.name!=''">
+        AND g.name like CONCAT('%',#{group.name},'%' )  
+    </if>
+    <if test="content!=null and content!=''">
+        AND gp.content like CONCAT('%',#{content},'%' )  
+    </if>
+    <if test="title!=null and title!=''">
+        AND gp.title like CONCAT('%',#{title},'%' )  
+    </if>
+    <if test="postedByUser!=null and postedByUser.nickName!=null and postedByUser.nickName!=''">
+        AND u.nickName like CONCAT('%',#{postedByUser.nickName},'%' )  
+    </if>
+    <if test="postedDateMin!=null">
+        AND gp.postedDate>#{postedDateMin}
+    </if>
+    <if test="postedDateMax!=null">
+        AND gp.postedDate &lt; #{postedDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND gp.updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND gp.updatedDate &lt; #{updatedDateMax}
+    </if>
+    <if test="tagName!=null and tagName!=''">
+        AND t.name like CONCAT('%',#{tagName},'%' )  
+    </if>
+</where>
+group by gp.groupId, gp.content, gp.id, gp.postedByUserId, gp.postedDate, gp.status,gp.title,gp.updatedDate,gp.viewCount 
+order by ${sort} ${order} limit ${pageStart},${pageSize}
+</select>
+<select id="countGroupPosts" parameterType="SGroup" resultType="long">
+select count(v.id) from (select gp.id from GroupPost as gp
+left outer join grouppost_tag as gpt on gpt.grouppostid=gp.Id
+left outer join tag as t on t.id=gpt.tagId
+left outer join user as u on u.id=gp.postedByUserId
+left outer join `group` as g on g.id =gp.groupId
+<where> 
+    <if test="status>0">
+    gp.status=#{status}
+    </if>
+    <if test="group!=null and group.name!=null and group.name!=''">
+        AND g.name like CONCAT('%',#{group.name},'%' )  
+    </if>
+    <if test="content!=null and content!='' ">
+        AND gp.content like CONCAT('%',#{content},'%' )  
+    </if>
+    <if test="title!=null and title!='' ">
+        AND gp.title like CONCAT('%',#{title},'%' )  
+    </if>
+    <if test="postedByUser!=null and postedByUser.nickName!=null and postedByUser.nickName!='' ">
+        AND u.nickName like CONCAT('%',#{postedByUser.nickName},'%' )  
+    </if>
+    <if test="postedDateMin!=null">
+        AND gp.postedDate>#{postedDateMin}
+    </if>
+    <if test="postedDateMax!=null">
+        AND gp.postedDate &lt; #{postedDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND gp.updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND gp.updatedDate &lt; #{updatedDateMax}
+    </if>
+    <if test="tagName!=null and tagName!='' ">
+        AND t.name like CONCAT('%',#{tagName},'%' )  
+    </if>
+</where>
+group by gp.id) as v
+</select>
+</mapper>

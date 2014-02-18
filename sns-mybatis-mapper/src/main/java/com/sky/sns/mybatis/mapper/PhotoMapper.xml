@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.PhotoMapper">
+<cache />
+<resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="nickName" column="nickName"/>
+  <association property="avatar" javaType="Photo">
+  <id property="id" column="p_id"/>
+  <result property="url" column="p_url"/>
+</association>
+</resultMap>
+<resultMap id="albumResult" type="Album">
+  <id property="id" column="id"/>
+     <result property="title" column="title"/>
+</resultMap>
+  <resultMap id="photoResult" type="Photo">
+  <id property="id" column="id"/>
+  <result property="albumId" column="albumId"/>
+  <result property="createdDate" column="createdDate"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="description" column="description"/>
+  <result property="url" column="url"/>
+  <result property="title" column="title"/>
+  <result property="userId" column="userId"/>
+  <result property="viewCount" column="viewCount" />
+  <association property="recommendCount" column="id" select="getRecommendCount"/>
+  <association property="user" column="userId"  select="getUser"/>
+  <association property="album" column="albumId"  select="getAlbum"/>
+  <association property="commentCount"  column="id" select="getCommentCount"/>
+</resultMap>
+<select id="getUser" parameterType="long" resultMap="userResult">
+select u.id,u.nickName,p.url as p_url,p.id as p_id from user as u
+left outer join photo as p on u.photoId=p.Id
+ where u.id=#{userId}
+</select>
+<select id="getRecommendCount" parameterType="long" resultType="int">
+select count(photoId) from photo_user_recommend where photoId=#{id}
+</select>
+<insert id="recommendPhoto">
+insert into photo_user_recommend (photoId,userId)values(#{0},#{1})
+</insert>
+<select id="isRecommend" resultType="int">
+select count(photoId) from photo_user_recommend where photoId=#{0} and userId=#{1}
+</select>
+<select id="getAlbum" parameterType="long" resultMap="albumResult">
+select * from album where id=#{albumId}
+</select>
+<insert id="insertPhoto" parameterType="photo" useGeneratedKeys="true" keyProperty="id">
+  insert into photo (albumId,createdDate,updatedDate,description,url,title,userId)
+  values (#{albumId},now(),now(),#{description},#{url},#{title},#{userId})
+</insert>
+<update id="updatePhoto" parameterType="photo" >
+  update photo set albumId=#{albumId},updatedDate=now(),description=#{description},url=#{url},title=#{title},userId=#{userId},viewCount=#{viewCount}
+  where id=#{id}
+</update>
+<select id="getPhotosByAlbumId"  resultMap="photoResult">
+  SELECT * FROM photo WHERE albumId = #{id} order by createdDate desc  limit ${pageStart},${pageSize}
+</select>
+<select id="countPhotosByAlbumId"  resultType="int">
+  SELECT count(*) FROM photo WHERE albumId = #{id} 
+</select>
+<select id="getPhotoById"  resultMap="photoResult">
+SELECT * FROM photo where id=#{id}
+</select>
+<select id="getCommentCount" parameterType="long" resultType="int">
+select count(id) from photoComment where photoId=#{id}
+</select>
+</mapper>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sky.sns.mybatis.mapper.ArticleMapper">
+<cache />
+  <resultMap id="userResult" type="User">
+  <id property="id" column="id"/>
+  <result property="nickName" column="nickName"/>
+  <result property="title" column="title"/>
+  <result property="followedCount" column="followedCount" />
+      <association property="avatar" javaType="Photo" resultMap="photoResult" columnPrefix="p_"/>
+</resultMap>
+   <resultMap id="photoResult" type="Photo">
+     <id property="id" column="id"/>
+  <result property="url" column="url"/>
+   </resultMap>
+<resultMap id="tagResult" type="Tag">
+  <id property="id" column="id"/>
+  <result property="name" column="name"/>
+    <result property="cnSpell" column="cnSpell"/>
+</resultMap>
+<resultMap id="articleTopicResult" type="ArticleTopic">
+  <id property="id" column="id"/>
+  <result property="name" column="name"/>
+  <association property="cover" javaType="Photo" resultMap="photoResult" columnPrefix="p_"/>
+</resultMap>
+<resultMap id="articleResult" type="Article">
+  <id property="id" column="id"/>
+  <result property="content" column="content"/>
+  <result property="articleTopicId" column="articleTopicId"/>
+  <result property="postedByUserId" column="postedByUserId"/>
+  <result property="postedDate" column="postedDate"/>
+  <result property="status" column="status"/>
+  <result property="title" column="title"/>
+  <result property="photoId" column="photoId"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="viewCount" column="viewCount"/>
+  <association property="commentCount" column="id" select="getCommentCount"/>
+  <association property="recommendCount" column="id" select="getRecommendCount"/>
+  <association property="postedByUser" javaType="User" column="postedByUserId" select="getUser"/>
+   <association property="articleTopic" javaType="ArticleTopic" column="articleTopicId" select="getArticleTopic"/>
+    <association property="cover" javaType="Photo" column="photoId" select="getPhoto"/>
+  <collection property="tags" ofType="Tag" column="id"  select="getTags" />
+</resultMap>
+<resultMap id="SearchArticleResult" type="Article">
+  <id property="id" column="id"/>
+  <result property="photoId" column="photoId"/>
+  <result property="content" column="content"/>
+  <result property="articleTopicId" column="articleTopicId"/>
+  <result property="postedByUserId" column="postedByUserId"/>
+  <result property="postedDate" column="postedDate"/>
+  <result property="status" column="status"/>
+  <result property="title" column="title"/>
+  <result property="updatedDate" column="updatedDate"/>
+  <result property="viewCount" column="viewCount"/>
+  <result property="commentCount" column="commentCount" />
+  <result property="recommendCount" column="recommendCount"/>
+  <association property="postedByUser" javaType="User" column="postedByUserId" select="getUser"/>
+   <association property="articleTopic" javaType="ArticleTopic" column="articleTopicId" select="getArticleTopic"/>
+    <association property="cover" javaType="Photo" column="photoId" select="getPhoto"/>
+  <collection property="tags" ofType="Tag" column="id"  select="getTags" />
+</resultMap>
+<select id="getPhoto" resultMap="photoResult">
+select id,url from photo where id=#{photoId}
+</select>
+<insert id="insertArticle" parameterType="Article" useGeneratedKeys="true" keyProperty="id">
+  insert into article (content,postedByUserId,postedDate,status,title,updatedDate,viewCount,articleTopicId,photoId)
+  values (#{content},#{postedByUserId},#{postedDate},#{status},#{title},#{updatedDate},#{viewCount},#{articleTopicId},#{photoId})
+</insert>
+<insert id="addTags" >
+insert into article_tag (articleId,tagId)values(#{0},#{1})
+</insert>
+<delete id="deleteTags">
+delete from article_tag where articleId=#{0} and tagId=#{1}
+</delete>
+<select id="getCommentCount" parameterType="long" resultType="int">
+select count(id) from articleComment where articleId=#{id}
+</select>
+<select id="getRecommendCount" parameterType="long" resultType="int">
+select count(articleId) from article_user_recommend where articleId=#{id}
+</select>
+<update id="updateArticle" parameterType="Article">
+  update article set photoId=#{photoId},articleTopicId=#{articleTopicId},content=#{content},status=#{status},title=#{title},updatedDate=#{updatedDate},viewCount=#{viewCount}
+  where id=#{id}
+</update>
+<select id="getArticleById" parameterType="long" resultMap="articleResult">
+  SELECT a.*
+  from article as a
+  where a.id=#{id}
+</select>
+<select id="getPreviousArticle" parameterType="long" resultMap="articleResult">
+  SELECT a.*
+  from article as a
+  where a.id &lt; #{id} order by a.id desc limit 1
+</select>
+<select id="getNextArticle" parameterType="long" resultMap="articleResult">
+  SELECT a.*
+  from article as a
+  where a.id > #{id} order by a.id limit 1
+</select>
+<select id="getArticleInTopic"  resultMap="articleResult">
+  SELECT a.*
+  from article as a
+  where a.articleTopicId = #{id} order by a.postedDate desc
+  limit ${pageStart},${pageSize}
+</select>
+<select id="getTags" parameterType="long" resultMap="tagResult">
+    select t.id,t.name,t.cnSpell from  article_tag as at left outer join tag as t on t.id=at.tagId
+    where at.articleId=#{id}
+</select>
+<select id="getUser" parameterType="long" resultMap="userResult">
+select u.id,u.nickName,u.title,p.url as p_url,p.id as p_id,
+(SELECT count(followUserId) FROM followUser WHERE followUserId = #{postedByUserId}) as followedCount
+ from user as u
+left outer join photo as p on u.photoId=p.Id
+ where u.id=#{postedByUserId}
+</select>
+<select id="getArticleTopic" parameterType="long" resultMap="articleTopicResult">
+select at.id,at.name,p.id as p_id,p.url as p_url from articleTopic as at
+left outer join photo as p on p.id=at.photoId
+ where at.id=#{articleTopicId}
+</select>
+<insert id="recommendArticle">
+insert into article_user_recommend (articleId,userId)values(#{0},#{1})
+</insert>
+<select id="isRecommend" resultType="int">
+select count(articleId) from article_user_recommend where articleId=#{0} and userId=#{1}
+</select>
+<select id="getAllArticles" resultMap="articleResult">
+select * from article
+</select>
+<select id="getArticlesByTagId" resultMap="articleResult">
+  SELECT a.*
+  from article as a left outer join article_tag as at on at.articleId=a.id
+  where at.tagId=#{id}
+  group by a.id order by a.updatedDate desc
+  limit ${pageStart},${pageSize}
+</select>
+<select id="countArticlesByTagId" resultType="long">
+ select count(v.id) from (SELECT a.id
+  from article as a left outer join article_tag as at on at.articleId=a.id
+  where at.tagId=#{id}
+  group by a.id) as v
+</select>
+<select id="searchArticles" parameterType="SArticle" resultMap="SearchArticleResult">
+select a.articleTopicId,a.content, a.id, a.postedByUserId,a.postedDate, a.status, a.title, a.updatedDate,a.viewCount,a.photoId,
+ (select count(c1.id) from articleComment as c1 where c1.articleId=a.id) as commentCount,
+ (select count(c2.articleId) from article_user_recommend as c2 where c2.articleId=a.id) as recommendCount
+from article as a
+left outer join articleTopic as at on a.articleTopicId=at.id
+left outer join article_tag as at1 on at1.articleId=a.Id
+left outer join tag as t on t.id=at1.tagId
+left outer join user as u on u.id=a.postedByUserId
+<where> 
+    <if test="status>0">
+    a.status=#{status}
+    </if>
+    <if test="articleTopicId>0">
+     and a.articleTopicId=#{articleTopicId}
+    </if>
+    <if test="content!=null and content!=''">
+        AND a.content like CONCAT('%',#{content},'%' )  
+    </if>
+     <if test="topic!=null and topic!=''">
+        AND at.name like CONCAT('%',#{topic},'%' )  
+    </if>
+    <if test="title!=null and title!=''">
+        AND a.title like CONCAT('%',#{title},'%' )  
+    </if>
+    <if test="postedByUser!=null and postedByUser.nickName!=null and postedByUser.nickName!=''">
+        AND u.nickName like CONCAT('%',#{postedByUser.nickName},'%' )  
+    </if>
+    <if test="postedDateMin!=null">
+        AND a.postedDate>#{postedDateMin}
+    </if>
+    <if test="postedDateMax!=null">
+        AND a.postedDate &lt; #{postedDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND a.updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND a.updatedDate &lt; #{updatedDateMax}
+    </if>
+    <if test="tagName!=null and tagName!=''">
+        AND t.name like CONCAT('%',#{tagName},'%' )  
+    </if>
+</where>
+group by  a.content, a.id, a.postedByUserId,a.postedDate, a.status,a.title,a.updatedDate,a.viewCount,a.photoId
+order by ${sort} ${order} limit ${pageStart},${pageSize}
+</select>
+<select id="countArticles" parameterType="SArticle" resultType="long">
+select count(v.id) from (select a.id from article as a
+left outer join articleTopic as at on a.articleTopicId=at.id
+left outer join article_tag as at1 on at1.articleId=a.Id
+left outer join tag as t on t.id=at1.tagId
+left outer join user as u on u.id=a.postedByUserId
+<where> 
+      <if test="status>0">
+    a.status=#{status}
+    </if>
+    <if test="articleTopicId>0">
+     and a.articleTopicId=#{articleTopicId}
+    </if>
+    <if test="content!=null and content!=''">
+        AND a.content like CONCAT('%',#{content},'%' )  
+    </if>
+     <if test="topic!=null and topic!=''">
+        AND at.name like CONCAT('%',#{topic},'%' )  
+    </if>
+    <if test="title!=null and title!=''">
+        AND a.title like CONCAT('%',#{title},'%' )  
+    </if>
+    <if test="postedByUser!=null and postedByUser.nickName!=null and postedByUser.nickName!=''">
+        AND u.nickName like CONCAT('%',#{postedByUser.nickName},'%' )  
+    </if>
+    <if test="postedDateMin!=null">
+        AND a.postedDate>#{postedDateMin}
+    </if>
+    <if test="postedDateMax!=null">
+        AND a.postedDate &lt; #{postedDateMax}
+    </if>
+    <if test="updatedDateMin!=null">
+        AND a.updatedDate>#{updatedDateMin}
+    </if>
+    <if test="updatedDateMax!=null">
+        AND a.updatedDate &lt; #{updatedDateMax}
+    </if>
+    <if test="tagName!=null and tagName!=''">
+        AND t.name like CONCAT('%',#{tagName},'%' )  
+    </if>
+</where>
+group by a.id) as v
+</select>
+</mapper>

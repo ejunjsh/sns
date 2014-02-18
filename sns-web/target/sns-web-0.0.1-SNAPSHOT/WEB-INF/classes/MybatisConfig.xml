@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<typeAliases>
+  <typeAlias alias="User" type="com.sky.sns.mybatis.entity.User"/>
+  <typeAlias alias="SUser" type="com.sky.sns.mybatis.searchEntity.User"/>
+  <typeAlias alias="Tag" type="com.sky.sns.mybatis.entity.Tag"/>
+   <typeAlias alias="STag" type="com.sky.sns.mybatis.searchEntity.Tag"/>
+  <typeAlias alias="Question" type="com.sky.sns.mybatis.entity.Question"/>
+  <typeAlias alias="SQuestion" type="com.sky.sns.mybatis.searchEntity.Question"/>
+  <typeAlias alias="Answer" type="com.sky.sns.mybatis.entity.Answer"/>
+  <typeAlias alias="QuestionComment" type="com.sky.sns.mybatis.entity.QuestionComment"/>
+  <typeAlias alias="BlogComment" type="com.sky.sns.mybatis.entity.BlogComment"/>
+  <typeAlias alias="Blog" type="com.sky.sns.mybatis.entity.Blog"/>
+  <typeAlias alias="SBlog" type="com.sky.sns.mybatis.searchEntity.Blog"/>
+  <typeAlias alias="BlogCategory" type="com.sky.sns.mybatis.entity.BlogCategory"/>
+   <typeAlias alias="Group" type="com.sky.sns.mybatis.entity.Group"/>
+    <typeAlias alias="GroupCategory" type="com.sky.sns.mybatis.entity.GroupCategory"/>
+   <typeAlias alias="SGroup" type="com.sky.sns.mybatis.searchEntity.Group"/>
+   <typeAlias alias="GroupPost" type="com.sky.sns.mybatis.entity.GroupPost"/>
+   <typeAlias alias="GroupPostComment" type="com.sky.sns.mybatis.entity.GroupPostComment"/>
+   
+    <typeAlias alias="ArticleComment" type="com.sky.sns.mybatis.entity.ArticleComment"/>
+  <typeAlias alias="Article" type="com.sky.sns.mybatis.entity.Article"/>
+  <typeAlias alias="SArticle" type="com.sky.sns.mybatis.searchEntity.Article"/>
+  <typeAlias alias="ArticleTopic" type="com.sky.sns.mybatis.entity.ArticleTopic"/>
+  <typeAlias alias="Activity" type="com.sky.sns.mybatis.entity.Activity"/>
+  <typeAlias alias="Notice" type="com.sky.sns.mybatis.entity.Notice"/>
+  <typeAlias alias="SNotice" type="com.sky.sns.mybatis.searchEntity.Notice"/>
+  <typeAlias alias="Message" type="com.sky.sns.mybatis.entity.Message"/>
+  <typeAlias alias="Album" type="com.sky.sns.mybatis.entity.Album"/>
+  <typeAlias alias="Photo" type="com.sky.sns.mybatis.entity.Photo"/>
+  <typeAlias alias="PhotoComment" type="com.sky.sns.mybatis.entity.PhotoComment"/>
+</typeAliases>
+
+</configuration>
