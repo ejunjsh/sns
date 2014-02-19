@@ -226,7 +226,7 @@ getComments : function(ctrl, params) {
 		 }
 	if (!lib.disableBtn($(ctrl))) {
 		$.ajax({
-			url : "/ajax/question/listComments",
+			url : application.contextPath+"/ajax/question/listComments",
 			datatype : "json",
 			cache : false,
 			data : {
@@ -305,7 +305,7 @@ addComment : function(ctrl, params) {
 		rid=$replyId.val();
 	if (!lib.disableBtn($(ctrl))) {
 		$.ajax({
-			url : "/ajax/question/addComment",
+			url : application.contextPath+"/ajax/question/addComment",
 			datatype : "json",
 			cache : false,
 			data : {
@@ -365,7 +365,7 @@ deleteComment : function(ctrl, params) {
 	popWin.confirmShow(params.confirm, function() {
 	if (!lib.disableBtn($(ctrl))) {
 		$.ajax({
-			url : "/ajax/question/deleteComment",
+			url : application.contextPath+"/ajax/question/deleteComment",
 			datatype : "json",
 			cache : false,
 			data : {
@@ -439,7 +439,7 @@ replyComment : function(ctrl, params) {
 doFollow : function(ctrl, params) {
 	if (!lib.disableBtn($(ctrl))) {
 		$.ajax({
-			url : "/ajax/question/doFollow",
+			url : application.contextPath+"/ajax/question/doFollow",
 			datatype : "json",
 			cache : false,
 			data : {
@@ -492,7 +492,7 @@ doFollow : function(ctrl, params) {
 doUnfollow : function(ctrl, params) {
 	if (!lib.disableBtn($(ctrl))) {
 		$.ajax({
-			url : "/ajax/question/doUnfollow",
+			url : application.contextPath+"/ajax/question/doUnfollow",
 			datatype : "json",
 			cache : false,
 			data : {
