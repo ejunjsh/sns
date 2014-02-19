@@ -13,7 +13,7 @@
             <div class="item remember">
                 <label>&nbsp;</label>
                 <input id="login_remember" type="checkbox" name="login_remember" tabindex="4"/>
-                <label for="login_remember" class="sub">下次自动登录 |</label><a href="http://www.douban.com/accounts/resetpassword" style="margin-left: 0.8em;" >忘记密码了</a>
+                <label for="login_remember" class="sub">下次自动登录 |</label><a href="#" style="margin-left: 0.8em;" >忘记密码了</a>
             </div>
             <div class="item recsubmit">
                 <label>&nbsp;</label>

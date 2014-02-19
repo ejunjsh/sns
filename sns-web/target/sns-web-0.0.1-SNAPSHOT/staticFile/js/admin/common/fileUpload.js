@@ -29,7 +29,7 @@ var fileUpload=function(){
 			options.drawable = true;
 			options.width=280;
 			options.height=150;
-			$.pdialog.open("/admin/embedPage/fileUpload/fileUploadPage", "fileUpload", "上传", options);
+			$.pdialog.open(application.contextPath+"/admin/embedPage/fileUpload/fileUploadPage", "fileUpload", "上传", options);
 		},
 		upload:function($ctrl,params){
 			var $fileCtrl=$("#fileCtrl");

@@ -51,7 +51,7 @@
                     <a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="postedByUser.id"/>/"><s:property value="postedByUser.nickName"/></a>&nbsp;发表于&nbsp;<s:property value="postedDateF"/>
                     </p>
                     <p><s:property value="ContentNoHtml50"/><a target="_blank" href="<%=request.getContextPath()%>/article/<s:property value="id"/>/">查看全文</a></p>
-                    <p class="article-from">来自：<a href="/site/<s:property value="articleTopic.id"/>/" target="_blank"><s:property value="articleTopic.name"/></a>&nbsp;主题站</p>
+                    <p class="article-from">来自：<a href="<%=request.getContextPath()%>/site/<s:property value="articleTopic.id"/>/" target="_blank"><s:property value="articleTopic.name"/></a>&nbsp;主题站</p>
                 </div>
 		</s:iterator>
 		<p:pages pageSize="${pageSize}" pageNo="${pageNo}" recordCount="${recordCount}"></p:pages>

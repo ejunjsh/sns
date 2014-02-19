@@ -50,7 +50,7 @@
 	border: 0;
 	text-indent: -9999px;
 	overflow: hidden;
-	background: url("/staticFile/img/4-button.png") no-repeat scroll -222px -33px
+	background: url("../img/4-button.png") no-repeat scroll -222px -33px
 }
 
 .search-page .form-wp form .search-submit:hover {
@@ -212,7 +212,7 @@
 	background-position: 528px 6px;
 	background-position: 470px 6px\9;
 	background-position: 528px 6px\9\0;
-	background-image: url("/staticFile/img/defaultAvatar.gif");
+	background-image: url("../img/defaultAvatar.gif");
 	font-family: Microsoft YaHei
 }
 

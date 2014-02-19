@@ -8,7 +8,7 @@
 <meta charset="UTF-8" />
 <title> 通知|消息中心-- XX网</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
-<link type="text/css" href="/staticFile/css/settings.css"
+<link type="text/css" href="<%=request.getContextPath()%>/staticFile/css/settings.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -19,8 +19,8 @@
 				<h1>消息中心</h1>
 				<ul>
 					<li>
-<a class="gicon-message" href="/infoCenter/message/"></a>
-<a href="/infoCenter/message/">站内信</a>
+<a class="gicon-message" href="<%=request.getContextPath()%>/infoCenter/message/"></a>
+<a href="<%=request.getContextPath()%>/infoCenter/message/">站内信</a>
 </li>
 <li class="gactived">
 <span class="gicon-notice"></span>

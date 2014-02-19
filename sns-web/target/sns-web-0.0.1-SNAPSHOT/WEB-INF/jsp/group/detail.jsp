@@ -9,7 +9,7 @@
 <title>XX小组 - <s:property value="group.name" /></title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/group1.css" rel="stylesheet" />
+	href="<%=request.getContextPath()%>/staticFile/css/group1.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="container">
@@ -17,8 +17,8 @@
 	   <div class="main gspan-21 gsuffix-1">
 	      <div class="gbtitle">
 			<div class="gfl gbtitle-info">
-			   <a class="pt-pic" href="/group/<s:property value="group.id" />/">
-<img width="48" height="48" alt="<s:property value="group.name" />" src="<s:property value="group.cover48" />">
+			   <a class="pt-pic" href="<%=request.getContextPath()%>/group/<s:property value="group.id" />/">
+<img width="48" height="48" alt="<%=request.getContextPath()%><s:property value="group.name" />" src="<s:property value="group.cover48" />">
 </a>
 			<div class="pt-txt">
 <h1><s:property value="group.name" /> </h1>
@@ -44,23 +44,23 @@
 	   </div>
 	   <p class="blackboard-title">
 		<span>组长</span>
-		<a href="/i/<s:property value="group.createdByUser.id" />/"><s:property value="group.createdByUser.nickName" /></a>
+		<a href="<%=request.getContextPath()%>/i/<s:property value="group.createdByUser.id" />/"><s:property value="group.createdByUser.nickName" /></a>
 	   </div>
 	   </s:if>
 	   <div class="main-title">
 <h2>帖子列表</h2>
-<a id="newPost" class="gbtn" href="/group/<s:property value="group.id" />/post">发新帖</a>
+<a id="newPost" class="gbtn" href="<%=request.getContextPath()%>/group/<s:property value="group.id" />/post">发新帖</a>
 </div>
 <ul class="gtabs">
 <li class="gtabs-curr">全部帖子</li>
 <li>
-<a href="/group/<s:property value="group.id" />/posts/digest/">精华区</a>
+<a href="<%=request.getContextPath()%>/group/<s:property value="group.id" />/posts/digest/">精华区</a>
 </li>
 </ul>
 <ul class="titles">
 <s:iterator value="postInGroup">
 <li>
-<h3 class="titles-txt"><a target="_blank" href="/post/<s:property value="id" />/"><s:property value="title" />
+<h3 class="titles-txt"><a target="_blank" href="<%=request.getContextPath()%>/post/<s:property value="id" />/"><s:property value="title" />
     <s:if test="isTop==1">
                                 <span class="gicon-top"></span>
                                 </s:if>
@@ -72,7 +72,7 @@
 <p class="titles-b">
 <span class="titles-b-l">
 发表：
-<a target="_blank" href="/i/<s:property value="postedByUserId" />/"><s:property value="postedByUser.nickName" /></a>
+<a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="postedByUserId" />/"><s:property value="postedByUser.nickName" /></a>
 </span>
 <s:if test="lastCommentDateF==null">
 <span class="titles-b-r"> 发表时间：<s:property value="postedDateF" /> </span>
@@ -95,15 +95,15 @@
 <s:iterator value="activeMembers" >
 <dl class="gpack_u">
                     <dt>
-                    <a href="/i/<s:property value="id" />/" title="<s:property value="nickName" />"><img width="48" height="48" src="<s:property value="avatar" />"></a>
+                    <a href="<%=request.getContextPath()%>/i/<s:property value="id" />/" title="<s:property value="nickName" />"><img width="48" height="48" src="<%=request.getContextPath()%><s:property value="avatar" />"></a>
                     </dt>
                     <dd class="gpack_u-n">
-                    <p><a href="/i/<s:property value="id" />/" title="<s:property value="nickName" />"><s:property value="nickName" /></a></p>
+                    <p><a href="<%=request.getContextPath()%>/i/<s:property value="id" />/" title="<s:property value="nickName" />"><s:property value="nickName" /></a></p>
                     </dd>
                 </dl>
 </s:iterator>
 </div>
-<p class="side-back"><a href="/group/<s:property value="group.id" />/members/">所有小组成员（<s:property value="group.joinedUserCount" />）&nbsp;&nbsp;&gt;</a></p>
+<p class="side-back"><a href="<%=request.getContextPath()%>/group/<s:property value="group.id" />/members/">所有小组成员（<s:property value="group.joinedUserCount" />）&nbsp;&nbsp;&gt;</a></p>
 <div class="side-title">
                 
                 <h2>相关小组</h2>
@@ -116,9 +116,9 @@
                 <ul class="side-groups ">
                 <s:iterator value="relatedGroups" var="group" status="st">
                     <li>
-                        <a class="pt-pic" href="/group/<s:property value="#group.id"/>/" title="<s:property value="#group.name"/>" target="_blank"><img width="48" height="48" src="<s:property value="#group.cover48"/>" alt="<s:property value="#group.name"/>" ></a>
+                        <a class="pt-pic" href="<%=request.getContextPath()%>/group/<s:property value="#group.id"/>/" title="<s:property value="#group.name"/>" target="_blank"><img width="48" height="48" src="<%=request.getContextPath()%><s:property value="#group.cover48"/>" alt="<s:property value="#group.name"/>" ></a>
                         <div class="pt-txt">
-                            <h3><a href="/group/<s:property value="#group.id"/>/" target="_blank"><s:property value="#group.name"/></a></h3>
+                            <h3><a href="<%=request.getContextPath()%>/group/<s:property value="#group.id"/>/" target="_blank"><s:property value="#group.name"/></a></h3>
                             <span><s:property value="#group.joinedUserCount"/>人加入</span>
                             <div class="pt-txt-d">
                                 <p class="gellipsis"><s:property value="#group.description10"/></p>
@@ -137,7 +137,7 @@
 	</div>
 	    <%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/group.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/group.js"></script>
 	</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <div class="pageContent">
 	
-	<form method="post" action="/admin/embedPage/notice/doSysNotice" class="pageForm required-validate" onsubmit="return doNoticeCallback(this)">
+	<form method="post" action="${request.contextPath}/admin/embedPage/notice/doSysNotice" class="pageForm required-validate" onsubmit="return doNoticeCallback(this)">
 		<div class="pageFormContent nowrap" layoutH="58">
                         <@s.if test="notice!=null&&notice.id>0">
                         <input name="notice.id" value="<@s.property value="notice.id" />" type="hidden" />

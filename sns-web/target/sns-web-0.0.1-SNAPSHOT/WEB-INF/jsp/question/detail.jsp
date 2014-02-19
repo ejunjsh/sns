@@ -21,7 +21,7 @@
 <div class="main gspan-21">
     <div class="gbreadcrumb">
                 <ul>
-                  <li><a href="/question">问答</a></li>
+                  <li><a href="<%=request.getContextPath()%>/question">问答</a></li>
 					<li><s:if test="question.title.length()>10">
 							<s:property value="question.title.substring(0,10)+'...'" />
 						</s:if> <s:else>
@@ -39,7 +39,7 @@
         <p id="tags" class="post-tags tags">
         <s:iterator value="question.tags" status='st'>
             
-            <span class="tag"><a href="/tag/<s:property value="cnSpell"/>"><s:property value="name"/></a></span>
+            <span class="tag"><a href="<%=request.getContextPath()%>/tag/<s:property value="cnSpell"/>"><s:property value="name"/></a></span>
             <s:if test="#st.Last!=true">
             <span class="split">|</span>
             </s:if>
@@ -61,7 +61,7 @@
 									class="cmts-num"><s:if test="question.commentCount==0">添加讨论</s:if><s:else><s:property value="question.commentCount"/>条讨论</s:else></a>
 								<s:if test="question.postedByUser.id==curUser.id">
 									<span class="split">|</span>
-									<a href="/question/<s:property value="question.id" />/edit">修改</a>
+									<a href="<%=request.getContextPath()%>/question/<s:property value="question.id" />/edit">修改</a>
 								</s:if>
 								<s:if test="question.postedByUser.id==curUser.id">
 								<span class="split">|</span>
@@ -77,7 +77,7 @@
                 <p class="gfr">
                     <span class="post-user">
                         
-                        <a target="_blank" href="/i/<s:property
+                        <a target="_blank" href="<%=request.getContextPath()%>/i/<s:property
 									value="question.postedByUser.id" />" id="articleAuthor"><s:property
 									value="question.postedByUser.nickName" /></a>
                         
@@ -152,12 +152,12 @@
 						</div>
 						<div class="answer-r">
 							<div class="answer-t">
-								<a class="answer-img" href="/i/<s:property value="#answer.createdByUser.id" />/" title="<s:property value="#answer.createdByUser.nickName" />"
+								<a class="answer-img" href="<%=request.getContextPath()%>/i/<s:property value="#answer.createdByUser.id" />/" title="<s:property value="#answer.createdByUser.nickName" />"
 									target="_blank"> <img width="24" height="24"
-									src="<s:property value="#answer.createdByUser.avatar24" />">
+									src="<%=request.getContextPath()%><s:property value="#answer.createdByUser.avatar24" />">
 								</a>
 								<p class="answer-usr">
-									<a class="answer-usr-name" href="/i/<s:property value="#answer.createdByUserId" />/"
+									<a class="answer-usr-name" href="<%=request.getContextPath()%>/i/<s:property value="#answer.createdByUserId" />/"
 										title="<s:property value="#answer.createdByUser.nickName" />" target="_blank"><s:property value="#answer.createdByUser.nickName" /></a>
 								</p>
 								<p class="answer-date"><s:property
@@ -222,7 +222,7 @@
 						<p>此问题目前不允许回答</p>
 						</s:elseif>
 						<s:else>
-						<form method="POST" action="/question/<s:property value="question.id" />/newAnswer">
+						<form method="POST" action="<%=request.getContextPath()%>/question/<s:property value="question.id" />/newAnswer">
                              <textarea rows="1" name="answer.content" cols="40" class="t_txt" id="editor"></textarea>
                             <input type="submit" data-operation="addAnswer" value="新增答案" class="gbtn-primary">
                         </form>
@@ -239,7 +239,7 @@
 		<%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script id="c-list" type="text/html">
    @! for (i = 0; i < data.length; i ++) {!@
-      <li> <a href="/i/@!=data[i].postedByUserId!@/" target="_blank">@!=data[i].postedByUserNickName!@</a>：@!=data[i].content!@&nbsp;-&nbsp; @!=data[i].postedDate!@
+      <li> <a href="<%=request.getContextPath()%>/i/@!=data[i].postedByUserId!@/" target="_blank">@!=data[i].postedByUserNickName!@</a>：@!=data[i].content!@&nbsp;-&nbsp; @!=data[i].postedDate!@
                    @!if(userState.id==data[i].postedByUserId){!@              
                                     <a href="javascript:void 0"  data-operation="deleteComment"
 											data-params="id=@!=data[i].id!@&confirm=是否删除你的回复？" class="cmts-list-d">删除</a>
@@ -248,11 +248,11 @@
 											data-params="refId=@!=data[i].refId!@&check=@!=data[i].postedByUserNickName!@&commentType=@!=data[i].commentType!@&id=@!=data[i].id!@">回复</a></li>
     @!} !@
 </script> 
-        <script type="text/javascript" src="/staticFile/js/kindeditor-min.js"></script>
-<script type="text/javascript" src="/staticFile/js/zh_CN.js"></script>
-		<script type="text/javascript" src="/staticFile/js/sh/sh.js"></script>
-		<script type="text/javascript" src="/staticFile/js/template.min.js"></script>
-			<script type="text/javascript" src="/staticFile/js/question.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/staticFile/js/kindeditor-min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/staticFile/js/zh_CN.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/staticFile/js/sh/sh.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/staticFile/js/template.min.js"></script>
+			<script type="text/javascript" src="<%=request.getContextPath()%>/staticFile/js/question.js"></script>
 		<s:if test="question.status==1&&curUser!=null">
 		<script type="text/javascript">
 		var kEditor;

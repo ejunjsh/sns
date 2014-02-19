@@ -19,31 +19,31 @@
                     <s:else>
                     <a class="gbtn-complete" data-event="click,mouseenter,mouseleave" data-operation="doUnfollow,followEnter,followLeave" data-params="id=<s:property value="spaceUser.id"/>"  href="javascript: void 0;">已关注</a>
                     </s:else>
-                    <a href="/infoCenter/message/send/<s:property value="spaceUser.id" />/" class="gbtn-nobg">站内信</a>
+                    <a href="<%=request.getContextPath()%>/infoCenter/message/send/<s:property value="spaceUser.id" />/" class="gbtn-nobg">站内信</a>
                     </s:else>
                 </div>
                 </div>
                 </div>
                 <div class="side gspan-6">
                 <div class="side-head">
-                <a href="/i/<s:property value="spaceUser.id" />/">
-                    <img width="160" height="160" onerror="lib.errorImg(this)" src="<s:property value="spaceUser.avatar160" />" alt="<s:property value="spaceUser.nickName" />" >
+                <a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/">
+                    <img width="160" height="160" onerror="lib.errorImg(this)" src="<%=request.getContextPath()%><s:property value="spaceUser.avatar160" />" alt="<s:property value="spaceUser.nickName" />" >
                 </a>
             </div>
                 <ul class="side-nav focus">
                 <li class="gclear">
-                <a href="/i/<s:property value="spaceUser.id" />/following/" class="side-title">关注<span class="side-title-more">（全部<s:property value="spaceUser.followingCount" />人）</span></a>
+                <a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/following/" class="side-title">关注<span class="side-title-more">（全部<s:property value="spaceUser.followingCount" />人）</span></a>
                 <p class="focus_list">
                 <s:iterator value="sideFollowingUsers">
-                   <a  target="_blank" href="/i/<s:property value="id" />/"><img onerror="lib.errorImg(this)" width="24px" height="24px" src="<s:property value="avatar24" />" alt="<s:property value="nickName" />"></a>
+                   <a  target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="id" />/"><img onerror="lib.errorImg(this)" width="24px" height="24px" src="<%=request.getContextPath()%><s:property value="avatar24" />" alt="<s:property value="nickName" />"></a>
                 </s:iterator>
                 </p>
                 </li>
                 <li class="gclear">
-                <a href="/i/<s:property value="spaceUser.id" />/follower/" class="side-title">被关注<span class="side-title-more">（全部<s:property value="spaceUser.followedCount" />人）</span></a>
+                <a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/follower/" class="side-title">被关注<span class="side-title-more">（全部<s:property value="spaceUser.followedCount" />人）</span></a>
                   <p class="focused_list">
                 <s:iterator value="sideFollowedUsers">
-                   <a target="_blank" href="/i/<s:property value="id" />/"><img onerror="lib.errorImg(this)" width="24px" height="24px" src="<s:property value="avatar24" />" alt="<s:property value="nickName" />"></a>
+                   <a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="id" />/"><img onerror="lib.errorImg(this)" width="24px" height="24px" src="<%=request.getContextPath()%><s:property value="avatar24" />" alt="<s:property value="nickName" />"></a>
                 </s:iterator>
                 </p>
                 </li>
@@ -52,7 +52,7 @@
                 
                 <li>
                   <s:if test="curPage!='blog'" >
-                    <a href="/i/<s:property value="spaceUser.id" />/blog/" class="side-title">
+                    <a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/blog/" class="side-title">
                         <span class="gicon-blog">&nbsp;</span>日志：
                         <span class="side-title-more"><s:property value="spaceUser.blogCount" />篇</span>
                     </a>
@@ -68,7 +68,7 @@
                 
                 <li>
                 <s:if test="curPage!='answer'" >
-                    <a href="/i/<s:property value="spaceUser.id" />/answer/" class="side-title">
+                    <a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/answer/" class="side-title">
                         <span class="gicon-answer">&nbsp;</span>回答：
                         <span class="side-title-more"><s:property value="spaceUser.answerCount" />条</span>
                     </a>
@@ -84,7 +84,7 @@
                 
                 <li>
                  <s:if test="curPage!='question'" >
-                    <a href="/i/<s:property value="spaceUser.id" />/question/" class="side-title">
+                    <a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/question/" class="side-title">
                         <span class="gicon-question">&nbsp;</span>提问：
                         <span class="side-title-more"><s:property value="spaceUser.questionCount" />条</span>
                     </a>
@@ -100,7 +100,7 @@
                 
                 <li>
                 <s:if test="curPage!='post'" >
-                    <a href="/i/<s:property value="spaceUser.id" />/post/" class="side-title">
+                    <a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/post/" class="side-title">
                         <span class="gicon-post">&nbsp;</span>帖子：
                         <span class="side-title-more"><s:property value="spaceUser.postCount" />个</span>
                     </a>
@@ -114,7 +114,7 @@
                 </li>
                  <li>
                 <s:if test="curPage!='albumList'&&curPage!='albumDetail'&&curPage!='viewPhoto'" >
-                    <a href="/i/<s:property value="spaceUser.id" />/album/" class="side-title">
+                    <a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/album/" class="side-title">
                         <span class="gicon-tag">&nbsp;</span>相册：
                         <span class="side-title-more"><s:property value="spaceUser.photoCount" />张</span>
                     </a>
@@ -131,7 +131,7 @@
                 
                 <li>
                 <s:if test="curPage!='activity'" >
-                    <a href="/i/<s:property value="spaceUser.id" />/activity/" class="side-title">
+                    <a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/activity/" class="side-title">
                         <span class="gicon-news">&nbsp;</span>动态：
                         <span class="side-title-more"><s:property value="spaceUser.activityCount" />条</span>
                     </a>
@@ -147,7 +147,7 @@
                 
                 <li>
                 <s:if test="curPage!='tag'" >
-                    <a href="/i/<s:property value="spaceUser.id" />/tag/" class="side-title">
+                    <a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/tag/" class="side-title">
                         <span class="gicon-tag">&nbsp;</span>标签：
                         <span class="side-title-more"><s:property value="spaceUser.tagCount" />个</span>
                     </a>
@@ -163,7 +163,7 @@
                 
                 <li>
                   <s:if test="curPage!='group'" >
-                    <a href="/i/<s:property value="spaceUser.id" />/group/" class="side-title">
+                    <a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/group/" class="side-title">
                         <span class="gicon-group">&nbsp;</span>小组：
                         <span class="side-title-more"><s:property value="spaceUser.groupCount" />个</span>
                     </a>

@@ -52,7 +52,7 @@ var lib = function() {
 			return false;
 		},
 		errorImg:function(obj){
-			obj.src="/staticFile/img/defaultAvatar.gif";
+			obj.src=application.contextPath+"/staticFile/img/defaultAvatar.gif";
 		},
 		eventEngine:function(funcs,$container)
 		{

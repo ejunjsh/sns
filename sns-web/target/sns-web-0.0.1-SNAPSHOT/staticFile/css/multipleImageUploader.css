@@ -15,7 +15,7 @@ zoom: 1;
     width: 16px;
 }
 .ke-button-common {
-	background: url(/staticFile/js/themes/default/background.png) no-repeat scroll 0 -25px transparent;
+	background: url(../js/themes/default/background.png) no-repeat scroll 0 -25px transparent;
 	cursor: pointer;
 	height: 23px;
 	line-height: 23px;

@@ -18,12 +18,12 @@
 			<div class="gspan-22 main">
 				<div class="gbreadcrumb">
 					<ul>
-						<li><a href="/group">小组</a></li>
+						<li><a href="<%=request.getContextPath()%>/group">小组</a></li>
 						<li>申请小组</li>
 					</ul>
 				</div>
 				<form id="newGroup" class="gform" method="POST"
-					action="/group/apply/">
+					action="<%=request.getContextPath()%>/group/apply/">
 					<div class="gprefix-1">
 						<label for="name">小组名称</label>
 						<div class="gform-box gclear">
@@ -33,7 +33,7 @@
 						</div>
 						<label for="name">小组图标</label>
 						<div class="gform-box gclear">
-						<img id="groupIcon" height="48" width="48" src="/staticFile/img/defaultAvatar.gif" alt="小组图标" title="小组图标">
+						<img id="groupIcon" height="48" width="48" src="<%=request.getContextPath()%>/staticFile/img/defaultAvatar.gif" alt="小组图标" title="小组图标">
 <br>
 <input id="icon" type="hidden" value="" name="tmpUrl">
 <input id="trueFile" type="file" name="file">
@@ -98,9 +98,9 @@
 		</div>
 		<%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/iframeUploader.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/iframeUploader.js"></script>
 		<script type="text/javascript"
-			src="/staticFile/js/group.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/group.js"></script>
 	</div>
 </body>
 </html>

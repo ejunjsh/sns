@@ -1,6 +1,6 @@
 <div class="pageContent">
 	
-	<form method="post" action="/admin/embedPage/blog/doBlog" class="pageForm required-validate" onsubmit="return doBlogCallback(this)">
+	<form method="post" action="${request.contextPath}/admin/embedPage/blog/doBlog" class="pageForm required-validate" onsubmit="return doBlogCallback(this)">
 		<div class="pageFormContent nowrap" layoutH="58">
                         <@s.if test="blog!=null&&blog.id>0">
                         <input name="blog.id" value="<@s.property value="blog.id" />" type="hidden" />
@@ -21,7 +21,7 @@
 			<dl>
 				<dt>标签：</dt>
 				<dd>
-					<input type="text"  suggesturl="/admin/embedPage/tag/getTagByKey" suggestfields="name" callBack="selectTagCallback" class="textInput" autocomplete="off">
+					<input type="text"  suggesturl="${request.contextPath}/admin/embedPage/tag/getTagByKey" suggestfields="name" callBack="selectTagCallback" class="textInput" autocomplete="off">
 					<@s.iterator value="blog.tags">
 				     <span id="tag<@s.property value="id" />" class="tag"><@s.property value="name" /><a href="javascript: void 0;" class="icon-close" title="移除标签" onclick="$(this).parent().remove();">X</a><input type="hidden" name="tags" value="<@s.property value="id" />"></span>
 				    </@s.iterator>

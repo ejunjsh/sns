@@ -10,7 +10,7 @@
 <title><s:property value="spaceUser.nickName" />主页 - XX网</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/user.css"
+	href="<%=request.getContextPath()%>/staticFile/css/user.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -19,9 +19,9 @@
  <%@ include file="/WEB-INF/jsp/user/space/common/leftSize.jsp"%>
             <div class="main gprefix-1 gspan-25">
             <div class="gbtitle">
-        <h2><a href="/i/<s:property value="spaceUser.id" />/" class="gbtitle-link">个人主页</a><span class="entities">&gt;</span>日志<span class="gbtitle-more">（全部<s:property value="recordCount" />个）</span></h2>
+        <h2><a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/" class="gbtitle-link">个人主页</a><span class="entities">&gt;</span>日志<span class="gbtitle-more">（全部<s:property value="recordCount" />个）</span></h2>
         <s:if test="spaceUser.id==curUser.id">
-        <a href="/blog/post/" class="gbtn-primary">写日志</a>
+        <a href="<%=request.getContextPath()%>/blog/post/" class="gbtn-primary">写日志</a>
         </s:if>
     </div>
     <ul id="categoryCon" class="category gclear">
@@ -32,7 +32,7 @@
        </s:if>
        <s:else>
         <li class="t_itm">
-       <a class="t_lk" href="/i/<s:property value="spaceUser.id" />/blog/">全部</a>
+       <a class="t_lk" href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/blog/">全部</a>
        </li>
        </s:else>
        <s:if test="categoryId==0">
@@ -42,7 +42,7 @@
        </s:if>
        <s:else>
         <li class="t_itm">
-       <a class="t_lk" href="/i/<s:property value="spaceUser.id" />/blog/?categoryId=0">未分类</a>
+       <a class="t_lk" href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/blog/?categoryId=0">未分类</a>
        </li>
        </s:else>
        <s:iterator value="myBlogCategories">
@@ -57,7 +57,7 @@
        </s:if>
        <s:else>
         <li class="t_itm">
-       <a class="t_lk" href="/i/<s:property value="spaceUser.id" />/blog/?categoryId=<s:property value="id" />"><s:property value="name" /></a>
+       <a class="t_lk" href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/blog/?categoryId=<s:property value="id" />"><s:property value="name" /></a>
        <s:if test="spaceUser.id==curUser.id">
        <a href="javascript:void 0" data-operation="updateCategory" data-params="id=<s:property value="id" />&txt=<s:property value="name" />">！</a>
        </s:if>
@@ -68,9 +68,9 @@
     <ul class="blog_list">
     <s:iterator value="myBlogs">
     <li class="blog">
-            <h2><a href="/blog/<s:property value="id" />/" target="_blank"><s:property value="title" /></a></h2>
+            <h2><a href="<%=request.getContextPath()%>/blog/<s:property value="id" />/" target="_blank"><s:property value="title" /></a></h2>
             <p class="blog-meta"><s:property value="postedDateF" /></p>
-            <p><s:property value="contentNoHtml100" escape="false"/><a href="/blog/<s:property value="id" />" target="_blank">查看全文</a></p>
+            <p><s:property value="contentNoHtml100" escape="false"/><a href="<%=request.getContextPath()%>/blog/<s:property value="id" />" target="_blank">查看全文</a></p>
         </li>
         </s:iterator>
     </ul>
@@ -80,7 +80,7 @@
 </div>
 	    <%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/space.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/space.js"></script>
 			<s:if test="spaceUser.id==curUser.id">
    <script type="text/javascript">
    $(function(){

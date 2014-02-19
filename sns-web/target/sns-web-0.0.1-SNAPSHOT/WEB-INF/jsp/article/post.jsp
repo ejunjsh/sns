@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <title>XX主题站 - 发布文章</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp" %>
-<link  type="text/css" href="/staticFile/css/site.css" rel="stylesheet"/>
+<link  type="text/css" href="<%=request.getContextPath()%>/staticFile/css/site.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="container">
@@ -16,16 +16,16 @@
 	   <div class="gbreadcrumb">
                 <ul>
                     <li>
-                        <a href="/site/all">XX主题站</a>
+                        <a href="<%=request.getContextPath()%>/site/all">XX主题站</a>
                     </li>
                     <li>
-                        <a href="/site/<s:property value="topic.id" />"><s:property value="topic.name" /></a>
+                        <a href="<%=request.getContextPath()%>/site/<s:property value="topic.id" />"><s:property value="topic.name" /></a>
                     </li>
 					<li>发布文章</li>
                 </ul>
         </div>
 		<div>
-		<form id="editor" class="gform" method="post" action="/site/<s:property value="topic.id" />/post">
+		<form id="editor" class="gform" method="post" action="<%=request.getContextPath()%>/site/<s:property value="topic.id" />/post">
 		<label for="title">标题</label>
     
 <div class="gform-box gclear">
@@ -40,7 +40,7 @@
             <div class="gform-box gclear tag-box">
                     <p id="tagContent" class="post-tags tags tags-edit">
                      <s:iterator value="article.tags">
-                    <span id= tag<s:property value="id" /> class="tag"><a href="/tag/<s:property value="id" />"><s:property value="name" /></a><a  title="移除标签" class="icon-close" onclick="$(this).parent().remove();" href="javascript: void 0;">X</a><input type="hidden" value="<s:property value="id" />" name="tags"></span>
+                    <span id= tag<s:property value="id" /> class="tag"><a href="<%=request.getContextPath()%>/tag/<s:property value="id" />"><s:property value="name" /></a><a  title="移除标签" class="icon-close" onclick="$(this).parent().remove();" href="javascript: void 0;">X</a><input type="hidden" value="<s:property value="id" />" name="tags"></span>
                     </s:iterator>
                     </p>   
              <input type="text" class="gstxt" id="tagAdd" autocomplete="off">
@@ -52,7 +52,7 @@
 		</div>
 	</div>
 	<div class="gspan-8 side gprefix-1">
-        <a href="/site/<s:property value="topic.id" />">返回 &gt;<s:property value="topic.name" /> 主题站</a>
+        <a href="<%=request.getContextPath()%>/site/<s:property value="topic.id" />">返回 &gt;<s:property value="topic.name" /> 主题站</a>
 	</div>
 </div>
 <%@ include file="/WEB-INF/jsp/common/bottom.jsp" %>
@@ -79,7 +79,7 @@ $(function(){
 	autoComplete.bind($("#tagAdd"),function(id,name){
 		if(!$("#tag"+id)[0])
 	    {
-		var str='<span id="tag'+id+ '" class="tag"><a target="_blank" href="/tag/'+id+'/">'+name+'</a><a href="javascript: void 0;" class="icon-close" title="移除标签">X</a><input type="hidden" name="tags" value="'+id+'"></span>';
+		var str='<span id="tag'+id+ '" class="tag"><a target="_blank" href="<%=request.getContextPath()%>/tag/'+id+'/">'+name+'</a><a href="javascript: void 0;" class="icon-close" title="移除标签">X</a><input type="hidden" name="tags" value="'+id+'"></span>';
 	    var tagContent=$("#tagContent");
 		$(str).appendTo(tagContent).find(".icon-close").click(function(){
 	    	$(this).parent().remove();

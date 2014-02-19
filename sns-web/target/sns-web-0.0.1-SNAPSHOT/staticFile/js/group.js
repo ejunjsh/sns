@@ -4,7 +4,7 @@ var group=function()
 		uploadImg:function(ctrl,params)
 		{
 			if (!lib.disableBtn($(ctrl))) {
-				iframeUploader.upload($("#trueFile"),"fileForm","/ajax/fileUpload/uploadToTemporary","fileIframe",function(json)
+				iframeUploader.upload($("#trueFile"),"fileForm",application.contextPath+"/ajax/fileUpload/uploadToTemporary","fileIframe",function(json)
 				{
 					if (json.status == "A00004") {
 						popWin.tipShow('suc', lib.ajaxCode[json.status],
@@ -68,7 +68,7 @@ var group=function()
 			var $container=$("#comment"+params.id);
 			var content=$container.find(".cmtContent").html();
 			var userName= $container.find(".cmt-author").html();
-			var c="<blockquote>引用<a href='/n/"+userName+"'>@"+userName+"</a>的话：<br />"+content+"</blockquote><br/>";
+			var c="<blockquote>引用<a href='"+application.contextPath+"/n/"+userName+"'>@"+userName+"</a>的话：<br />"+content+"</blockquote><br/>";
 
 				if(kEditor)
 					kEditor.insertHtml(c);
@@ -86,7 +86,7 @@ var group=function()
 			popWin.confirmShow(params.confirm, function() {
 			if (!lib.disableBtn($(ctrl))) {
 				$.ajax({
-					url : "/ajax/group/post/deleteComment",
+					url :application.contextPath+ "/ajax/group/post/deleteComment",
 					datatype : "json",
 					cache : false,
 					data : {
@@ -127,7 +127,7 @@ var group=function()
 	doRecommend : function(ctrl, params) {
 		if (!lib.disableBtn($(ctrl))) {
 			$.ajax({
-				url : "/ajax/group/post/doRecommend",
+				url : application.contextPath+"/ajax/group/post/doRecommend",
 				datatype : "json",
 				cache : false,
 				data : {
@@ -173,7 +173,7 @@ var group=function()
 	doJoin : function(ctrl, params) {
 		if (!lib.disableBtn($(ctrl))) {
 			$.ajax({
-				url : "/ajax/group/doJoin",
+				url : application.contextPath+"/ajax/group/doJoin",
 				datatype : "json",
 				cache : false,
 				data : {
@@ -226,7 +226,7 @@ var group=function()
 	doQuit : function(ctrl, params) {
 		if (!lib.disableBtn($(ctrl))) {
 			$.ajax({
-				url : "/ajax/group/doQuit",
+				url : application.contextPath+"/ajax/group/doQuit",
 				datatype : "json",
 				cache : false,
 				data : {
@@ -274,7 +274,7 @@ var group=function()
 	doTop : function(ctrl, params) {
 		if (!lib.disableBtn($(ctrl))) {
 			$.ajax({
-				url : "/ajax/group/doTop",
+				url : application.contextPath+"/ajax/group/doTop",
 				datatype : "json",
 				cache : false,
 				data : {
@@ -318,7 +318,7 @@ var group=function()
 	doBest : function(ctrl, params) {
 		if (!lib.disableBtn($(ctrl))) {
 			$.ajax({
-				url : "/ajax/group/doBest",
+				url : application.contextPath+"/ajax/group/doBest",
 				datatype : "json",
 				cache : false,
 				data : {

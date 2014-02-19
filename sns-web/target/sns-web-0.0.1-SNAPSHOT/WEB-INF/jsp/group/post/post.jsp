@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <title>XX小组- 发新帖子</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp" %>
-<link  type="text/css" href="/staticFile/css/group1.css" rel="stylesheet"/>
+<link  type="text/css" href="<%=request.getContextPath()%>/staticFile/css/group1.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="container">
@@ -16,10 +16,10 @@
 	   <div class="gbreadcrumb">
                 <ul>
                     <li>
-                        <a href="/group/all">小组</a>
+                        <a href="<%=request.getContextPath()%>/group/all">小组</a>
                     </li>
                     <li>
-                        <a href="/group/<s:property value="group.id" />"><s:property value="group.name" /></a>
+                        <a href="<%=request.getContextPath()%>/group/<s:property value="group.id" />"><s:property value="group.name" /></a>
                     </li>
                     <s:if test="groupPost!=null&&groupPost.id>0">
 					<li>编辑帖子</li>
@@ -30,7 +30,7 @@
                 </ul>
         </div>
 		<div>
-		<form id="editor" class="gform" method="post" action="/group/<s:property value="group.id" />/post">
+		<form id="editor" class="gform" method="post" action="<%=request.getContextPath()%>/group/<s:property value="group.id" />/post">
 				<s:if test="groupPost!=null&&groupPost.id>0">
                         <input name="groupPost.id" value="<s:property value="groupPost.id" />" type="hidden" />
         </s:if>
@@ -60,7 +60,7 @@
 		</div>
 	</div>
 	<div class="gspan-8 side gprefix-1">
-        <a href="/group/<s:property value="group.id" />">返回 &gt;<s:property value="group.name" /></a>
+        <a href="<%=request.getContextPath()%>/group/<s:property value="group.id" />">返回 &gt;<s:property value="group.name" /></a>
 	</div>
 </div>
 <%@ include file="/WEB-INF/jsp/common/bottom.jsp" %>
@@ -87,7 +87,7 @@ $(function(){
 	autoComplete.bind($("#tagAdd"),function(id,name){
 		if(!$("#tag"+id)[0])
 	    {
-		var str='<span id="tag'+id+ '" class="tag"><a target="_blank" href="/tag/'+id+'/">'+name+'</a><a href="javascript: void 0;" class="icon-close" title="移除标签">X</a><input type="hidden" name="tags" value="'+id+'"></span>';
+		var str='<span id="tag'+id+ '" class="tag"><a target="_blank" href="<%=request.getContextPath()%>/tag/'+id+'/">'+name+'</a><a href="javascript: void 0;" class="icon-close" title="移除标签">X</a><input type="hidden" name="tags" value="'+id+'"></span>';
 	    var tagContent=$("#tagContent");
 		$(str).appendTo(tagContent).find(".icon-close").click(function(){
 	    	$(this).parent().remove();

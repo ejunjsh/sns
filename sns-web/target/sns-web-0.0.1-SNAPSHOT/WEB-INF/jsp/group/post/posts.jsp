@@ -9,7 +9,7 @@
 <title>XX小组 - <s:property value="group.name" /></title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/group1.css" rel="stylesheet" />
+	href="<%=request.getContextPath()%>/staticFile/css/group1.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="container">
@@ -18,26 +18,26 @@
 	    <div class="main-title">
 		<img width="24" height="24" src="<s:property value="group.cover24"/>">
 		<h2><s:property value="group.name"/>小组帖子列表</h2>
-		<a id="newPost" class="gbtn" href="/group/<s:property value="group.id"/>/post/">发新帖</a>
+		<a id="newPost" class="gbtn" href="<%=request.getContextPath()%>/group/<s:property value="group.id"/>/post/">发新帖</a>
 		</div>
 		<ul class="gtabs">
 		<s:if test="isBest==1">
-		   <li ><a href="/group/<s:property value="group.id"/>/posts/">全部帖子</a></li>
+		   <li ><a href="<%=request.getContextPath()%>/group/<s:property value="group.id"/>/posts/">全部帖子</a></li>
 <li class="gtabs-curr">
-<a href="/group/<s:property value="group.id" />/posts/digest/">精华区</a>
+<a href="<%=request.getContextPath()%>/group/<s:property value="group.id" />/posts/digest/">精华区</a>
 </li>
 		</s:if>
 		<s:else>
 		<li class="gtabs-curr">全部帖子</li>
 <li>
-<a href="/group/<s:property value="group.id" />/posts/digest/">精华区</a>
+<a href="<%=request.getContextPath()%>/group/<s:property value="group.id" />/posts/digest/">精华区</a>
 </li>
 		</s:else>
 </ul>
 <ul class="titles">
 <s:iterator value="postInGroup">
 <li>
-<h3 class="titles-txt"><a target="_blank" href="/post/<s:property value="id" />/"><s:property value="title" />
+<h3 class="titles-txt"><a target="_blank" href="<%=request.getContextPath()%>/post/<s:property value="id" />/"><s:property value="title" />
     <s:if test="isTop==1">
                                 <span class="gicon-top"></span>
                                 </s:if>
@@ -49,7 +49,7 @@
 <p class="titles-b">
 <span class="titles-b-l">
 发表：
-<a target="_blank" href="/i/<s:property value="postedByUserId" />/"><s:property value="postedByUser.nickName" /></a>
+<a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="postedByUserId" />/"><s:property value="postedByUser.nickName" /></a>
 </span>
 <s:if test="lastCommentDateF==null">
 <span class="titles-b-r"> 发表时间：<s:property value="postedDateF" /> </span>
@@ -65,13 +65,13 @@
 	</div>
 	<div class="side gspan-9 gprefix-1">
         <div>
-            <a href="/group/<s:property value="group.id"/>/">返回<s:property value="group.name"/>小组主页 &gt;</a> </div>
+            <a href="<%=request.getContextPath()%>/group/<s:property value="group.id"/>/">返回<s:property value="group.name"/>小组主页 &gt;</a> </div>
     </div>
 
 	</div>
 			<%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/group.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/group.js"></script>
 </div>
 </body>
 </html>

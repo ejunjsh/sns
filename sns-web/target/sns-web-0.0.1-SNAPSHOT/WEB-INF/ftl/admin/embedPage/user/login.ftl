@@ -1,5 +1,5 @@
 <div class="pageContent">
-	<form method="post" action="/admin/embedPage/user/login" class="pageForm required-validate" onsubmit="return loginCallback(this);">
+	<form method="post" action="${request.contextPath}/admin/embedPage/user/login" class="pageForm required-validate" onsubmit="return loginCallback(this);">
 		<div class="pageFormContent" layoutH="58">
 			<div class="unit">
 				<label>用户名：</label>

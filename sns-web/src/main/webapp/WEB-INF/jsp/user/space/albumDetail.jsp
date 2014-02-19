@@ -13,7 +13,7 @@
 	href="<%=request.getContextPath()%>/staticFile/css/user.css"
 	rel="stylesheet" />
 	<link type="text/css"
-	href="/<%=request.getContextPath()%>staticFile/css/multipleImageUploader.css"
+	href="<%=request.getContextPath()%>/staticFile/css/multipleImageUploader.css"
 	rel="stylesheet" />
 				<script type="text/javascript"
 			src="<%=request.getContextPath()%>/staticFile/js/photoUtils.js"></script>
@@ -46,7 +46,7 @@
 </div>
 	    <%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/space.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/space.js"></script>
 		<script type="text/javascript"
 			src="<%=request.getContextPath()%>/staticFile/js/iframeUploader.js"></script>
 			<script type="text/javascript"

@@ -33,12 +33,12 @@
   		<artifactId>struts2-core</artifactId>
   		<version>2.3.4</version>
   	</dependency>
-  	  <dependency>  
+  	   <dependency>  
             <groupId>javax.servlet</groupId>  
-            <artifactId>servlet-api</artifactId>  
-            <version>2.4</version>  
+            <artifactId>jsp-api </artifactId>  
+            <version>2.0</version>  
             <scope>provided</scope>  
-        </dependency>
+        </dependency> 
   	  <dependency>
   	  	<groupId>org.apache.struts</groupId>
   	  	<artifactId>struts2-spring-plugin</artifactId>
@@ -107,4 +107,39 @@
 			<version>3.1.4.RELEASE</version>
 		</dependency>
   </dependencies>
+  <build>
+  <plugins>
+<plugin> 
+<groupId>org.apache.maven.plugins</groupId> 
+<artifactId>maven-compiler-plugin</artifactId> 
+<version>3.1</version> 
+<configuration> 
+<source>1.7</source>
+<target>1.7</target>
+</configuration> 
+</plugin> 
+<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.4.5</version>
+				<configuration>
+					<container>
+						<containerId>tomcat7x</containerId>
+						<home>/opt/apache-tomcat-7.0.47</home>
+					</container>
+					<configuration>
+						<type>existing</type>
+						<home>/opt/apache-tomcat-7.0.47</home>
+					</configuration>
+				</configuration>
+				<executions>
+        <execution>
+            <id>tomcat-deploy</id>
+            <phase>package</phase>
+            <goals><goal>deploy</goal></goals>
+        </execution>
+    </executions>	
+			</plugin>
+</plugins>
+</build>
 </project>

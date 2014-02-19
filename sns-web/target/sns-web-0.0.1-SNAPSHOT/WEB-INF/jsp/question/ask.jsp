@@ -12,7 +12,7 @@
 <title>XX问答 - 修改问题</title>
 </s:else>
 <%@ include file="/WEB-INF/jsp/common/head.jsp" %>
-<link  type="text/css" href="/staticFile/css/ask1.css" rel="stylesheet"/>
+<link  type="text/css" href="<%=request.getContextPath()%>/staticFile/css/ask1.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="container">
@@ -21,7 +21,7 @@
             <div class="gbreadcrumb">
                 <ul>
                     <li>
-                        <a href="/question/">XX问答</a>
+                        <a href="<%=request.getContextPath()%>/question/">XX问答</a>
                     </li>
                     <s:if test="question==null">
 <li> 提新问题</li>
@@ -33,7 +33,7 @@
             </div>
             
     <div class="">
-       <form id="editor" class="gform" action="/question/ask" method="POST">
+       <form id="editor" class="gform" action="<%=request.getContextPath()%>/question/ask" method="POST">
         <s:if test="question!=null&&question.id>0">
                         <input name="question.id" value="<s:property value="question.id" />" type="hidden" />
                         </s:if>
@@ -51,7 +51,7 @@
             <div class="gform-box gclear">
                     <p id="tagContent" class="post-tags tags tags-edit">
                      <s:iterator value="question.tags">
-                    <span id= tag<s:property value="id" /> class="tag"><a href="/tag/<s:property value="id" />"><s:property value="name" /></a><a  title="移除标签" class="icon-close" onclick="$(this).parent().remove();" href="javascript: void 0;">X</a><input type="hidden" value="<s:property value="id" />" name="tags"></span>
+                    <span id= tag<s:property value="id" /> class="tag"><a href="<%=request.getContextPath()%>/tag/<s:property value="id" />"><s:property value="name" /></a><a  title="移除标签" class="icon-close" onclick="$(this).parent().remove();" href="javascript: void 0;">X</a><input type="hidden" value="<s:property value="id" />" name="tags"></span>
                     </s:iterator>
                     </p>   
              <input type="text" class="gstxt" id="tagAdd" autocomplete="off">
@@ -60,7 +60,7 @@
             </div>
             <div class="ask-ft">
                 <input type="submit" id="submitBtn" value="发布" class="gbtn-submit">
-                <a class="cancel-new" href="/ask/newest/">取消</a>
+                <a class="cancel-new" href="<%=request.getContextPath()%>/ask/newest/">取消</a>
             </div>
         </form>
     </div>
@@ -69,23 +69,7 @@
         
     <div class="side gspan-10 gprefix-1">
         <div class="side-summary">
-            <h2>如何更快得到靠谱答案</h2>
-            以下要点可以方便你更快寻求到靠谱答案：
-            <ol>
-                <li>
-                    1.请先搜索是否已经有同类问题得到解决;
-                </li>
-                <li>
-                    2.请在提问时精确描述你的问题，不要写与问题无关的内容，也不要用“详情请入内”之类无意义的语句；
-                </li>
-                <li>
-                    3.果壳er们更热衷于回答能引起思考和讨论的知识性问题；
-                </li>
-                <li>
-                    4.提问时，@相关领域的果壳达人，会让他们更快关注到你的问题。
-                </li>
-            </ol>
-            <a href="http://www.guokr.com/question/446444/">果壳问答详细指南 &gt;</a>
+          
         </div>
     </div>
 
@@ -96,8 +80,8 @@
 </div>
 
 
-<script type="text/javascript" src="/staticFile/js/kindeditor-min.js"></script>
-<script type="text/javascript" src="/staticFile/js/zh_CN.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/staticFile/js/kindeditor-min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/staticFile/js/zh_CN.js"></script>
 <script type="text/javascript">
 $(function(){
 	KindEditor.ready(function(K) {
@@ -115,7 +99,7 @@ $(function(){
 	autoComplete.bind($("#tagAdd"),function(id,name){
 		if(!$("#tag"+id)[0])
 	    {
-		var str='<span id="tag'+id+ '" class="tag"><a target="_blank" href="/tag/'+id+'/">'+name+'</a><a href="javascript: void 0;" class="icon-close" title="移除标签">X</a><input type="hidden" name="tags" value="'+id+'"></span>';
+		var str='<span id="tag'+id+ '" class="tag"><a target="_blank" href="<%=request.getContextPath()%>/tag/'+id+'/">'+name+'</a><a href="javascript: void 0;" class="icon-close" title="移除标签">X</a><input type="hidden" name="tags" value="'+id+'"></span>';
 	    var tagContent=$("#tagContent");
 		$(str).appendTo(tagContent).find(".icon-close").click(function(){
 	    	$(this).parent().remove();

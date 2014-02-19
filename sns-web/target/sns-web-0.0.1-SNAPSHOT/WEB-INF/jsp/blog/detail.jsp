@@ -21,9 +21,9 @@
 <div class="main gspan-21 gsuffix-1">
 <div class="gbreadcrumb">
 <ul>
-					<li><a href="/blog/">日志</a></li>
+					<li><a href="<%=request.getContextPath()%>/blog/">日志</a></li>
 					<li><a
-						href="/i/<s:property value="blog.postedByUserId"/>/blog/"><s:property
+						href="<%=request.getContextPath()%>/i/<s:property value="blog.postedByUserId"/>/blog/"><s:property
 								value="blog.postedByUser.nickName" />的日志</a></li>
 					<li><s:property value="blog.title" /></li>
 </ul>
@@ -33,13 +33,13 @@
 <div class="gpack post-txt">
                 <div class="post-info">
                     <p class="gfl">
-                    <a target="_blank" title="<s:property value="blog.postedByUser.nickName" />" href="/i/<s:property value="blog.postedByUser.id" />/" id="articleAuthor"><s:property
+                    <a target="_blank" title="<s:property value="blog.postedByUser.nickName" />" href="<%=request.getContextPath()%>/i/<s:property value="blog.postedByUser.id" />/" id="articleAuthor"><s:property
 								value="blog.postedByUser.nickName" /></a>
                     </p>
                     <p class="gfl"><s:property
 								value="blog.postedDateF"  /></p>
 								<s:if test="blog.postedByUserId==curUser.id">
-						<p class="gfr"><a class="doLink" href="/blog/<s:property value="blog.id" />/edit">编辑</a></p>
+						<p class="gfr"><a class="doLink" href="<%=request.getContextPath()%>/blog/<s:property value="blog.id" />/edit">编辑</a></p>
 					    </s:if>
                 </div>
                 <div class="post-detail" id="articleContent">
@@ -50,7 +50,7 @@
         标签:
         <s:iterator value="blog.tags" status='st'>
             
-            <span class="tag"><a href="/tag/<s:property value="cnSpell"/>"><s:property value="name"/></a></span>
+            <span class="tag"><a href="<%=request.getContextPath()%>/tag/<s:property value="cnSpell"/>"><s:property value="name"/></a></span>
             <s:if test="#st.Last!=true">
             <span class="split">|</span>
             </s:if>
@@ -88,14 +88,14 @@
               <s:iterator value="comments" var="comment" status="st">  
                 <li id="comment<s:property value="#comment.id"/>">
                     <div class="cmt-img cmtImg pt-pic">
-                        <a target="_blank" title="<s:property value="#comment.postedByUser.nickName"/>" href="/i/<s:property value="#comment.postedByUserId"/>/">
-                            <img height="48" width="48" src="<s:property value="#comment.postedByUser.avatar48"/>">
+                        <a target="_blank" title="<s:property value="#comment.postedByUser.nickName"/>" href="<%=request.getContextPath()%>/i/<s:property value="#comment.postedByUserId"/>/">
+                            <img height="48" width="48" src="<%=request.getContextPath()%><s:property value="#comment.postedByUser.avatar48"/>">
                         </a>
                         <span class="cmt-floor"><s:property value="#st.count"/>楼</span>
                     </div>
                     <div class="pt-txt">
                         <span class="cmt-info"><s:property value="#comment.postedDateF" /></span>
-                        <a target="_blank" href="/i/<s:property value="#comment.postedByUserId"/>/" class="cmt-author cmtAuthor"><s:property value="#comment.postedByUser.nickName"/></a>
+                        <a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="#comment.postedByUserId"/>/" class="cmt-author cmtAuthor"><s:property value="#comment.postedByUser.nickName"/></a>
                         <div class="cmt-content cmtContent"><s:property value="#comment.contentWithAtLink" escape="false" /></div>
                         <span class="cmt-do">
                             
@@ -118,7 +118,7 @@
 						</p>
 						</s:if>
 			<s:else>
-			 <form action="/blog/<s:property value="blog.id"/>/newComment" method="POST" id="replyForm">
+			 <form action="<%=request.getContextPath()%>/blog/<s:property value="blog.id"/>/newComment" method="POST" id="replyForm">
                          <textarea  name="blogComment.content" id="editor"></textarea>
                          <input type="submit" data-operation="addBlogComment" value="发布" class="gbtn-primary">
                         </form>
@@ -128,16 +128,16 @@
 </div>
 <div class="side gspan-10">
         <div class="side-links">
-            <p><a href="/i/<s:property value="blog.postedByUserId"/>">返回<s:property value="blog.postedByUser.nickName"/>的主页 &gt;</a></p>
+            <p><a href="<%=request.getContextPath()%>/i/<s:property value="blog.postedByUserId"/>">返回<s:property value="blog.postedByUser.nickName"/>的主页 &gt;</a></p>
         </div>
         <div class="side-title">
             <h2>作者其他日志</h2>
-            <a href="/i/<s:property value="blog.postedByUserId"/>/blog/">[全部]</a>
+            <a href="<%=request.getContextPath()%>/i/<s:property value="blog.postedByUserId"/>/blog/">[全部]</a>
         </div>
         <ul class="side-hotest">
         <s:iterator value="blogs">
         <li>
-        <a href="/blog/<s:property value="id" />/"><s:property value="title" /></a>
+        <a href="<%=request.getContextPath()%>/blog/<s:property value="id" />/"><s:property value="title" /></a>
         </li>
         </s:iterator>    
         </ul>

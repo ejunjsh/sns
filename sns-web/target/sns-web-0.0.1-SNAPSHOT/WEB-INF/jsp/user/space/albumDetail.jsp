@@ -10,13 +10,13 @@
 <title><s:property value="spaceUser.nickName" />主页 - XX网</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/user.css"
+	href="<%=request.getContextPath()%>/staticFile/css/user.css"
 	rel="stylesheet" />
 	<link type="text/css"
-	href="/staticFile/css/multipleImageUploader.css"
+	href="<%=request.getContextPath()%>/staticFile/css/multipleImageUploader.css"
 	rel="stylesheet" />
 				<script type="text/javascript"
-			src="/staticFile/js/photoUtils.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/photoUtils.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -24,7 +24,7 @@
  <%@ include file="/WEB-INF/jsp/user/space/common/leftSize.jsp"%>
             <div class="main gprefix-1 gspan-25">
             <div class="gbtitle">
-        <h2><a href="/i/<s:property value="spaceUser.id" />/" class="gbtitle-link">个人主页</a><span class="entities">&gt;</span><a href="/i/<s:property value="spaceUser.id" />/album" class="gbtitle-link">相册</a><span class="entities">&gt;</span>《<s:property value="album.title" />》<span class="gbtitle-more">（图片<s:property value="recordCount" />个）</span></h2>
+        <h2><a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/" class="gbtitle-link">个人主页</a><span class="entities">&gt;</span><a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/album" class="gbtitle-link">相册</a><span class="entities">&gt;</span>《<s:property value="album.title" />》<span class="gbtitle-more">（图片<s:property value="recordCount" />个）</span></h2>
             <s:if test="spaceUser.id==curUser.id">
         <a style="right:180px" href="javascript:void(0)" data-operation="addPhoto" data-params="albumId=<s:property value="album.id" />" class="gbtn-primary"><b>+</b>图片</a>
          <a href="javascript:void(0)" data-operation="addPhotos" data-params="albumId=<s:property value="album.id" />" class="gbtn-primary"><b>+</b>多图片</a>
@@ -34,7 +34,7 @@
     <s:iterator value="myPhotos">
 <li>
 <div class="c">
-<a href="/photo/<s:property value="id"/>"><img onload="bindMovePhoto(this);" onerror="lib.errorImg(this)" src="<s:property value="thumbnail"/>" alt="<s:property value="title"/>"></a></div>
+<a href="<%=request.getContextPath()%>/photo/<s:property value="id"/>"><img onload="bindMovePhoto(this);" onerror="lib.errorImg(this)" src="<%=request.getContextPath()%><s:property value="thumbnail"/>" alt="<s:property value="title"/>"></a></div>
 <p class="ptn"><s:property value="title"/></p>
 <p class="ptn"><s:property value="createdDateF"/></p>
 </li>
@@ -46,15 +46,15 @@
 </div>
 	    <%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/space.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/space.js"></script>
 		<script type="text/javascript"
-			src="/staticFile/js/iframeUploader.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/iframeUploader.js"></script>
 			<script type="text/javascript"
-			src="/staticFile/js/popWinUploader.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/popWinUploader.js"></script>
 			<script type="text/javascript"
-			src="/staticFile/js/multipleImageUploader.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/multipleImageUploader.js"></script>
 			<script type="text/javascript"
-			src="/staticFile/js/resourceUtils.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/resourceUtils.js"></script>
 									<s:if test="spaceUser.id==curUser.id">
    <script type="text/javascript">
    $(function(){

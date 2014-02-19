@@ -4,7 +4,7 @@ var settings=function()
 		uploadImg:function(ctrl,params)
 		{
 			if (!lib.disableBtn($(ctrl))) {
-				iframeUploader.upload($("#trueFile"),"fileForm","/ajax/fileUpload/uploadToTemporary","fileIframe",function(json)
+				iframeUploader.upload($("#trueFile"),"fileForm",application.contextPath+ "/ajax/fileUpload/uploadToTemporary","fileIframe",function(json)
 				{
 					if (json.status == "A00004") {
 						popWin.tipShow('suc', lib.ajaxCode[json.status],

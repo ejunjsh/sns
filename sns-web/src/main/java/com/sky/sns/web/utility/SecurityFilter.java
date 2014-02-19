@@ -15,8 +15,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.connector.Request;
-
 import com.sky.sns.mybatis.entity.User;
 import com.sky.sns.mybatis.iService.IUserService;
 
@@ -115,6 +113,7 @@ public class SecurityFilter implements Filter {
 			}
 
 			if (isLogon) {
+				
 				if (WebContext.isAjaxRequest(httpRequest)) {
 					httpRequest.getRequestDispatcher(
 							"/WEB-INF/jsp/common/needLoginJson.jsp").forward(

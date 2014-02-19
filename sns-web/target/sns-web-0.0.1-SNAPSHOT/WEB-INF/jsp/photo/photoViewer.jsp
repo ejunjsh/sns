@@ -106,23 +106,23 @@
 											+ 'px';
 									pre.style.height = next.style.height = tar.height
 											+ 'px';
-									pre.innerHTML = next.innerHTML = '<img src="/staticFile/img/emp.gif" width="' + w + '" height="' + tar.height+'" />';
+									pre.innerHTML = next.innerHTML = '<img src="<%=request.getContextPath()%>/staticFile/img/emp.gif" width="' + w + '" height="' + tar.height+'" />';
 
 									pre.onmouseover = function() {
-										this.style.background = 'url(/staticFile/img/pic-prev.png) no-repeat 0 100px';
+										this.style.background = 'url(<%=request.getContextPath()%>/staticFile/img/pic-prev.png) no-repeat 0 100px';
 									};
 									pre.onclick = function() {
 										
-										window.location = '/photo/<s:property value="previousPhoto.id" />';
+										window.location = '<%=request.getContextPath()%>/photo/<s:property value="previousPhoto.id" />';
 									   
 									};
 
 									next.onmouseover = function() {
-										this.style.background = 'url(/staticFile/img/pic-next.png) no-repeat 100% 100px';
+										this.style.background = 'url(<%=request.getContextPath()%>/staticFile/img/pic-next.png) no-repeat 100% 100px';
 									};
 									next.onclick = function() {
 										
-										window.location = '/photo/<s:property value="nextPhoto.id" />';
+										window.location = '<%=request.getContextPath()%>/photo/<s:property value="nextPhoto.id" />';
 									};
 
 									//cont.style.position = 'relative';
@@ -139,9 +139,9 @@
 <div class="main gspan-21 gsuffix-1">
 <div class="gbreadcrumb">
 <ul>
-					<li><a href="/photo/">图片</a></li>
+					<li><a href="<%=request.getContextPath()%>/photo/">图片</a></li>
 					<li><a
-						href="/i/<s:property value="photo.userId"/>/album/"><s:property
+						href="<%=request.getContextPath()%>/i/<s:property value="photo.userId"/>/album/"><s:property
 								value="photo.user.nickName" />的相册</a></li>
 					<li><s:property value="photo.title" /></li>
 </ul>
@@ -151,25 +151,25 @@
 					<div class="tbmu" id="pic_block">
 						<div class="y">
 							<a href="javascript:;" onclick="imageRotate('pic', 1)"><img
-								class="vm" src="/staticFile/img/rleft.gif" /></a> <a
+								class="vm" src="<%=request.getContextPath()%>/staticFile/img/rleft.gif" /></a> <a
 								href="javascript:;" onclick="imageRotate('pic', 2)"><img
-								class="vm" src="/staticFile/img/rright.gif" /></a><span
+								class="vm" src="<%=request.getContextPath()%>/staticFile/img/rright.gif" /></a><span
 								class="pipe">|</span> 
 								
-								<a href="/photo/<s:property value="previousPhoto.id" />">上一张</a>
+								<a href="<%=request.getContextPath()%>/photo/<s:property value="previousPhoto.id" />">上一张</a>
 								
 								
 								<span class="pipe">|</span> 
 								
-								<a href="/photo/<s:property value="nextPhoto.id" />" id="nextlink">下一张</a>
+								<a href="<%=request.getContextPath()%>/photo/<s:property value="nextPhoto.id" />" id="nextlink">下一张</a>
 								
 								
 								<span class="pipe">|</span> <a
-								href="<s:property value="photo.original" />"
+								href="<%=request.getContextPath()%><s:property value="photo.original" />"
 								target="_blank">查看原图</a> <span id="displayNum"></span>
 						</div>
 						<a
-							href="/i/<s:property value="photo.userId" />/album/<s:property value="photo.albumId" />">&laquo;
+							href="<%=request.getContextPath()%>/i/<s:property value="photo.userId" />/album/<s:property value="photo.albumId" />">&laquo;
 							返回图片列表</a> <span class="pipe">|</span>当前第 <s:property value="curPhotoIndex" /> 张<span class="pipe">|</span>共
 						<s:property value="albumSize" /> 张图片&nbsp;
 					</div>
@@ -178,33 +178,33 @@
 
 						<div id="photo_pic" class="c">
 							
-							<a href=""><img onload="viewPhoto();" src="<s:property value="photo.normal"/>"
+							<a href=""><img onload="viewPhoto();" src="<%=request.getContextPath()%><s:property value="photo.normal"/>"
 								id="pic" alt="" /></a>
 						
 						</div>
 
 						<div class="pns mlnv vm mtm mbm cl">
 							<a
-								href="/photo/<s:property value="previousPhoto.id" />"
+								href="<%=request.getContextPath()%>/photo/<s:property value="previousPhoto.id" />"
 								class="btn" title="上一张"><img
-								src="/staticFile/img/pic_nv_prev.gif" alt="上一张" /></a>
+								src="<%=request.getContextPath()%>/staticFile/img/pic_nv_prev.gif" alt="上一张" /></a>
 						    <s:iterator value="albumPhotos">
 						    <s:if test="id==photo.id">
 						    <a
-								href="/photo/<s:property value="id" />"
+								href="<%=request.getContextPath()%>/photo/<s:property value="id" />"
 								 title="<s:property value="title" />"><img class="a"
-								src="<s:property value="thumbnail" />" alt="<s:property value="title" />" /></a>
+								src="<%=request.getContextPath()%><s:property value="thumbnail" />" alt="<s:property value="title" />" /></a>
 						    </s:if>
 						    <s:else>
 						     <a
-								href="/photo/<s:property value="id" />"
+								href="<%=request.getContextPath()%>/photo/<s:property value="id" />"
 								 title="<s:property value="title" />"><img
-								src="<s:property value="thumbnail" />" alt="<s:property value="title" />" /></a>
+								src="<%=request.getContextPath()%><s:property value="thumbnail" />" alt="<s:property value="title" />" /></a>
 						    </s:else>
 						    </s:iterator>
-							<a	href="/photo/<s:property value="nextPhoto.id" />"
+							<a	href="<%=request.getContextPath()%>/photo/<s:property value="nextPhoto.id" />"
 								class="btn" title="下一张"><img
-								src="/staticFile/img/pic_nv_next.gif" alt="下一张" /></a>
+								src="<%=request.getContextPath()%>/staticFile/img/pic_nv_next.gif" alt="下一张" /></a>
 						</div>
 
 					</div>
@@ -240,14 +240,14 @@
               <s:iterator value="comments" var="comment" status="st">  
                 <li id="comment<s:property value="#comment.id"/>">
                     <div class="cmt-img cmtImg pt-pic">
-                        <a target="_blank" title="<s:property value="#comment.postedByUser.nickName"/>" href="/i/<s:property value="#comment.postedByUserId"/>/">
-                            <img height="48" width="48" src="<s:property value="#comment.postedByUser.avatar48"/>">
+                        <a target="_blank" title="<s:property value="#comment.postedByUser.nickName"/>" href="<%=request.getContextPath()%>/i/<s:property value="#comment.postedByUserId"/>/">
+                            <img height="48" width="48" src="<%=request.getContextPath()%><s:property value="#comment.postedByUser.avatar48"/>">
                         </a>
                         <span class="cmt-floor"><s:property value="#st.count"/>楼</span>
                     </div>
                     <div class="pt-txt">
                         <span class="cmt-info"><s:property value="#comment.postedDateF" /></span>
-                        <a target="_blank" href="/i/<s:property value="#comment.postedByUserId"/>/" class="cmt-author cmtAuthor"><s:property value="#comment.postedByUser.nickName"/></a>
+                        <a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="#comment.postedByUserId"/>/" class="cmt-author cmtAuthor"><s:property value="#comment.postedByUser.nickName"/></a>
                         <div class="cmt-content cmtContent"><s:property value="#comment.contentWithAtLink" escape="false" /></div>
                         <span class="cmt-do">
                             
@@ -270,7 +270,7 @@
 						</p>
 						</s:if>
 			<s:else>
-			 <form action="/photo/<s:property value="photo.id"/>/newComment" method="POST" id="replyForm">
+			 <form action="<%=request.getContextPath()%>/photo/<s:property value="photo.id"/>/newComment" method="POST" id="replyForm">
                          <textarea  name="photoComment.content" id="editor"></textarea>
                          <input type="submit" data-operation="addPhotoComment" value="发布" class="gbtn-primary">
                         </form>
@@ -280,7 +280,7 @@
 </div>
 <div class="side gspan-10">
         <div class="side-links">
-            <p><a href="/i/<s:property value="photo.userId"/>">返回<s:property value="photo.user.nickName"/>的主页 &gt;</a></p>
+            <p><a href="<%=request.getContextPath()%>/i/<s:property value="photo.userId"/>">返回<s:property value="photo.user.nickName"/>的主页 &gt;</a></p>
         </div>
         <div class="side-title">
             <h2>图片信息</h2>
@@ -289,7 +289,7 @@
         <ul class="side-hotest">
         <s:iterator value="photos">
         <li>
-        <a href="/photo/<s:property value="id" />/"><s:property value="title" /></a>
+        <a href="<%=request.getContextPath()%>/photo/<s:property value="id" />/"><s:property value="title" /></a>
         </li>
         </s:iterator>    
         </ul>

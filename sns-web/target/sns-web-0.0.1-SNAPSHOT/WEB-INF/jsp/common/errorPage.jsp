@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>出现错误了哦</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
-<link  type="text/css" href="/staticFile/css/error.css" rel="stylesheet"/>
+<link  type="text/css" href="<%=request.getContextPath()%>/staticFile/css/error.css" rel="stylesheet"/>
 </head>
 <body>
 	<div class="container">
@@ -15,7 +15,7 @@
     <div class="gspan-32">
 	   <div class="gbreadcrumb">
 				<ul class="breadcrumb">
-					<li><a href="/">XX首页</a></li>
+					<li><a href="<%=request.getContextPath()%>">XX首页</a></li>
 					<li>错误页面</li>
 				</ul>
 			</div>

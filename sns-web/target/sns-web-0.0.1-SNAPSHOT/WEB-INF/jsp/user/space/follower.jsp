@@ -10,7 +10,7 @@
 <title><s:property value="spaceUser.nickName" />主页 - XX网</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/user.css"
+	href="<%=request.getContextPath()%>/staticFile/css/user.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -19,14 +19,14 @@
  <%@ include file="/WEB-INF/jsp/user/space/common/leftSize.jsp"%>
             <div class="main gprefix-1 gspan-25">
             <div class="gbtitle">
-        <h2><a href="/i/<s:property value="spaceUser.id" />/" class="gbtitle-link">个人主页</a><span class="entities">&gt;</span>被关注<span class="gbtitle-more">（全部<s:property value="spaceUser.followedCount" />人）</span></h2>
+        <h2><a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/" class="gbtitle-link">个人主页</a><span class="entities">&gt;</span>被关注<span class="gbtitle-more">（全部<s:property value="spaceUser.followedCount" />人）</span></h2>
     </div>
     <ul class="gfollow-list">
     <s:iterator value="followedUsers">
     <li>
        <div class="gfollow-head">
-                    <a href="/i/<s:property value="id" />/" target="_blank">
-                        <img width="48" height="48" src="<s:property value="avatar48" />">
+                    <a href="<%=request.getContextPath()%>/i/<s:property value="id" />/" target="_blank">
+                        <img width="48" height="48" src="<%=request.getContextPath()%><s:property value="avatar48" />">
                     </a>
        </div>
        <div class="gfollow-details gpack">
@@ -44,7 +44,7 @@
        </div>
        <div class="gfollow-info">
        <p>
-           <span><a href="/i/<s:property value="id" />/" target="_blank"><s:property value="nickName" /></a></span><span><s:property value="followedCount" />人关注</span>
+           <span><a href="<%=request.getContextPath()%>/i/<s:property value="id" />/" target="_blank"><s:property value="nickName" /></a></span><span><s:property value="followedCount" />人关注</span>
        </p>
        <s:if test="title!=null&&title!=''">
        <p><s:property value="title" /></p>
@@ -75,7 +75,7 @@
 </div>
 	    <%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/space.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/space.js"></script>
 </div>
 </body>
 </html>

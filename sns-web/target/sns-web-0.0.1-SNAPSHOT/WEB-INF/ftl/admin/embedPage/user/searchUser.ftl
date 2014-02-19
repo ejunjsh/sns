@@ -1,5 +1,5 @@
 <div class="pageHeader">
-	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="/admin/embedPage/user/searchUser" method="post">
+	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="${request.contextPath}/admin/embedPage/user/searchUser" method="post">
 	<input type="hidden" name="params.pageIndex" value="${params.pageIndex+1}" />
 	<input type="hidden" name="params.pageSize" value="${params.pageSize}" />
 	<input type="hidden" name="params.order" value="${params.order}" />

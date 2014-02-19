@@ -75,7 +75,7 @@ q:before, q:after {
 }
 .guokr {
     height:20px;
-    background:url(/staticFile/img/3-guokr-bg.png?v2.4) #d6eff9 no-repeat center top
+    background:url(../img/3-guokr-bg.png?v2.4) #d6eff9 no-repeat center top
 }
 .m_menu b, .s_menu-title b, .s_menu-title-hover b {
     position:absolute;
@@ -289,7 +289,7 @@ q:before, q:after {
     height:26px;
     vertical-align:middle;
     text-indent:-9999px;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 6px -266px;
+    background:url(../img/small.gif?v2.8) no-repeat 6px -266px;
     border:1px solid #c2c2c2;
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
@@ -316,7 +316,7 @@ q:before, q:after {
     height:42px;
     line-height:10em;
     overflow:hidden;
-    background:url(/staticFile/img/3-logo.png?v2.4) no-repeat 0 0
+    background:url(../img/3-logo.png?v2.4) no-repeat 0 0
 }
 .gheader-nav {
     float:left;
@@ -346,7 +346,7 @@ q:before, q:after {
     overflow:hidden;
     vertical-align:10px;
     text-indent:-9999px;
-    background:url(/staticFile/img/small.gif) no-repeat -80px 0
+    background:url(../img/small.gif) no-repeat -80px 0
 }
 .gheader-nav .current {
     color:#069
@@ -367,7 +367,7 @@ q:before, q:after {
     height:20px;
     line-height:20px;
     color:#999;
-    background:url(/staticFile/img/small.gif?v2.8) #FFF no-repeat 0 -365px
+    background:url(../img/small.gif?v2.8) #FFF no-repeat 0 -365px
 }
 .gheader-i-b {
     position:absolute;
@@ -375,7 +375,7 @@ q:before, q:after {
     right:-1px;
     height:30px;
     width:8px;
-    background:url(/staticFile/img/small.gif?v2.8) #FFF no-repeat 0 -400px
+    background:url(../img/small.gif?v2.8) #FFF no-repeat 0 -400px
 }
 .gheader-i-link {
     display:inline;
@@ -694,7 +694,7 @@ q:before, q:after {
 }
 .bottom-nav-m {
     padding-left:15px;
-    background:url(/staticFile/img/small.gif?v2.8) 0 -652px
+    background:url(../img/small.gif?v2.8) 0 -652px
 }
 .gui-block {
     position:fixed;
@@ -732,7 +732,7 @@ q:before, q:after {
     height:16px;
     overflow:hidden;
     text-indent:-9999px;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat -16px -560px;
+    background:url(../img/small.gif?v2.8) no-repeat -16px -560px;
     display: block;
     right: 20px;
     top: 20px;
@@ -805,7 +805,7 @@ q:before, q:after {
     margin:0 25px 0 -15px;
     padding-left:15px;
     color:#999;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -712px
+    background:url(../img/small.gif?v2.8) no-repeat 0 -712px
 }
 .site-relative {
     padding:10px 0;
@@ -856,7 +856,7 @@ q:before, q:after {
     vertical-align:text-top;
     _vertical-align:baseline;
     text-indent:-9999px;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat -40px 0
+    background:url(../img/small.gif?v2.8) no-repeat -40px 0
 }
 .side-author {
     overflow:hidden
@@ -878,7 +878,7 @@ q:before, q:after {
     width:15px;
     height:15px;
     overflow:hidden;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -15px
+    background:url(../img/small.gif?v2.8) no-repeat 0 -15px
 }
 .icon-lock, .icon-edit {
     display:inline-block;
@@ -886,10 +886,10 @@ q:before, q:after {
     width:14px;
     height:14px;
     overflow:hidden;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat -125px 0
+    background:url(../img/small.gif?v2.8) no-repeat -125px 0
 }
 .icon-edit {
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat -110px 2px
+    background:url(../img/small.gif?v2.8) no-repeat -110px 2px
 }
 .b_txt, .s_txt, .t_txt {
     line-height:20px;
@@ -1103,7 +1103,7 @@ q:before, q:after {
     width:18px;
     height:18px;
     overflow:hidden;
-    background:url(/staticFile/img/btn.png) no-repeat -180px -840px
+    background:url(../img/btn.png) no-repeat -180px -840px
 }
 .active-b-more span {
     display:inline-block;
@@ -1130,7 +1130,7 @@ q:before, q:after {
 .bg_btn, .sg_btn, .sg_btn-ext, .bw_btn, .bw_btn-disable, .mw_btn, .mw_btn-ext, .sw_btn, .sw_btn-ext, .sw_btn-ext-disable, .sw_btn-disable {
     display:inline-block;
     text-align:center;
-    background:url(/staticFile/img/3-btn.png) no-repeat 0 0
+    background:url(../img/3-btn.png) no-repeat 0 0
 }
 .bg_btn:active, .sg_btn:active, .sg_btn-ext:active, .bw_btn:active, .mw_btn:active, .mw_btn-ext:active, .sw_btn:active, .sw_btn-ext:active {
     position:relative;
@@ -1179,7 +1179,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     line-height:27px;
     font-size:12px;
     color:#FFF;
-    background:url(/staticFile/img/3-btn-ext.png) repeat-x 0 -122px
+    background:url(../img/3-btn-ext.png) repeat-x 0 -122px
 }
 .sg_btn-ext-b, .sg_btn-ext-a, .sg_btn-ext:before, .sg_btn-ext:after {
     position:absolute;
@@ -1188,7 +1188,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     width:6px;
     height:27px;
     content:'';
-    background:url(/staticFile/img/3-btn.png) #FFF no-repeat 0 -33px
+    background:url(../img/3-btn.png) #FFF no-repeat 0 -33px
 }
 .sg_btn-ext-a, .sg_btn-ext:after {
     left:auto;
@@ -1236,7 +1236,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     width:16px;
     _height:16px;
     line-height:16px;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -300px
+    background:url(../img/small.gif?v2.8) no-repeat 0 -300px
 }
 .bw_btn .bw_btn-msg-w {
     _margin-left:20px
@@ -1279,7 +1279,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     line-height:27px;
     font-size:12px;
     color:#888;
-    background:url(/staticFile/img/3-btn-ext.png) repeat-x 0 -66px
+    background:url(../img/3-btn-ext.png) repeat-x 0 -66px
 }
 .mw_btn-ext-b, .mw_btn-ext-a, .mw_btn-ext:before, .mw_btn-ext:after {
     position:absolute;
@@ -1288,7 +1288,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     width:6px;
     height:27px;
     content:'';
-    background:url(/staticFile/img/3-btn.png) #FFF no-repeat 0 -96px
+    background:url(../img/3-btn.png) #FFF no-repeat 0 -96px
 }
 .mw_btn-ext-a, .mw_btn-ext:after {
     left:auto;
@@ -1352,7 +1352,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     line-height:21px;
     font-size:12px;
     color:#888;
-    background:url(/staticFile/img/3-btn-ext.png) repeat-x 0 0;
+    background:url(../img/3-btn-ext.png) repeat-x 0 0;
     *border-left:1px solid #bbb;
     *border-right:1px solid #bbb
 }
@@ -1363,7 +1363,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     width:6px;
     height:21px;
     content:'';
-    background:url(/staticFile/img/3-btn.png) #FFF no-repeat 0 -126px
+    background:url(../img/3-btn.png) #FFF no-repeat 0 -126px
 }
 .sw_btn-ext:after {
     left:auto;
@@ -1391,7 +1391,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     text-decoration:underline;
     font-size:12px;
     color:#888;
-    background:url(/staticFile/img/3-btn-ext.png?v2.4) repeat-x 0 -44px;
+    background:url(../img/3-btn-ext.png?v2.4) repeat-x 0 -44px;
     *border-left:1px solid #bbb;
     *border-right:1px solid #bbb
 }
@@ -1402,7 +1402,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     width:6px;
     height:21px;
     content:'';
-    background:url(/staticFile/img/3-btn.png?v2.4) #FFF no-repeat -110px -126px
+    background:url(../img/3-btn.png?v2.4) #FFF no-repeat -110px -126px
 }
 .sw_btn-ext-disable:after {
     left:auto;
@@ -1464,11 +1464,11 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
 }
 .main .titles .titles-hotest {
     padding-left:14px;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 2px -464px
+    background:url(../img/small.gif?v2.8) no-repeat 2px -464px
 }
 .main .titles .titles-new {
     padding-left:14px;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 2px -464px
+    background:url(../img/small.gif?v2.8) no-repeat 2px -464px
 }
 .main .titles .titles-h {
     padding:6px 0 6px 30px;
@@ -1497,7 +1497,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     width:14px;
     height:14px;
     overflow:hidden;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 0
+    background:url(../img/small.gif?v2.8) no-repeat 0 0
 }
 .sex-w {
     background-position:-14px 0
@@ -1509,7 +1509,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     height:12px;
     line-height:12px;
     text-indent:-9999px;
-    background:url(/staticFile/img/small.gif?v2.8) -28px 0
+    background:url(../img/small.gif?v2.8) -28px 0
 }
 .b_sai {
     display:inline-block;
@@ -1518,7 +1518,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     height:20px;
     line-height:20px;
     text-indent:-9999px;
-    background:url(/staticFile/img/small.gif?v2.8) 0 -340px
+    background:url(../img/small.gif?v2.8) 0 -340px
 }
 .category {
     float:left;
@@ -1636,7 +1636,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
 .page_nav-first a, .page_nav-first span, .page_nav-prev a, .page_nav-prev span, .page_nav-next a, .page_nav-next span, .page_nav-last a, .page_nav-last span {
     width:18px;
     height:17px;
-    background:url(/staticFile/img/g.png) no-repeat 0 -460px
+    background:url(../img/g.png) no-repeat 0 -460px
 }
 .page_nav-first a {
     background-position:-104px -460px
@@ -1818,7 +1818,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     line-height:17px;
     text-indent:-9999px;
     vertical-align:middle;
-    background-image:url("/staticFile/img/share-icons.png");
+    background-image:url("../img/share-icons.png");
     background-repeat:no-repeat
 }
 .icon-s-xl {
@@ -1848,7 +1848,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     line-height:24px;
     text-indent:-9999px;
     vertical-align:middle;
-    background-image:url("/staticFile/img/share-icons.png");
+    background-image:url("../img/share-icons.png");
     background-repeat:no-repeat
 }
 .icon-m-xl {
@@ -1872,7 +1872,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     text-indent:-9999px;
     color:transparent;
     vertical-align:middle;
-    background-image:url("/staticFile/img/share-icons.png");
+    background-image:url("../img/share-icons.png");
     background-repeat:no-repeat
 }
 .icon-l-xl {
@@ -1905,7 +1905,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     font-size:16px;
     font-weight:bold;
     text-align:center;
-    background-image:url("/staticFile/img/share-count.png");
+    background-image:url("../img/share-count.png");
     *border-left:1px solid #CCC;
     *border-right:1px solid #CCC
 }
@@ -1914,7 +1914,7 @@ input.sw_btn, input.sw_btn-disable, button.sw_btn, button.sw_btn-disable {
     content:"";
     height:32px;
     width:20px;
-    background-image:url("/staticFile/img/share-icons.png");
+    background-image:url("../img/share-icons.png");
     background-repeat:no-repeat
 }
 .share-counter:before {
@@ -1976,12 +1976,12 @@ ul.side-back {
     top:2px;
     width:14px;
     height:12px;
-    background:url(/staticFile/img/quotel.gif) no-repeat left 0
+    background:url(../img/quotel.gif) no-repeat left 0
 }
 .quote_r {
     *display:inline-block;
     padding:0 14px 0 2px;
-    background:url(/staticFile/img/quoter.gif) no-repeat right bottom
+    background:url(../img/quoter.gif) no-repeat right bottom
 }
 .quote_l b, .quote_r b {
     display:none
@@ -2243,7 +2243,7 @@ img.history-delete, img.history-add, .history-change {
     cursor:pointer;
     color:#333;
     padding-bottom:4px;
-    background:url(/staticFile/img/g_main.png) -120px -106px no-repeat
+    background:url(../img/g_main.png) -120px -106px no-repeat
 }
 
 #pop_win_login {  padding: 10px }
@@ -2273,13 +2273,13 @@ color: #666;
 
 .validate-option {color: #808080 }
 .validate-error {color: #fe2617 }
-.extra-tips .validate-error , .extra-tips .validate-option { padding-left: 10px; background: url(/staticFile/img/tips_arrow.gif) no-repeat;display:none;}
+.extra-tips .validate-error , .extra-tips .validate-option { padding-left: 10px; background: url(../img/tips_arrow.gif) no-repeat;display:none;}
 .extra-tips .validate-error { background-position: left -51px }
 .extra-tips .validate-option { background-position: left 5px }
 
 .gui-block .tip{
-background: url("/staticFile/img/ico_warn.png?id=1341302813656");
-_background: url("/staticFile/img/ico_warn.gif?id=1341302813656");
+background: url("../img/ico_warn.png?id=1341302813656");
+_background: url("../img/ico_warn.gif?id=1341302813656");
 margin: 0 3px 0 0;
 overflow: hidden;
 display: inline-block;

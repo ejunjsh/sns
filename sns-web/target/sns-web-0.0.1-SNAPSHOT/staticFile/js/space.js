@@ -11,7 +11,7 @@ var space = function() {
 		doFollow : function(ctrl, params) {
 			if (!lib.disableBtn($(ctrl))) {
 				$.ajax({
-					url : "/ajax/user/doFollow",
+					url : application.contextPath+ "/ajax/user/doFollow",
 					datatype : "json",
 					cache : false,
 					data : {
@@ -65,7 +65,7 @@ var space = function() {
 		doUnfollow : function(ctrl, params) {
 			if (!lib.disableBtn($(ctrl))) {
 				$.ajax({
-					url : "/ajax/user/doUnfollow",
+					url : application.contextPath+ "/ajax/user/doUnfollow",
 					datatype : "json",
 					cache : false,
 					data : {
@@ -133,7 +133,7 @@ var space = function() {
 						}
 						if (!lib.disableBtn($ctrl)) {
 							$.ajax({
-								url : "/ajax/blog/updateCategory",
+								url : application.contextPath+ "/ajax/blog/updateCategory",
 								datatype : "json",
 								cache : false,
 								data : {
@@ -184,7 +184,7 @@ var space = function() {
 		   doFollowTag : function(ctrl, params) {
 				if (!lib.disableBtn($(ctrl))) {
 					$.ajax({
-						url : "/ajax/tag/doFollow",
+						url : application.contextPath+ "/ajax/tag/doFollow",
 						datatype : "json",
 						cache : false,
 						data : {
@@ -237,7 +237,7 @@ var space = function() {
 			doUnfollowTag : function(ctrl, params) {
 				if (!lib.disableBtn($(ctrl))) {
 					$.ajax({
-						url : "/ajax/tag/doUnfollow",
+						url : application.contextPath+ "/ajax/tag/doUnfollow",
 						datatype : "json",
 						cache : false,
 						data : {
@@ -310,7 +310,7 @@ var space = function() {
 							}
 							if (!lib.disableBtn($ctrl)) {
 								$.ajax({
-									url : "/ajax/photo/addAlbum",
+									url : application.contextPath+ "/ajax/photo/addAlbum",
 									datatype : "json",
 									cache : false,
 									data : {
@@ -355,7 +355,7 @@ var space = function() {
 			   },
 			   addPhoto:function(ctrl, params)
 				{
-					popWinUploader.show("/ajax/fileUpload/uploadToTemporary",function(json){
+					popWinUploader.show(application.contextPath+ "/ajax/fileUpload/uploadToTemporary",function(json){
 						 popWin.customShow(function($win){
 							    var $img=$win.find("img");
 								var $txt= $win.find("input");
@@ -384,7 +384,7 @@ var space = function() {
 									}
 									if (!lib.disableBtn($ctrl)) {
 										$.ajax({
-											url : "/ajax/photo/addPhoto",
+											url : application.contextPath+ "/ajax/photo/addPhoto",
 											datatype : "json",
 											cache : false,
 											data : {
@@ -430,7 +430,7 @@ var space = function() {
 					{
 						multipleImageUploader.show(null,function($btn,tmpUrls){
 							$.ajax({
-								url : "/ajax/photo/addPhotos",
+								url : application.contextPath+ "/ajax/photo/addPhotos",
 								datatype : "json",
 								cache : false,
 								data : {

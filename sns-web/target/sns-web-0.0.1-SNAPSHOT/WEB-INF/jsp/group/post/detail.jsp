@@ -10,7 +10,7 @@
 <title>xx网站 - <s:property value="groupPost.title"/></title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/group1.css"
+	href="<%=request.getContextPath()%>/staticFile/css/group1.css"
 	rel="stylesheet" />
 	<link type="text/css"
 	href="<%=request.getContextPath()%>/staticFile/js/sh/sh.css"
@@ -23,10 +23,10 @@
            <div class="gbreadcrumb">
                 <ul>
                     <li>
-                    <a href="/group/all">小组</a>
+                    <a href="<%=request.getContextPath()%>/group/all">小组</a>
                     </li>
                     <li>
-                    <a href="/group/<s:property value="groupPost.group.id"/>/"><s:property value="groupPost.group.name"/></a>
+                    <a href="<%=request.getContextPath()%>/group/<s:property value="groupPost.group.id"/>/"><s:property value="groupPost.group.name"/></a>
                     </li>
                     <li>
                      <s:property value="groupPost.title"/>
@@ -37,12 +37,12 @@
       
         <h1 id="articleTitle"><s:property value="groupPost.title"/></h1>
         <div class="post-pic">
-            <a target="_blank" title=" <s:property value="groupPost.postedByUser.nickName"/>" href="/i/<s:property value="groupPost.postedByUser.id"/>/"><img width="48" height="48" src="<s:property value="groupPost.postedByUser.avatar48" />" id="articleAuthorImg"></a>
+            <a target="_blank" title=" <s:property value="groupPost.postedByUser.nickName"/>" href="<%=request.getContextPath()%>/i/<s:property value="groupPost.postedByUser.id"/>/"><img width="48" height="48" src="<%=request.getContextPath()%><s:property value="groupPost.postedByUser.avatar48" />" id="articleAuthorImg"></a>
         </div>
         <div class="gpack post-txt">
             <div class="post-info">
                 <p class="gfl">
-                <a target="_blank" title="<s:property value="groupPost.postedByUser.nickName"/>" href="/i/<s:property value="groupPost.postedByUser.id"/>/" id="articleAuthor" ><s:property value="groupPost.postedByUser.nickName"/></a>
+                <a target="_blank" title="<s:property value="groupPost.postedByUser.nickName"/>" href="<%=request.getContextPath()%>/i/<s:property value="groupPost.postedByUser.id"/>/" id="articleAuthor" ><s:property value="groupPost.postedByUser.nickName"/></a>
                 
                 </p>
                 <p class="gfr"><s:property value="groupPost.postedDateF"/></p>
@@ -68,7 +68,7 @@
             </s:else>
         </s:if>
          <s:if test="groupPost.postedByUserId==curUser.id">
-						<a class="doLink" href="/post/<s:property value="groupPost.id" />/edit">编辑</a>
+						<a class="doLink" href="<%=request.getContextPath()%>/post/<s:property value="groupPost.id" />/edit">编辑</a>
 					    </s:if>
         </p>
         </div>
@@ -76,7 +76,7 @@
         标签:
         <s:iterator value="groupPost.tags" status='st'>
             
-            <span class="tag"><a href="/tag/<s:property value="cnSpell"/>"><s:property value="name"/></a></span>
+            <span class="tag"><a href="<%=request.getContextPath()%>/tag/<s:property value="cnSpell"/>"><s:property value="name"/></a></span>
             <s:if test="#st.Last!=true">
             <span class="split">|</span>
             </s:if>
@@ -110,14 +110,14 @@
               <s:iterator value="comments" var="comment" status="st">  
                 <li id="comment<s:property value="#comment.id"/>">
                     <div class="cmt-img cmtImg pt-pic">
-                        <a target="_blank" title="<s:property value="#comment.postedByUser.nickName"/>" href="/i/<s:property value="#comment.postedByUserId"/>/">
-                            <img height="48" width="48" src="<s:property value="#comment.postedByUser.avatar48"/>">
+                        <a target="_blank" title="<s:property value="#comment.postedByUser.nickName"/>" href="<%=request.getContextPath()%>/i/<s:property value="#comment.postedByUserId"/>/">
+                            <img height="48" width="48" src="<%=request.getContextPath()%><s:property value="#comment.postedByUser.avatar48"/>">
                         </a>
                         <span class="cmt-floor"><s:property value="pageSize*(pageNo-1)+#st.count"/>楼</span>
                     </div>
                     <div class="pt-txt">
                         <span class="cmt-info"><s:property value="#comment.postedDateF" /></span>
-                        <a target="_blank" href="/i/<s:property value="#comment.postedByUserId"/>/" class="cmt-author cmtAuthor"><s:property value="#comment.postedByUser.nickName"/></a>
+                        <a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="#comment.postedByUserId"/>/" class="cmt-author cmtAuthor"><s:property value="#comment.postedByUser.nickName"/></a>
                         <div class="cmt-content cmtContent"><s:property value="#comment.contentWithAtLink" escape="false" /></div>
                         <span class="cmt-do">
                             
@@ -141,7 +141,7 @@
 						</p>
 						</s:if>
 			<s:else>
-			 <form action="/group/post/<s:property value="groupPost.id"/>/newComment" method="POST" id="replyForm">
+			 <form action="<%=request.getContextPath()%>/group/post/<s:property value="groupPost.id"/>/newComment" method="POST" id="replyForm">
                          <textarea  name="groupPostComment.content" id="editor"></textarea>
                          <input type="submit" data-operation="addGroupPostComment" value="发布" class="gbtn-primary">
                         </form>
@@ -155,9 +155,9 @@
               <h2>本帖来自</h2>
             </div>
             <div class="gpack side-source">
-            <a target="_blank" title="<s:property value="groupPost.group.name"/>" href="/group/<s:property value="groupPost.group.id"/>/" class="pt-pic"><img width="48" height="48" hoverboxadded="true" alt="<s:property value="groupPost.group.name"/>" src="<s:property value="groupPost.group.icon"/>"></a>
+            <a target="_blank" title="<s:property value="groupPost.group.name"/>" href="<%=request.getContextPath()%>/group/<s:property value="groupPost.group.id"/>/" class="pt-pic"><img width="48" height="48" hoverboxadded="true" alt="<s:property value="groupPost.group.name"/>" src="<%=request.getContextPath()%><s:property value="groupPost.group.icon"/>"></a>
             <div class="pt-txt">
-                <h3><a target="_blank" href="/group/<s:property value="groupPost.group.id"/>/"><s:property value="groupPost.group.name"/></a></h3>
+                <h3><a target="_blank" href="<%=request.getContextPath()%>/group/<s:property value="groupPost.group.id"/>/"><s:property value="groupPost.group.name"/></a></h3>
                 <p class="pt-txt-d"><s:property value="groupPost.group.joinedUserCount"/>人加入</p>
             </div>
         </div>
@@ -166,10 +166,10 @@
         </div>
         <ul id="recommendHotPosts" class="side-hotest">
         <s:iterator value="recommendPosts"> 
-             <li><a  class="post-title"  target="_blank" href="/post/<s:property value="id"/>/"><s:property value="title"/></a>
+             <li><a  class="post-title"  target="_blank" href="<%=request.getContextPath()%>/post/<s:property value="id"/>/"><s:property value="title"/></a>
              <p class="side-hotest-l">
 作者：
-<a target="_blank" href="/i/<s:property value="postedByUser.id"/>/"><s:property value="postedByUser.nickName"/></a>
+<a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="postedByUser.id"/>/"><s:property value="postedByUser.nickName"/></a>
 </p>
              </li>
         </s:iterator>

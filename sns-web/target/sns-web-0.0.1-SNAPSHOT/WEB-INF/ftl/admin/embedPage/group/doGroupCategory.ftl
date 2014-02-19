@@ -1,5 +1,5 @@
 <div class="pageContent">
-	<form method="post" action="/admin/embedPage/group/doGroupCategory" class="pageForm required-validate" onsubmit="return doGroupCallback(this);">
+	<form method="post" action="${request.contextPath}/admin/embedPage/group/doGroupCategory" class="pageForm required-validate" onsubmit="return doGroupCallback(this);">
 		  <@s.if test="groupCategory!=null&&groupCategory.id>0">
                         <input name="groupCategory.id" value="<@s.property value="groupCategory.id" />" type="hidden" />
                         </@s.if>

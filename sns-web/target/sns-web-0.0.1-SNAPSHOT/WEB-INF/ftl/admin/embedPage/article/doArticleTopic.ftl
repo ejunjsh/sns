@@ -1,6 +1,6 @@
 <div class="pageContent">
 	
-	<form method="post" action="/admin/embedPage/article/doArticleTopic" class="pageForm required-validate" onsubmit="return doArticleTopicCallback(this)">
+	<form method="post" action="${request.contextPath}/admin/embedPage/article/doArticleTopic" class="pageForm required-validate" onsubmit="return doArticleTopicCallback(this)">
 		<div class="pageFormContent nowrap" layoutH="58">
                         <@s.if test="topic!=null&&topic.id>0">
                         <input name="topic.id" value="<@s.property value="topic.id" />" type="hidden" />
@@ -23,7 +23,7 @@
 					 <img id="previewImg" width="160px" height="160px" src="<@s.property value="topic.cover160" />"/>
 					 <input type="hidden" id="articleIcon" name="tmpUrl" value="" />
                      <div class="button"><div class="buttonContent"><button data-operation="article.deleteImg" type="button">删除</button></div></div>
-				     <div class="button"><div class="buttonContent"><button data-operation="article.uploadImg" data-params="action=/admin/embedPage/fileUpload/uploadToTemporary&callBack=article.imgUploadCallBack" type="button">上传</button></div></div>
+				     <div class="button"><div class="buttonContent"><button data-operation="article.uploadImg" data-params="action=${request.contextPath}/admin/embedPage/fileUpload/uploadToTemporary&callBack=article.imgUploadCallBack" type="button">上传</button></div></div>
 				</dd>
 			</dl>
 		</div>

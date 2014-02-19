@@ -9,7 +9,7 @@
 <title>XX- 搜索</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/search.css" rel="stylesheet" />
+	href="<%=request.getContextPath()%>/staticFile/css/search.css" rel="stylesheet" />
 </head>
 <body>
 <div class="gcontainer gmt60 search-page">
@@ -27,7 +27,7 @@
                 <s:else>
                 <li>
                 </s:else>
-                    <a href="/search/all/?key=<s:property value="encodeKey" />">全站</a>
+                    <a href="<%=request.getContextPath()%>/search/all/?key=<s:property value="encodeKey" />">全站</a>
                     <b class="garrow_up arrow1"></b>
                     <b class="garrow_up arrow2"></b>
                 </li>
@@ -37,7 +37,7 @@
                 <s:else>
                 <li>
                 </s:else>
-                    <a href="/search/article/?key=<s:property value="encodeKey" />">文章</a>
+                    <a href="<%=request.getContextPath()%>/search/article/?key=<s:property value="encodeKey" />">文章</a>
                     <b class="garrow_up arrow1"></b>
                     <b class="garrow_up arrow2"></b>
                 </li>
@@ -47,7 +47,7 @@
                 <s:else>
                 <li>
                 </s:else>
-                    <a href="/search/question/?key=<s:property value="encodeKey" />">问答</a>
+                    <a href="<%=request.getContextPath()%>/search/question/?key=<s:property value="encodeKey" />">问答</a>
                     <b class="garrow_up arrow1"></b>
                     <b class="garrow_up arrow2"></b>
                 </li>
@@ -57,7 +57,7 @@
                 <s:else>
                 <li>
                 </s:else>
-                    <a href="/search/post/?key=<s:property value="encodeKey" />">帖子</a>
+                    <a href="<%=request.getContextPath()%>/search/post/?key=<s:property value="encodeKey" />">帖子</a>
                     <b class="garrow_up arrow1"></b>
                     <b class="garrow_up arrow2"></b>
                 </li>
@@ -67,7 +67,7 @@
                 <s:else>
                 <li>
                 </s:else>
-                    <a href="/search/blog/?key=<s:property value="encodeKey" />">日志</a>
+                    <a href="<%=request.getContextPath()%>/search/blog/?key=<s:property value="encodeKey" />">日志</a>
                     <b class="garrow_up arrow1"></b>
                     <b class="garrow_up arrow2"></b>
                 </li>
@@ -77,7 +77,7 @@
                 <s:else>
                 <li>
                 </s:else>
-                    <a href="/search/user/?key=<s:property value="encodeKey" />">用户</a>
+                    <a href="<%=request.getContextPath()%>/search/user/?key=<s:property value="encodeKey" />">用户</a>
                     <b class="garrow_up arrow1"></b>
                     <b class="garrow_up arrow2"></b>
                 </li>
@@ -89,9 +89,9 @@
         <s:if test="searchType==0&&recommendGroupDoc!=null">
         <li class="items-sticky">
                         <div class="item-sticky">
-                            <a href="/group/<s:property value="recommendGroupDoc.id" />/" class="item-pic" target="_blank"><img onerror="lib.errorImg(this)" src="<s:property value="recommendGroupDoc.remark" />" width="48" height="48" ></a>
+                            <a href="<%=request.getContextPath()%>/group/<s:property value="recommendGroupDoc.id" />/" class="item-pic" target="_blank"><img onerror="lib.errorImg(this)" src="<%=request.getContextPath()%><s:property value="recommendGroupDoc.remark" />" width="48" height="48" ></a>
                                 <div class="group-desc">
-                                    <h2><a target="_blank" href="/group/<s:property value="recommendGroupDoc.id" />/"><s:property value="recommendGroupDoc.title" escape="false"/></a><span>小组</span></h2>
+                                    <h2><a target="_blank" href="<%=request.getContextPath()%>/group/<s:property value="recommendGroupDoc.id" />/"><s:property value="recommendGroupDoc.title" escape="false"/></a><span>小组</span></h2>
                                     <p>
 <s:property value="recommendGroupDoc.content" escape="false" /></p>
                                 </div>
@@ -105,7 +105,7 @@
         <h2>
         
 <span>[日志]</span>
-<a href="/blog/<s:property value="id" />/" target="_blank">
+<a href="<%=request.getContextPath()%>/blog/<s:property value="id" />/" target="_blank">
 <s:property value="title" escape="false" />
 </a>
 </h2>
@@ -114,7 +114,7 @@
         <h2>
         
 <span>[问题]</span>
-<a href="/question/<s:property value="id" />/" target="_blank">
+<a href="<%=request.getContextPath()%>/question/<s:property value="id" />/" target="_blank">
 <s:property value="title" escape="false" />
 </a>
 </h2>
@@ -123,7 +123,7 @@
         <h2>
         
 <span>[帖子]</span>
-<a href="/post/<s:property value="id" />/" target="_blank">
+<a href="<%=request.getContextPath()%>/post/<s:property value="id" />/" target="_blank">
 <s:property value="title" escape="false" />
 </a>
 </h2>
@@ -132,7 +132,7 @@
         <h2>
         
 <span>[文章]</span>
-<a href="/article/<s:property value="id" />/" target="_blank">
+<a href="<%=request.getContextPath()%>/article/<s:property value="id" />/" target="_blank">
 <s:property value="title" escape="false" />
 </a>
 </h2>
@@ -146,18 +146,18 @@
 <p>
 来自：
 <s:if test="type==@com.sky.sns.enumeration.DocTypeEnum@Blog.getValue()">
-<a href="/i/<s:property value="fromValue" />/" target="_blank"><s:property value="fromName" /></a>
+<a href="<%=request.getContextPath()%>/i/<s:property value="fromValue" />/" target="_blank"><s:property value="fromName" /></a>
  个人主页  <s:property value="dateF" />
  </s:if>
  <s:if test="type==@com.sky.sns.enumeration.DocTypeEnum@Question.getValue()">
-<a href="/question/newest/" target="_blank">XX问答</a> <s:property value="dateF" />
+<a href="<%=request.getContextPath()%>/question/newest/" target="_blank">XX问答</a> <s:property value="dateF" />
  </s:if>
   <s:if test="type==@com.sky.sns.enumeration.DocTypeEnum@Article.getValue()">
-<a href="/site/<s:property value="fromValue" />/" target="_blank"><s:property value="fromName" /></a> 
+<a href="<%=request.getContextPath()%>/site/<s:property value="fromValue" />/" target="_blank"><s:property value="fromName" /></a> 
 主题站  <s:property value="dateF" />
  </s:if>
    <s:if test="type==@com.sky.sns.enumeration.DocTypeEnum@Post.getValue()">
-<a href="/group/<s:property value="fromValue" />/" target="_blank"><s:property value="fromName" /></a> 
+<a href="<%=request.getContextPath()%>/group/<s:property value="fromValue" />/" target="_blank"><s:property value="fromName" /></a> 
 小组  <s:property value="dateF" />
  </s:if>
 </p>
@@ -167,9 +167,9 @@
         <li class="items-guy">
         <div class="item-content">
         <s:set name="array" value='remark.split("\\\\,")' />
-                            <a><img onerror="lib.errorImg(this)" src="<s:property value="#array[0]" />" alt="" width="48" height="48"></a>
+                            <a><img onerror="lib.errorImg(this)" src="<%=request.getContextPath()%><s:property value="#array[0]" />" alt="" width="48" height="48"></a>
                             <div class="guy-desc">
-                                <a target="_blank" href="/i/<s:property value="id" />/"><s:property value="title" escape="false" /></a>
+                                <a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="id" />/"><s:property value="title" escape="false" /></a>
                                 <span><s:property value="#array[1]" />人关注</span>
                                 <p>
                                 <s:property value="content" escape="false"/>
@@ -183,8 +183,8 @@
         <p:pages pageSize="${pageSize}" pageNo="${pageNo}" recordCount="${recordCount}"></p:pages>
         </div>
         <div class="side gspan-10">
-                <a href="/tag/all" class="side-link" target="_blank">找标签？去标签广场&nbsp;&gt;</a>
-                <a href="/group/all/" class="side-link" target="_blank">找小组？去小组广场&nbsp;&gt;</a>
+                <a href="<%=request.getContextPath()%>/tag/all" class="side-link" target="_blank">找标签？去标签广场&nbsp;&gt;</a>
+                <a href="<%=request.getContextPath()%>/group/all/" class="side-link" target="_blank">找小组？去小组广场&nbsp;&gt;</a>
         
         <div class="side-title">
                 <h2>热门搜索</h2>
@@ -192,7 +192,7 @@
         <ul>
          <s:iterator value="statisticObject.keys">
         <li>
-        <a href="/search/all?key=<s:property value="keyWord" />"><s:property value="keyWord" /></a>
+        <a href="<%=request.getContextPath()%>/search/all?key=<s:property value="keyWord" />"><s:property value="keyWord" /></a>
          <s:property value="count" />
         </li>
         </s:iterator>
@@ -201,6 +201,6 @@
         </div>
 	 <%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/question.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/question.js"></script>
 	</div>
 </body>

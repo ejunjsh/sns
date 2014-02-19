@@ -1,12 +1,12 @@
 var resourceUtils=function(){
 	var resource={
-			"kindeditor-min.js":{url:"/staticFile/js/kindeditor-min.js",cache:true,type:"js"},
-			"ke_zh_CN.js":{url:"/staticFile/js/zh_CN.js",cache:true,type:"js"},
-			"swfupload.js":{url:"/staticFile/js/SWFUpload/swfupload.js",cache:true,type:"js"},
-			"swfuploadCookies.js":{url:"/staticFile/js/SWFUpload/plugins/swfupload.cookies.js",cache:true,type:"js"},
-			"swfuploadQueue.js":{url:"/staticFile/js/SWFUpload/plugins/swfupload.queue.js",cache:true,type:"js"},
-			"swfuploadSpeed.js":{url:"/staticFile/js/SWFUpload/plugins/swfupload.speed.js",cache:true,type:"js"},
-			"swfuploadSwfobject.js":{url:"/staticFile/js/SWFUpload/plugins/swfupload.swfobject.js",cache:true,type:"js"},
+			"kindeditor-min.js":{url:application.contextPath+ "/staticFile/js/kindeditor-min.js",cache:true,type:"js"},
+			"ke_zh_CN.js":{url:application.contextPath+ "/staticFile/js/zh_CN.js",cache:true,type:"js"},
+			"swfupload.js":{url:application.contextPath+ "/staticFile/js/SWFUpload/swfupload.js",cache:true,type:"js"},
+			"swfuploadCookies.js":{url:application.contextPath+ "/staticFile/js/SWFUpload/plugins/swfupload.cookies.js",cache:true,type:"js"},
+			"swfuploadQueue.js":{url:application.contextPath+ "/staticFile/js/SWFUpload/plugins/swfupload.queue.js",cache:true,type:"js"},
+			"swfuploadSpeed.js":{url:application.contextPath+ "/staticFile/js/SWFUpload/plugins/swfupload.speed.js",cache:true,type:"js"},
+			"swfuploadSwfobject.js":{url:application.contextPath+ "/staticFile/js/SWFUpload/plugins/swfupload.swfobject.js",cache:true,type:"js"},
 	};
 	return {
 

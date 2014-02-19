@@ -9,7 +9,7 @@
 <title><s:property value="spaceUser.nickName" />主页 - XX网</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/user.css"
+	href="<%=request.getContextPath()%>/staticFile/css/user.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -43,7 +43,7 @@
     </div>
     <div class="gmt20 gclear">
        <div class="gbtitle">
-            <h2>日志<a class="gbtitle-more" href="/i/<s:property value="spaceUser.id" />/blog/">[全部]</a></h2>
+            <h2>日志<a class="gbtitle-more" href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/blog/">[全部]</a></h2>
             
           
             
@@ -51,7 +51,7 @@
          <ul class="blog_list">
     <s:iterator value="myBlogs">
     <li class="blog">
-            <h2><a href="/blog/<s:property value="id" />/" target="_blank"><s:property value="title" /></a></h2>
+            <h2><a href="<%=request.getContextPath()%>/blog/<s:property value="id" />/" target="_blank"><s:property value="title" /></a></h2>
             <p class="blog-meta"><s:property value="postedDateF" /></p>
             <p><s:property value="contentNoHtml100" escape="false"/><a href="/blog/<s:property value="id" />" target="_blank">查看全文</a></p>
         </li>
@@ -60,7 +60,7 @@
     </div>
     <div class="gmt20 gclear">
     <div class="gbtitle">
-            <h2>动态<a class="gbtitle-more" href="/i/<s:property value="spaceUser.id" />/activity/">[全部]</a></h2>
+            <h2>动态<a class="gbtitle-more" href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/activity/">[全部]</a></h2>
         </div>
         <%@ include file="/WEB-INF/jsp/user/space/common/activities.jsp"%>
     </div>
@@ -68,7 +68,7 @@
 </div>
 	    <%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/space.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/space.js"></script>
 	    
 </div>
 </body>

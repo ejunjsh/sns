@@ -25,7 +25,7 @@
                   </s:if>
                   <s:else>
                     <li>
-                    <a href="/group/all/<s:property value="id" />/"><s:property value="name" /></a>
+                    <a href="<%=request.getContextPath()%>/group/all/<s:property value="id" />/"><s:property value="name" /></a>
                    </li>
                   </s:else>
                 </s:iterator>
@@ -34,7 +34,7 @@
             <s:iterator value="allGroups">
                 <li>
                     <div class="group-list-options">
-                        <a target="_blank" href="/group/<s:property value="id" />"><img src="<s:property value="cover48" />" class="group-icon" width="48" height="48"></a>
+                        <a target="_blank" href="<%=request.getContextPath()%>/group/<s:property value="id" />"><img src="<%=request.getContextPath()%><s:property value="cover48" />" class="group-icon" width="48" height="48"></a>
                        <s:if test="isJoined==1">
                      <a class="quit-group joinBt" data-operation="doQuit" data-params="id=<s:property value="id" />&className=gbtn-join-gray joinBt&txt=加入"  href="javascript:void 0;" >退出</a>
                        </s:if>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="group-list-desc">
                         <p>
-                            <a target="_blank" href="/group/<s:property value="id" />"><s:property value="name" /></a>
+                            <a target="_blank" href="<%=request.getContextPath()%>/group/<s:property value="id" />"><s:property value="name" /></a>
                             <span><s:property value="joinedUserCount"/>人加入</span>
                         </p>
                         <p><s:property value="description30" />
@@ -57,9 +57,9 @@
         </div>
         <div class="side gspan-10 gprefix-1 gmt60">
             <div class="side-links">
-                <a href="/group/hot_posts/">查看全部小组热贴 &gt;</a>
+                <a href="<%=request.getContextPath()%>/group/hot_posts/">查看全部小组热贴 &gt;</a>
             </div>
-            <form id="groupSearch" action="/group/search/" class="gsearch" method="get">
+            <form id="groupSearch" action="<%=request.getContextPath()%>/group/search/" class="gsearch" method="get">
                 <p>
                 <input id="word" type="text" class="gsearch-txt" name="key" maxlength="10" placeholder="搜索小组" value="">
                 <input type="submit" value="搜索" class="gsearch-bt gicon-search">
@@ -77,9 +77,9 @@
                 <ul class="side-groups ">
                 <s:iterator value="hotGroups" var="group" status="st">
                     <li>
-                        <a class="pt-pic" href="/group/<s:property value="#group.id"/>/" title="<s:property value="#group.name"/>" target="_blank"><img width="48" height="48" src="<s:property value="#group.cover48"/>" alt="<s:property value="#group.name"/>" ></a>
+                        <a class="pt-pic" href="<%=request.getContextPath()%>/group/<s:property value="#group.id"/>/" title="<s:property value="#group.name"/>" target="_blank"><img width="48" height="48" src="<%=request.getContextPath()%><s:property value="#group.cover48"/>" alt="<s:property value="#group.name"/>" ></a>
                         <div class="pt-txt">
-                            <h3><a href="/group/<s:property value="#group.id"/>/" target="_blank"><s:property value="#group.name"/></a></h3>
+                            <h3><a href="<%=request.getContextPath()%>/group/<s:property value="#group.id"/>/" target="_blank"><s:property value="#group.name"/></a></h3>
                             <span><s:property value="#group.joinedUserCount"/>人加入</span>
                             <div class="pt-txt-d">
                                 <p class="gellipsis"><s:property value="#group.description10"/></p>
@@ -106,9 +106,9 @@
                               <ul class="side-groups ">
                 <s:iterator value="newGroups" var="group" status="st">
                     <li>
-                        <a class="pt-pic" href="/group/<s:property value="#group.id"/>/" title="<s:property value="#group.name"/>" target="_blank"><img width="48" height="48" src="<s:property value="#group.cover48"/>" alt="<s:property value="#group.name"/>" ></a>
+                        <a class="pt-pic" href="<%=request.getContextPath()%>/group/<s:property value="#group.id"/>/" title="<s:property value="#group.name"/>" target="_blank"><img width="48" height="48" src="<%=request.getContextPath()%><s:property value="#group.cover48"/>" alt="<s:property value="#group.name"/>" ></a>
                         <div class="pt-txt">
-                            <h3><a href="/group/<s:property value="#group.id"/>/" target="_blank"><s:property value="#group.name"/></a></h3>
+                            <h3><a href="<%=request.getContextPath()%>/group/<s:property value="#group.id"/>/" target="_blank"><s:property value="#group.name"/></a></h3>
                             <span><s:property value="#group.joinedUserCount"/>人加入</span>
                             <div class="pt-txt-d">
                                 <p class="gellipsis"><s:property value="#group.description10"/></p>
@@ -124,14 +124,14 @@
                 
             </div>
             <div class="apply-holder">
-                <a href="/group/apply/" class="new-group-link">申请创建小组 &gt;</a>
+                <a href="<%=request.getContextPath()%>/group/apply/" class="new-group-link">申请创建小组 &gt;</a>
             </div>
             <div id="bdadm-559021" class="side-advert"></div>
         </div>
     </div>
 		<%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/group.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/group.js"></script>
 	</div>
 </body>
 </html>

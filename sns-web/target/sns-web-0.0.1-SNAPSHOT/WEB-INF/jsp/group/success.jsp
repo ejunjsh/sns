@@ -9,7 +9,7 @@
 <title>XX小组 - 申请创建小组</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/group1.css"
+	href="<%=request.getContextPath()%>/staticFile/css/group1.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -18,7 +18,7 @@
 			<div class="gspan-22 main">
 				<div class="gbreadcrumb">
 					<ul>
-						<li><a href="/group">小组</a></li>
+						<li><a href="<%=request.getContextPath()%>/group">小组</a></li>
 						<li>申请小组</li>
 					</ul>
 				</div>
@@ -28,7 +28,7 @@
                 </div>
 				</div>
 			<div class="gspan-10 side">
-				<a href="/group/all/">去全部小组页面 </a>
+				<a href="<%=request.getContextPath()%>/group/all/">去全部小组页面 </a>
 			</div>
 				</div>
 

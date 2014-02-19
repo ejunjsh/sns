@@ -267,8 +267,8 @@ function initUI(_box){
 
 var loadKindEditor=function(input){
 	KindEditor.create('#' + $(input).attr("id"), {
-		uploadJson:'<%=request.getContextPath()%>/ajax/keImageUpload/upload',
-		cssPath : ['/staticFile/css/kind-code.css'],
+		uploadJson:application.contextPath+'/ajax/keImageUpload/upload',
+		cssPath : [application.contextPath+'/staticFile/css/kind-code.css'],
 		afterBlur: function()
 		{
 			this.sync();

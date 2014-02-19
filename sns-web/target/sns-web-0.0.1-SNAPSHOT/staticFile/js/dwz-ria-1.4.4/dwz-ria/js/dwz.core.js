@@ -117,8 +117,8 @@ var DWZ = {
 		};
 	},
 	resource:{
-		"kindeditor-min.js":{url:"/staticFile/js/kindeditor-min.js",cache:true,type:"js"},
-		"ke_zh_CN.js":{url:"/staticFile/js/zh_CN.js",cache:true,type:"js"}
+		"kindeditor-min.js":{url:application.contextPath+"/staticFile/js/kindeditor-min.js",cache:true,type:"js"},
+		"ke_zh_CN.js":{url:application.contextPath+"/staticFile/js/zh_CN.js",cache:true,type:"js"}
 	},
 	loadResource:function(resourceKeys,callBack){
 		try

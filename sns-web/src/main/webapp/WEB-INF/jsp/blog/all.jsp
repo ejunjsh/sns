@@ -22,7 +22,7 @@
     <h2><a target="_blank" href="<%=request.getContextPath()%>/blog/<s:property value="id" />/"><s:property value="title"/></a></h2>
     <p class="blog-meta"><a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="postedByUserId" />/"><s:property value="postedByUser.nickName" /></a>发表于<span><s:property value="postedDateF" /></span></p>
     <p class="blog-num">评论&nbsp;<s:property value="commentCount" /><span class="blog-num-sp">|</span>推荐&nbsp;<s:property value="recommendCount" /></p>
-    <p><s:property value="contentNoHtml100" /><a target="_blank" href="/blog/<s:property value="id" />/">查看全文</a></p>
+    <p><s:property value="contentNoHtml100" /><a target="_blank" href="<%=request.getContextPath()%>/blog/<s:property value="id" />/">查看全文</a></p>
     </li>
     </s:iterator>
 </ul>

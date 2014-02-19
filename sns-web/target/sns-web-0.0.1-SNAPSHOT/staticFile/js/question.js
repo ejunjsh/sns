@@ -10,7 +10,7 @@ var question = function() {
 				if (!lib.disableBtn($(ctrl))) {
 
 					$.ajax({
-						url : "/ajax/question/doQuestionLock",
+						url : application.contextPath+"/ajax/question/doQuestionLock",
 						datatype : "json",
 						cache : false,
 						data : {
@@ -55,7 +55,7 @@ var question = function() {
 				if (!lib.disableBtn($(ctrl))) {
 
 					$.ajax({
-						url : "/ajax/question/doVoteAnswer",
+						url :application.contextPath+ "/ajax/question/doVoteAnswer",
 						datatype : "json",
 						cache : false,
 						data : {
@@ -100,7 +100,7 @@ var question = function() {
 			if (!lib.disableBtn($(ctrl))) {
 
 				$.ajax({
-					url : "/ajax/question/doUselessAnswer",
+					url : application.contextPath+"/ajax/question/doUselessAnswer",
 					datatype : "json",
 					cache : false,
 					data : {
@@ -163,7 +163,7 @@ var question = function() {
 		popWin.confirmShow(params.confirm, function() {
 		if (!lib.disableBtn($(ctrl))) {
 			$.ajax({
-				url : "/ajax/question/deleteAnswer",
+				url :application.contextPath+ "/ajax/question/deleteAnswer",
 				datatype : "json",
 				cache : false,
 				data : {

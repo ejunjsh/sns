@@ -108,7 +108,7 @@
 	overflow:hidden;
 	word-wrap:break-word;
 	color:#369;
-	background:url(/staticFile/img/mini.png) no-repeat scroll 0 -220px
+	background:url(../img/mini.png) no-repeat scroll 0 -220px
 }
 .document dl.docutils dd {
 	margin-bottom:.5em
@@ -217,7 +217,7 @@
 .document ul li {
 	padding-left:15px;
 	list-style:none outside none;
-	background:url(/staticFile/img/3-square.gif) no-repeat 0 10px
+	background:url(../img/3-square.gif) no-repeat 0 10px
 }
 .content-txt .document ul {
 	padding:0 0 15px 0
@@ -703,7 +703,7 @@ p.document-figcaption {
 	height:27px;
 	text-indent:-9999px;
 	outline:0;
-	background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -610px
+	background:url(../img/small.gif?v2.8) no-repeat 0 -610px
 }
 .gui-ubb-toggle {
 	_display:inline;
@@ -846,7 +846,7 @@ p.document-figcaption {
 	text-align:left;
 	overflow:hidden;
 	vertical-align:middle;
-	background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -32px
+	background:url(../img/small.gif?v2.8) no-repeat 0 -32px
 }
 .gui-share-xl {
 	padding-left:20px;
@@ -906,7 +906,7 @@ p.document-figcaption {
 	line-height:12px;
 	overflow:hidden;
 	text-indent:-9999px;
-	background:url(/staticFile/img/small.gif?v2.8) no-repeat -28px 0
+	background:url(../img/small.gif?v2.8) no-repeat -28px 0
 }
 .cmt-info {
 	float:right;
@@ -1086,7 +1086,7 @@ p.document-figcaption {
 	line-height:24px;
 	text-align:center;
 	color:#1e8a26;
-	background:url(/staticFile/img/mini.png) no-repeat 0 -192px
+	background:url(../img/mini.png) no-repeat 0 -192px
 }
 .block-del-do a:hover {
 	text-decoration:none
@@ -1136,7 +1136,7 @@ p.document-figcaption {
 	display:inline-block;
 	width:10px;
 	height:10px;
-	background:url(/staticFile/img/d.gif) no-repeat center center
+	background:url(../img/d.gif) no-repeat center center
 }
 .post-detail {
 	padding:1.5em 0 3em;

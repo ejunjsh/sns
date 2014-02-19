@@ -35,9 +35,9 @@
 <#if (searchType!=1)>
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" width="650" height="550" title="添加小组" mask="true" resource="group.js,fileUpload.js"  rel="addGroup" href="/admin/embedPage/group/doGroup" target="dialog"><span>添加</span></a></li>
+			<li><a class="add" width="650" height="550" title="添加小组" mask="true" resource="group.js,fileUpload.js"  rel="addGroup" href="${request.contextPath}/admin/embedPage/group/doGroup" target="dialog"><span>添加</span></a></li>
 			<li><a class="delete" href="demo/common/ajaxDone.html?uid={sid_user}" target="ajaxTodo" title="确定要删除吗？" warn="请选择一个用户"><span>删除</span></a></li>
-		     <li><a class="edit" width="650" height="550" title="修改小组" mask="true" resource="group.js,fileUpload.js"  rel="editGroup" href="/admin/embedPage/group/doGroup?group.id={gid}" target="dialog" warn="请选择一个小组"><span>修改</span></a></li>
+		     <li><a class="edit" width="650" height="550" title="修改小组" mask="true" resource="group.js,fileUpload.js"  rel="editGroup" href="${request.contextPath}/admin/embedPage/group/doGroup?group.id={gid}" target="dialog" warn="请选择一个小组"><span>修改</span></a></li>
 		</ul>
 	</div>
 </#if>

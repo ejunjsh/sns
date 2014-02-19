@@ -137,7 +137,7 @@
     line-height:24px;
     text-align:center;
     color:#1e8a26;
-    background:url(/skin//staticFile/img/mini.png) no-repeat 0 -192px
+    background:url(/skin/../img/mini.png) no-repeat 0 -192px
 }
 .block-del-do a:hover {
     text-decoration:none
@@ -603,7 +603,7 @@
     line-height:30px
 }
 .gicon-manager {
-    background:url("http://127.0.0.1:8000/skin//staticFile/img/4-icon.png") no-repeat scroll -120px 0 transparent;
+    background:url("http://127.0.0.1:8000/skin/../img/4-icon.png") no-repeat scroll -120px 0 transparent;
     height:16px;
     left:32px;
     position:absolute;
@@ -924,7 +924,7 @@ margin-top: 10px;
     display:inline-block;
     width:10px;
     height:10px;
-    background:url(/skin//staticFile/img/d.gif) no-repeat center center
+    background:url(/skin/../img/d.gif) no-repeat center center
 }
 .post-detail {
     padding:1.5em 0 3em;
@@ -1231,7 +1231,7 @@ margin-top: 10px;
     overflow:hidden
 }
 .blacklist-page .main .main-explanation .main-explanation-close, .members-page .main .main-explanation .main-explanation-close, .search-member-page .main .main-explanation .main-explanation-close, .audit-user-page .main .main-explanation .main-explanation-close, .group-settings-page .main .main-explanation .main-explanation-close {
-    background:url('/staticFile/img/4-icon.png') no-repeat -160px 0;
+    background:url('../img/4-icon.png') no-repeat -160px 0;
     position:absolute;
     width:8px;
     height:8px;

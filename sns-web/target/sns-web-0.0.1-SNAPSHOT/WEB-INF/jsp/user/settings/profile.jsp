@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <title>个人资料|设置-- XX网</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
-<link type="text/css" href="/staticFile/css/settings.css"
+<link type="text/css" href="<%=request.getContextPath()%>/staticFile/css/settings.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -19,8 +19,8 @@
 				<ul>
 					<li class="gactived"><span class="gicon-profile"></span><span>个人资料</span></li>
 					<li><a class="gicon-avatar"
-						href="/settings/avatar/"></a><a
-						href="/settings/avatar/">设置头像</a></li>
+						href="<%=request.getContextPath()%>/settings/avatar/"></a><a
+						href="<%=request.getContextPath()%>/settings/avatar/">设置头像</a></li>
 				</ul>
 			</div>
 			<div class="gspan-24 gprefix-1">
@@ -92,7 +92,7 @@
 
 		</div>
 		<%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
-		<script type="text/javascript" src="/staticFile/js/settings.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/staticFile/js/settings.js"></script>
 	</div>
 </body>
 </html>

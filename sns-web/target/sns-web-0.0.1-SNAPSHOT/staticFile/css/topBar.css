@@ -1,12 +1,12 @@
 @CHARSET "UTF-8";
 a.noline:hover{color: #f60;text-decoration: underline;}
 .normal{font-size: 12px;}
-.cls_pnlHeader_wrap{background:url(/staticFile/img/nav_bg.gif) repeat-x;}
+.cls_pnlHeader_wrap{background:url(../img/nav_bg.gif) repeat-x;}
 #cls_headLogo{
 	float:left;
 	padding-left:124px;
-	background:url(/staticFile/img/defaultAvatar.gif) 11px 4px no-repeat !important;
-	_background:url(/staticFile/img/defaultAvatar.gif) 11px 4px no-repeat;
+	background:url(../img/defaultAvatar.gif) 11px 4px no-repeat !important;
+	_background:url(../img/defaultAvatar.gif) 11px 4px no-repeat;
 	height:39px;
 	margin-right: 7px;
 }
@@ -57,14 +57,14 @@ a.noline:hover{color: #f60;text-decoration: underline;}
 	background:#fafafa;
 }
 #cls_btnSearch{
-	background:url(/staticFile/img/cls_bg_hd_srh.gif) 3px 2px no-repeat;
+	background:url(../img/cls_bg_hd_srh.gif) 3px 2px no-repeat;
 	height:20px;
 	width:20px;
 	display:block;
 	float:right;
 }
 #cls_btnSearch:hover{
-	background:url(/staticFile/img/cls_bg_hd_srh_hover.gif) 3px 2px no-repeat;
+	background:url(../img/cls_bg_hd_srh_hover.gif) 3px 2px no-repeat;
 }
 #cls_txtHeadSearch{
 	height:20px;
@@ -89,7 +89,7 @@ a.noline:hover{color: #f60;text-decoration: underline;}
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F6F6F6', endColorstr='#E7E7E7'); *zoom:1;
 }
 #cls_pnlHeader b{
-	background:url(/staticFile/img/cls_ico_toggle.gif) 1px -19px no-repeat;
+	background:url(../img/cls_ico_toggle.gif) 1px -19px no-repeat;
 	width:12px;
 	height:30px;
 	float:left;
@@ -300,11 +300,11 @@ a.noline:hover{color: #f60;text-decoration: underline;}
 	clear:none;
 	overflow:hidden;
 	display: none;
-	background:url("/staticFile/img/ico_appall.gif") no-repeat;
+	background:url("../img/ico_appall.gif") no-repeat;
 }
 .layer_AppList .layer_cnt li:hover{
 	border-radius: 5px;
-	background:url("/staticFile/img/ico_appall.gif") no-repeat #EBECED;
+	background:url("../img/ico_appall.gif") no-repeat #EBECED;
 }
 .layer_AppList .layer_cnt li a{
 	width:65px;
@@ -314,12 +314,12 @@ a.noline:hover{color: #f60;text-decoration: underline;}
 	margin:5px !important;
 }
 .link_home,.link_xbcz,.link_hyhome,.link_ProfileSet,.link_headFeedBack,.link_helpinfo,.link_oldhead,.link_gongyi{
-	background:url(/staticFile/img/cls_head_ico.gif)  8px -137px no-repeat;
+	background:url(../img/cls_head_ico.gif)  8px -137px no-repeat;
 	padding-left:32px !important;
 	width:68px !important;
 	
 }
-.link_home:hover,.link_xbcz:hover,.link_hyhome:hover,.link_ProfileSet:hover,.link_headFeedBack:hover,.link_helpinfo:hover,.link_oldhead:hover,.link_gongyi:hover{ background:url(/staticFile/img/cls_head_ico.gif)  8px -137px  no-repeat #EBECED ;}
+.link_home:hover,.link_xbcz:hover,.link_hyhome:hover,.link_ProfileSet:hover,.link_headFeedBack:hover,.link_helpinfo:hover,.link_oldhead:hover,.link_gongyi:hover{ background:url(../img/cls_head_ico.gif)  8px -137px  no-repeat #EBECED ;}
 .link_ProfileSet,.link_ProfileSet:hover{ background-position:8px -20px;}
 .link_headFeedBack,.link_headFeedBack:hover{ background-position:8px -43px;	}
 .link_helpinfo,.link_helpinfo:hover{ background-position:8px -66px;}
@@ -341,7 +341,7 @@ a.noline:hover{color: #f60;text-decoration: underline;}
 	margin-right:31px;	
 }
 #cls_header_AppSlide .link_header_AppSlide{
-	background:url(/staticFile/img/cls_ico_toggle.gif) -2px -97px no-repeat;
+	background:url(../img/cls_ico_toggle.gif) -2px -97px no-repeat;
 	width:16px;
 	height:20px;
 	right:-1px;
@@ -349,7 +349,7 @@ a.noline:hover{color: #f60;text-decoration: underline;}
 	position:absolute;
 }
 #cls_header_AppSlide.current .link_header_AppSlide{
-	background:url(/staticFile/img/cls_ico_toggle.gif) -2px -57px no-repeat !important;
+	background:url(../img/cls_ico_toggle.gif) -2px -57px no-repeat !important;
 }
 #cls_header_AppSlide ul{
 	display:none;	
@@ -391,7 +391,7 @@ a.noline:hover{color: #f60;text-decoration: underline;}
     text-decoration: none;	
     width:67px;
     font-size:12px !important;
-    background:url(/staticFile/img/bg_appIcons.gif) no-repeat;
+    background:url(../img/bg_appIcons.gif) no-repeat;
     padding-left:44px;
 }
 #cls_header_AppSlide .cls_header_app_bulo{ background-position:18px 7px;}
@@ -520,7 +520,7 @@ a.choose_course{
 	margin-top: 5px;
 }
 .cls_listUserInfo #cls_headMenu_class .layer_classList .wx_lastli a{
-	background: url(/staticFile/img/icon_class.gif)  9px -29px no-repeat;
+	background: url(../img/icon_class.gif)  9px -29px no-repeat;
 	float: left;
 	line-height: 30px;
 	*line-height: 33px;
@@ -532,7 +532,7 @@ a.choose_course{
 	min-width: 45px;
 }
 .cls_listUserInfo #cls_headMenu_class .layer_classList .wx_lastli a:hover{
-	background: url(/staticFile/img/icon_class.gif) 9px -29px no-repeat #EBEBEB;
+	background: url(../img/icon_class.gif) 9px -29px no-repeat #EBEBEB;
 	border-radius: 5px;
 	text-decoration: none;
 }
@@ -571,8 +571,8 @@ a.choose_course{
 	display:none;	
 }
 .head_icon,.head_icon:hover{
-	background: url(/staticFile/img/tools_icon.png) no-repeat;
-	_background: url(/staticFile/img/tools_icon.gif) no-repeat;
+	background: url(../img/tools_icon.png) no-repeat;
+	_background: url(../img/tools_icon.gif) no-repeat;
 	height: 24px;
 	width: 23px;
 	display: inline-block;

@@ -296,7 +296,7 @@
     margin-left:10px
 }
 .user-feeds-page .main .recommend .recommend-close {
-    background:url('/staticFile/img/4-icon.png') -160px 0;
+    background:url('../img/4-icon.png') -160px 0;
     height:8px;
     position:absolute;
     right:10px;
@@ -490,7 +490,7 @@
     display:inline-block;
     height:25px;
     width:48px;
-    background:url(/staticFile/img/4-button.png) no-repeat;
+    background:url(../img/4-button.png) no-repeat;
     padding-left:26px;
     font-family:'Microsoft YaHei', 'WenQuanYi Micro Hei', SimHei, tohoma, sans-serif;
     font-size:12px;
@@ -632,7 +632,7 @@
     vertical-align:middle;
     width:12px;
     height:10px;
-    background:url(/staticFile/img/4-icon.png) no-repeat;
+    background:url(../img/4-icon.png) no-repeat;
     _font-size:0;
     _margin:5px 0
 }

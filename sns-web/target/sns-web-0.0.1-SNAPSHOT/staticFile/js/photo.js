@@ -25,7 +25,7 @@ var photo=function(){
 		var $container=$("#comment"+params.id);
 		var content=$container.find(".cmtContent").html();
 		var userName= $container.find(".cmt-author").html();
-		var c="<blockquote>引用<a href='/n/"+userName+"'>@"+userName+"</a>的话：<br />"+content+"</blockquote><br/>";
+		var c="<blockquote>引用<a href='"+application.contextPath+"/n/"+userName+"'>@"+userName+"</a>的话：<br />"+content+"</blockquote><br/>";
 
 			if(kEditor)
 				kEditor.insertHtml(c);
@@ -43,7 +43,7 @@ var photo=function(){
 		popWin.confirmShow(params.confirm, function() {
 		if (!lib.disableBtn($(ctrl))) {
 			$.ajax({
-				url : "/ajax/photo/deleteComment",
+				url : application.contextPath+"/ajax/photo/deleteComment",
 				datatype : "json",
 				cache : false,
 				data : {
@@ -84,7 +84,7 @@ var photo=function(){
 doRecommend : function(ctrl, params) {
 	if (!lib.disableBtn($(ctrl))) {
 		$.ajax({
-			url : "/ajax/photo/doRecommend",
+			url :application.contextPath+ "/ajax/photo/doRecommend",
 			datatype : "json",
 			cache : false,
 			data : {

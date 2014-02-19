@@ -1,5 +1,5 @@
 <div class="pageHeader">
-	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="/admin/embedPage/notice/searchSysNotice" method="post">
+	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="${request.contextPath}/admin/embedPage/notice/searchSysNotice" method="post">
 	<input type="hidden" name="params.pageIndex" value="${params.pageIndex+1}" />
 	<input type="hidden" name="params.pageSize" value="${params.pageSize}" />
 	<input type="hidden" name="params.order" value="${params.order}" />
@@ -26,9 +26,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" width="650" height="550" title="添加系统通知" mask="true" resource="notice.js"  rel="addSysNotice" href="/admin/embedPage/notice/doSysNotice" target="dialog"><span>添加</span></a></li>
+			<li><a class="add" width="650" height="550" title="添加系统通知" mask="true" resource="notice.js"  rel="addSysNotice" href="${request.contextPath}/admin/embedPage/notice/doSysNotice" target="dialog"><span>添加</span></a></li>
 			<li><a class="delete" href="demo/common/ajaxDone.html?uid={sid_user}" target="ajaxTodo" title="确定要删除吗？" warn="请选择一个用户"><span>删除</span></a></li>
-			<li><a class="edit" width="650" height="550" title="修改系统通知" mask="true" resource="notice.js"  rel="editSysNotice" href="/admin/embedPage/notice/doSysNotice?notice.id={nid}" target="dialog" warn="请选择一条通知"><span>修改</span></a></li>
+			<li><a class="edit" width="650" height="550" title="修改系统通知" mask="true" resource="notice.js"  rel="editSysNotice" href="${request.contextPath}/admin/embedPage/notice/doSysNotice?notice.id={nid}" target="dialog" warn="请选择一条通知"><span>修改</span></a></li>
 		</ul>
 	</div>
 

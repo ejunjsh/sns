@@ -8,7 +8,7 @@
 <title>XX主题站 - 发布文章</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/site.css"
+	href="<%=request.getContextPath()%>/staticFile/css/site.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -18,10 +18,10 @@
 				<div class="gbreadcrumb">
 					<ul>
 						<li>
-                        <a href="/site/all">XX主题站</a>
+                        <a href="<%=request.getContextPath()%>/site/all">XX主题站</a>
                     </li>
                     <li>
-                        <a href="/site/<s:property value="topic.id" />"><s:property value="topic.name" /></a>
+                        <a href="<%=request.getContextPath()%>/site/<s:property value="topic.id" />"><s:property value="topic.name" /></a>
                     </li>
 					<li>发布文章</li>
 					</ul>
@@ -32,7 +32,7 @@
                 </div>
 				</div>
 			<div class="gspan-10 side">
-				<a href="/site/<s:property value="topic.id" />">去<s:property value="topic.name" />主题站</a>
+				<a href="<%=request.getContextPath()%>/site/<s:property value="topic.id" />">去<s:property value="topic.name" />主题站</a>
 			</div>
 				</div>
 

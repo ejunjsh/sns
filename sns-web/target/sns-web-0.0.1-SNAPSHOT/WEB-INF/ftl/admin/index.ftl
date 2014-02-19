@@ -5,52 +5,56 @@
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
 <title>XXX Admin</title>
 
-<link href="/staticFile/js/dwz-ria-1.4.4/dwz-ria/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
-<link href="/staticFile/js/dwz-ria-1.4.4/dwz-ria/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
-<link href="/staticFile/js/dwz-ria-1.4.4/dwz-ria/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
-<link href="/staticFile/css/admin.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
+<link href="${request.contextPath}/staticFile/css/admin.css" rel="stylesheet" type="text/css" media="screen"/>
 <!--[if IE]>
-<link href="/staticFile/js/dwz-ria-1.4.4/dwz-ria/themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
 <![endif]-->
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/jquery-1.7.2.min.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/jquery.cookie.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/jquery.validate.min.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/jquery.bgiframe.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.core.js" type="text/javascript"></script>
+<script  type="text/javascript">
+var application={};
+application.contextPath="${request.contextPath}";
+</script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/jquery.cookie.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/jquery.bgiframe.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.core.js" type="text/javascript"></script>
 
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.drag.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.barDrag.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.accordion.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.ui.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.theme.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.alertMsg.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.contextmenu.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.navTab.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.tree.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.panel.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.pagination.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.ajax.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.combox.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.datepicker.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.cssTable.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.util.date.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.dialog.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.dialogDrag.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.resize.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.taskBar.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.suggest.js" type="text/javascript"></script>
-<script src="/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.regional.zh.js" type="text/javascript"></script>
-<script src="/staticFile/js/admin/admin.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.drag.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.barDrag.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.accordion.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.ui.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.theme.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.alertMsg.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.contextmenu.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.navTab.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.tree.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.panel.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.pagination.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.ajax.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.combox.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.datepicker.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.cssTable.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.util.date.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.dialog.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.dialogDrag.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.resize.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.taskBar.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.suggest.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/js/dwz.regional.zh.js" type="text/javascript"></script>
+<script src="${request.contextPath}/staticFile/js/admin/admin.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function(){
-	DWZ.init("/staticFile/js/dwz-ria-1.4.4/dwz-ria/dwz.frag.xml", {
-		loginUrl:"/admin/embedPage/user/login", loginTitle:"登录",	// 弹出登录对话框
+	DWZ.init("${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/dwz.frag.xml", {
+		loginUrl:"${request.contextPath}/admin/embedPage/user/login", loginTitle:"登录",	// 弹出登录对话框
 		status:{ok:"A00004", error:"A00002", timeout:"A00001"}, //【可选】
 		pageInfo:{pageNum:"params.pageIndex", numPerPage:"params.pageSize", orderField:"params.sort", orderDirection:"params.order"}, //【可选】
 		debug:false,	// 调试模式 【true|false】
 		callback:function(){
 			initEnv();
-			$("#themeList").theme({themeBase:"/staticFile/js/dwz-ria-1.4.4/dwz-ria/themes"}); // themeBase 相对于index页面的主题base路径
+			$("#themeList").theme({themeBase:"${request.contextPath}/staticFile/js/dwz-ria-1.4.4/dwz-ria/themes"}); // themeBase 相对于index页面的主题base路径
 		    <#if Request["needLogin"]??>
 		    DWZ.loadLogin();
 		    </#if>
@@ -67,7 +71,7 @@ $(function(){
 				<ul class="nav">
 				<#if curUser??>
 				    <li><a href="javascript:void(0);"><@s.property value="curUser.nickName" /></a></li>
-					<li><a onclick="document.location.href='/ajax/user/logout?backUrl='+encodeURIComponent(document.location.href);return false;" href="javascript:void(0);">退出</a></li>
+					<li><a onclick="document.location.href='${request.contextPath}/ajax/user/logout?backUrl='+encodeURIComponent(document.location.href);return false;" href="javascript:void(0);">退出</a></li>
 				<#else>
 				    <li><a onclick="DWZ.loadLogin();return false;" href="javascript:void(0);">登陆</a></li>
 				</#if>
@@ -100,7 +104,7 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a target="navTab" rel="searchUser" href="/admin/embedPage/user/searchUser">查找用户</a>
+							<li><a target="navTab" rel="searchUser" href="${request.contextPath}/admin/embedPage/user/searchUser">查找用户</a>
 							</li>
 						</ul>
 					</div>
@@ -109,7 +113,7 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a target="navTab" rel="searchQuestion"  href="/admin/embedPage/question/searchQuestion">查找问题</a></li>
+							<li><a target="navTab" rel="searchQuestion"  href="${request.contextPath}/admin/embedPage/question/searchQuestion">查找问题</a></li>
 						</ul>
 					</div>
 					<div class="accordionHeader">
@@ -117,7 +121,7 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a target="navTab" rel="searchBlog"  href="/admin/embedPage/blog/searchBlog">查找日志</a></li>
+							<li><a target="navTab" rel="searchBlog"  href="${request.contextPath}/admin/embedPage/blog/searchBlog">查找日志</a></li>
 						</ul>
 					</div>
 					<div class="accordionHeader">
@@ -125,8 +129,8 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a target="navTab" rel="searchArticle"  href="/admin/embedPage/article/searchArticle">查找文章</a></li>
-							<li><a target="navTab" rel="searchArticleTopic"  href="/admin/embedPage/article/searchArticleTopic">查找主题</a></li>
+							<li><a target="navTab" rel="searchArticle"  href="${request.contextPath}/admin/embedPage/article/searchArticle">查找文章</a></li>
+							<li><a target="navTab" rel="searchArticleTopic"  href="${request.contextPath}/admin/embedPage/article/searchArticleTopic">查找主题</a></li>
 						</ul>
 					</div>
 					<div class="accordionHeader">
@@ -134,9 +138,9 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a target="navTab" rel="searchGroup"  href="/admin/embedPage/group/searchGroup">查找小组</a></li>
-						    <li><a target="navTab" rel="searchGroupPost"  href="/admin/embedPage/group/searchGroupPost">查找帖子</a></li>
-						     <li><a target="navTab" rel="searchGroupCategory"  href="/admin/embedPage/group/searchGroupCategory">查找小组分类</a></li>
+							<li><a target="navTab" rel="searchGroup"  href="${request.contextPath}/admin/embedPage/group/searchGroup">查找小组</a></li>
+						    <li><a target="navTab" rel="searchGroupPost"  href="${request.contextPath}/admin/embedPage/group/searchGroupPost">查找帖子</a></li>
+						     <li><a target="navTab" rel="searchGroupCategory"  href="${request.contextPath}/admin/embedPage/group/searchGroupCategory">查找小组分类</a></li>
 						</ul>
 					</div>
 					<div class="accordionHeader">
@@ -144,7 +148,7 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a  target="navTab" rel="searchTag"  href="/admin/embedPage/tag/searchTag">查找标签</a></li>
+							<li><a  target="navTab" rel="searchTag"  href="${request.contextPath}/admin/embedPage/tag/searchTag">查找标签</a></li>
 						</ul>
 					</div>
 					<!--<div class="accordionHeader">
@@ -152,7 +156,7 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a target="navTab" rel="searchSysNotice"  href="/admin/embedPage/notice/searchSysNotice">查找系统通知</a></li>
+							<li><a target="navTab" rel="searchSysNotice"  href="${request.contextPath}/admin/embedPage/notice/searchSysNotice">查找系统通知</a></li>
 						</ul>
 					</div> -->
 					<div class="accordionHeader">

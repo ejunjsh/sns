@@ -258,7 +258,7 @@
     height:27px;
     text-indent:-9999px;
     outline:0;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -610px
+    background:url(../img/small.gif?v2.8) no-repeat 0 -610px
 }
 .gui-ubb-toggle {
     _display:inline;
@@ -401,7 +401,7 @@
     text-align:left;
     overflow:hidden;
     vertical-align:middle;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -32px
+    background:url(../img/small.gif?v2.8) no-repeat 0 -32px
 }
 .gui-share-xl {
     padding-left:20px;
@@ -513,7 +513,7 @@
     line-height:24px;
     text-align:center;
     color:#1e8a26;
-    background:url(/staticFile/img/mini.png) no-repeat 0 -192px
+    background:url(../img/mini.png) no-repeat 0 -192px
 }
 .block-del-do a:hover {
     text-decoration:none
@@ -644,7 +644,7 @@
     padding-left:20px;
     height:12px;
     overflow:hidden;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -691px;
+    background:url(../img/small.gif?v2.8) no-repeat 0 -691px;
     *background-position:0 -691px
 }
 .cmts-t .cmts-num.highlight {
@@ -796,7 +796,7 @@
     color:#b1b1b1;
     text-decoration:none;
     text-align:right;
-    background:url(/staticFile/img/small.gif) no-repeat 0 -756px
+    background:url(../img/small.gif) no-repeat 0 -756px
 }
 .answer-digg .answer-digg-dw {
     background-position:0 -791px;
@@ -1390,7 +1390,7 @@
     text-decoration:underline
 }
 .side-title-refresh {
-    background:url("/staticFile/img/small.gif?v2.8") no-repeat scroll 0 -322px transparent;
+    background:url("../img/small.gif?v2.8") no-repeat scroll 0 -322px transparent;
     color:#999;
     float:right;
     margin-top:10px;

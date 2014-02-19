@@ -22,7 +22,7 @@
             <input type="submit" class="gsearch-bt gicon-search" value="搜索">
             </p>
         </form>
-        <p><a href="/group/all/">返回全部小组&nbsp;&gt;</a></p>
+        <p><a href="<%=request.getContextPath()%>/group/all/">返回全部小组&nbsp;&gt;</a></p>
     </div>
     <div class="main gspan-21 gmt40">
     <h1 class="gbtitle">搜索小组</h1>
@@ -31,7 +31,7 @@
       <s:iterator value="searchGroups">
       <li class="group">
          <div class="group-options">
-                    <a href="/group/<s:property value="id" />/"><img width="48" height="48" class="group-icon" src="<s:property value="cover48" />"></a>
+                    <a href="<%=request.getContextPath()%>/group/<s:property value="id" />/"><img width="48" height="48" class="group-icon" src="<%=request.getContextPath()%><s:property value="cover48" />"></a>
                    <s:if test="isJoined==1">
                      <a class="quit-group joinBt" data-operation="doQuit" data-params="id=<s:property value="id" />&className=gbtn-join-gray joinBt&txt=加入"  href="javascript:void 0;" >退出</a>
                        </s:if>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="group-desc">
 <p>
-<a href="/group/<s:property value="id" />/"><s:property value="name" /></a>
+<a href="<%=request.getContextPath()%>/group/<s:property value="id" />/"><s:property value="name" /></a>
 <span><s:property value="joinedUserCount" />人加入</span>
 </p>
 <p><s:property value="description30" /></p>
@@ -52,9 +52,9 @@
     </div>
     		<%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/iframeUploader.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/iframeUploader.js"></script>
 		<script type="text/javascript"
-			src="/staticFile/js/group.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/group.js"></script>
 </div>
 </div>
 </body>

@@ -1,5 +1,5 @@
 <div class="pageHeader">
-	<form id="pagerForm" onsubmit="return <#if (searchType>0)>dialogSearch(this);<#else>navTabSearch(this);</#if>" action="/admin/embedPage/article/searchArticleTopic<#if (searchType>0)>?searchType=1</#if>" method="post">
+	<form id="pagerForm" onsubmit="return <#if (searchType>0)>dialogSearch(this);<#else>navTabSearch(this);</#if>" action="${request.contextPath}/admin/embedPage/article/searchArticleTopic<#if (searchType>0)>?searchType=1</#if>" method="post">
 	<input type="hidden" name="params.pageIndex" value="${params.pageIndex+1}" />
 	<input type="hidden" name="params.pageSize" value="${params.pageSize}" />
 	<input type="hidden" name="params.order" value="${params.order}" />
@@ -25,9 +25,9 @@
 <#if (searchType!=1)>
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" width="650" height="550" title="添加主题" mask="true" resource="article.js,fileUpload.js"  rel="addArticleTopic" href="/admin/embedPage/article/doArticleTopic" target="dialog"><span>添加</span></a></li>
+			<li><a class="add" width="650" height="550" title="添加主题" mask="true" resource="article.js,fileUpload.js"  rel="addArticleTopic" href="${request.contextPath}/admin/embedPage/article/doArticleTopic" target="dialog"><span>添加</span></a></li>
 			<li><a class="delete" href="demo/common/ajaxDone.html?uid={sid_user}" target="ajaxTodo" title="确定要删除吗？" warn="请选择一个用户"><span>删除</span></a></li>
-		     <li><a class="edit" width="650" height="550" title="修改主题" mask="true" resource="article.js,fileUpload.js"  rel="editArticleTopic" href="/admin/embedPage/article/doArticleTopic?topic.id={tid}" target="dialog" warn="请选择一个主题"><span>修改</span></a></li>
+		     <li><a class="edit" width="650" height="550" title="修改主题" mask="true" resource="article.js,fileUpload.js"  rel="editArticleTopic" href="${request.contextPath}/admin/embedPage/article/doArticleTopic?topic.id={tid}" target="dialog" warn="请选择一个主题"><span>修改</span></a></li>
 		</ul>
 	</div>
 </#if>

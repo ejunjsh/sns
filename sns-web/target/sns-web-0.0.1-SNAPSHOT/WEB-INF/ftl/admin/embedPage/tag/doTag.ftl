@@ -1,5 +1,5 @@
 <div class="pageContent">
-	<form method="post" action="/admin/embedPage/tag/doTag" class="pageForm required-validate" onsubmit="return addTagCallback(this);">
+	<form method="post" action="${request.contextPath}/admin/embedPage/tag/doTag" class="pageForm required-validate" onsubmit="return addTagCallback(this);">
 		  <@s.if test="tag!=null&&tag.id>0">
                         <input name="tag.id" value="<@s.property value="tag.id" />" type="hidden" />
                         </@s.if>

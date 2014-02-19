@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <title> 设置头像|设置-- XX网</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
-<link type="text/css" href="/staticFile/css/settings.css"
+<link type="text/css" href="<%=request.getContextPath()%>/staticFile/css/settings.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -18,7 +18,7 @@
 				<h1>设置</h1>
 				<ul>
 					<li>
-<a class="gicon-profile" href="/settings/profile/"></a>
+<a class="gicon-profile" href="<%=request.getContextPath()%>/settings/profile/"></a>
 <a href="/settings/profile/">个人资料</a>
 </li>
 <li class="gactived">
@@ -47,7 +47,7 @@
                         <div class="main-head">
                             <div class="main-head-holder">
                                 <div style="height:160px;width:160px;" id="preview160">
-                                    <img width="160px" height="160px" id="previewBig" src="<s:property value="modifiedUser.avatar160" />">
+                                    <img width="160px" height="160px" id="previewBig" src="<%=request.getContextPath()%><s:property value="modifiedUser.avatar160" />">
                                 </div>
                             </div>
                             <p class="head-summary center">
@@ -57,7 +57,7 @@
                         <div class="other-head">
                             <div>
                                 <div id="preview48">
-                                    <img width="48" height="48" id="previewMiddle" src="<s:property value="modifiedUser.avatar48" />">
+                                    <img width="48" height="48" id="previewMiddle" src="<%=request.getContextPath()%><s:property value="modifiedUser.avatar48" />">
                                 </div>
                                 <p class="head-summary">
                                     中尺寸头像，48x48像素
@@ -65,7 +65,7 @@
                             </div>
                             <div class="gmt20">
                                 <div id="preview24">
-                                    <img width="24" height="24" id="previewTiny" src="<s:property value="modifiedUser.avatar24" />">
+                                    <img width="24" height="24" id="previewTiny" src="<%=request.getContextPath()%><s:property value="modifiedUser.avatar24" />">
                                 </div>
                                 <p class="head-summary">
                                     小尺寸头像，24x24像素
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                     <form  action="/settings/avatar" style="display:none" id="cutPanel" class="head-cut gmt30" action="" method="POST">
+                     <form  action="<%=request.getContextPath()%>/settings/avatar" style="display:none" id="cutPanel" class="head-cut gmt30" action="" method="POST">
                         <div class="cut-btns gmt20">
                         <input id="hideField" type="hidden" value="<s:property value="tmpUrl" />" name="tmpUrl" >
                             <input type="submit" id="corpImg" value="保存" class="gbtn-primary">
@@ -84,8 +84,8 @@
             </div>
             </div>
 		<%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
-		<script type="text/javascript" src="/staticFile/js/settings.js"></script>
-		<script type="text/javascript" src="/staticFile/js/iframeUploader.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/staticFile/js/settings.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/staticFile/js/iframeUploader.js"></script>
 	</div>
 </body>
 </html>

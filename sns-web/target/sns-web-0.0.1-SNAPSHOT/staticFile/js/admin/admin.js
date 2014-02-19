@@ -1,7 +1,7 @@
 if(!DWZ.resource){
 	DWZ.resource={};
 }
-jsUrl="/staticFile/js/admin";
+jsUrl=application.contextPath+"/staticFile/js/admin";
 DWZ.resource["tag.js"]={url:jsUrl+"/tag/tag.js",cache:false,type:"js"};
 DWZ.resource["question.js"]={url:jsUrl+"/question/question.js",cache:false,type:"js"};
 DWZ.resource["blog.js"]={url:jsUrl+"/blog/blog.js",cache:false,type:"js"};

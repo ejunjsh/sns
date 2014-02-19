@@ -1,5 +1,5 @@
 <div class="pageHeader">
-	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="/admin/embedPage/article/searchArticle" method="post">
+	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="${request.contextPath}/admin/embedPage/article/searchArticle" method="post">
 	<input type="hidden" name="params.pageIndex" value="${params.pageIndex+1}" />
 	<input type="hidden" name="params.pageSize" value="${params.pageSize}" />
 	<input type="hidden" name="params.order" value="${params.order}" />
@@ -27,9 +27,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" width="650" height="550" title="添加文章" mask="true" resource="tag.js,article.js,fileUpload.js"  rel="addArticle" href="/admin/embedPage/article/doArticle" target="dialog"><span>添加</span></a></li>
+			<li><a class="add" width="650" height="550" title="添加文章" mask="true" resource="tag.js,article.js,fileUpload.js"  rel="addArticle" href="${request.contextPath}/admin/embedPage/article/doArticle" target="dialog"><span>添加</span></a></li>
 			<li><a class="delete" href="demo/common/ajaxDone.html?uid={sid_user}" target="ajaxTodo" title="确定要删除吗？" warn="请选择一个用户"><span>删除</span></a></li>
-			<li><a class="edit" width="650" height="550" title="修改文章" mask="true" resource="tag.js,article.js,fileUpload.js"  rel="editArticle" href="/admin/embedPage/article/doArticle?article.id={aid}" target="dialog" warn="请选择一篇文章"><span>修改</span></a></li>
+			<li><a class="edit" width="650" height="550" title="修改文章" mask="true" resource="tag.js,article.js,fileUpload.js"  rel="editArticle" href="${request.contextPath}/admin/embedPage/article/doArticle?article.id={aid}" target="dialog" warn="请选择一篇文章"><span>修改</span></a></li>
 		</ul>
 	</div>
 

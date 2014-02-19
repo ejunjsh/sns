@@ -27,7 +27,7 @@ var autoComplete=function(){
           $.ajax({
               dataType: "json",
               data: { key: OriKey },
-              url: "/ajax/" + curGetLink,
+              url: application.contextPath+"/ajax/" + curGetLink,
               cache: false,
               type: "post",
               success: function (o) {

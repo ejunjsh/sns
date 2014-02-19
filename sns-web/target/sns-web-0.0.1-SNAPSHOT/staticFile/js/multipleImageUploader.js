@@ -96,11 +96,11 @@ var multipleImageUploader=function(){
 					popWin.initialCustom({id:"multipleImageUploader",title:"多图片上传",content:'<div class="swfupload"><div class="ke-swfupload"><div class="ke-swfupload-top"><div class="ke-inline-block ke-swfupload-button"><div></div></div><div class="ke-inline-block ke-swfupload-desc">允许用户同时上传20张图片，单张图片容量不超过1MB</div><span class="ke-button-common ke-button-outer ke-swfupload-startupload"><input type="button" class="ke-button-common ke-button" value="开始上传"></span></div><div class="ke-swfupload-body"></div><div style="margin-top:10px;float:right;"><a href="javascript:void(0)" id="submitBtn" class="gbtn-primary">保存</a><div></div></div></div></div>',width:"650"});
 					var settings = {
 							debug : false,
-							upload_url : "/ajax/multipleImageUpload/upload/",
-							flash_url : "/staticFile/js/SWFUpload/Flash/swfupload.swf",
+							upload_url : application.contextPath+"/ajax/multipleImageUpload/upload/",
+							flash_url : application.contextPath+"/staticFile/js/SWFUpload/Flash/swfupload.swf",
 							file_post_name : "file",
 							button_placeholder : $('.ke-swfupload-button div')[0],
-							button_image_url: '/staticFile/img/select-files-zh_CN.png',
+							button_image_url: application.contextPath+'/staticFile/img/select-files-zh_CN.png',
 							button_width: 72,
 							button_height: 23,
 							button_cursor : SWFUpload.CURSOR.HAND,
@@ -110,7 +110,7 @@ var multipleImageUploader=function(){
 							file_size_limit :'1MB',
 							post_params : postParams,
 							file_queued_handler : function(file) {
-								file.url = '/staticFile/img/image.png';
+								file.url = application.contextPath+'/staticFile/img/image.png';
 								appendFile(file);
 							},
 							file_queue_error_handler : function(file, errorCode, message) {

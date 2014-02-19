@@ -20,7 +20,7 @@
           <div class="item extra-tips">
                 <label style="width:45px" for="form_code">验证码</label>
                 <input tabindex="4" type="text" style="width:100px;" id="form_code" class="gstxt"/>
-                <img class="code" src="/randomImg?t=" alt="点击刷新" onclick='this.src="/randomImg?t="+Math.random();'/>
+                <img class="code" src="${contextPath}/randomImg?t=" alt="点击刷新" onclick='this.src="${contextPath}/randomImg?t="+Math.random();'/>
                 <span defValue="防止机器人?" class="validate-option">防止机器人?</span>
             </div>
             <div class="item recsubmit">

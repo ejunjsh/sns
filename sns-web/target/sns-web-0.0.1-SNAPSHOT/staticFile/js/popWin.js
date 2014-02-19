@@ -32,7 +32,7 @@
 	        $.ajax(
 	       {
 	           async: async,
-	           url: "/ajax/user/checkEmail",
+	           url:application.contextPath+ "/ajax/user/checkEmail",
 	           datatype: "json",
 	           cache: false,
 	           data: { "user.email": val },
@@ -48,7 +48,7 @@
 	    };
 	  var  ajax_IsExsitNickName= function (callback, async, val, url) {
 	        if (!url) {
-	            url = "/ajax/user/checkNickName";
+	            url = application.contextPath+"/ajax/user/checkNickName";
 	        }
 	        $.ajax(
 	       {
@@ -71,7 +71,7 @@
 	        $.ajax(
 	       {
 	           async: async,
-	           url: "/ajax/user/checkCode",
+	           url: application.contextPath+"/ajax/user/checkCode",
 	           datatype: "json",
 	           cache: false,
 	           data: { code: val },
@@ -408,7 +408,7 @@
 						data : {
 							Name : name
 						},
-						url : "/ajax/user/getLogin",
+						url :application.contextPath+ "/ajax/user/getLogin",
 						cache : false,
 						type : "post",
 						success : function(o) {
@@ -422,7 +422,7 @@
 								if(!lib.disableBtn($(this)))
 								{
 								    iframeSubmit({"user.email":$("#login_email").val(),"user.passWord":$("#login_password").val(),
-								    "remember":$("#login_remember")[0].checked},"loginForm","/ajax/user/login","loginIframe");
+								    "remember":$("#login_remember")[0].checked},"loginForm",application.contextPath+"/ajax/user/login","loginIframe");
 								}
 								return false;
 							});
@@ -462,7 +462,7 @@
 						data : {
 							Name : name
 						},
-						url : "/ajax/user/getReg",
+						url : application.contextPath+"/ajax/user/getReg",
 						cache : false,
 						type : "post",
 						success : function(o) {

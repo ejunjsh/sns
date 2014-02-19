@@ -1,6 +1,6 @@
 <div class="pageContent">
 	
-	<form method="post" action="/admin/embedPage/article/doArticle" class="pageForm required-validate" onsubmit="return doArticleCallback(this)">
+	<form method="post" action="${request.contextPath}/admin/embedPage/article/doArticle" class="pageForm required-validate" onsubmit="return doArticleCallback(this)">
 		<div class="pageFormContent nowrap" layoutH="58">
                         <@s.if test="article!=null&&article.id>0">
                         <input name="article.id" value="<@s.property value="article.id" />" type="hidden" />
@@ -22,7 +22,7 @@
 				<dd>
 					<input id="topicValue" value="<@s.property value="article.articleTopicId" />" name="article.articleTopicId" type="hidden"/>
 					<input readonly="true" class="required" id="topicName" value="<@s.property value="article.articleTopic.name" />" type="text" />
-					<a class="btnLook" width="650" height="400" title="选择主题" mask="true" resource="getBack.js"  rel="choseTopic" href="/admin/embedPage/article/searchArticleTopic?searchType=1" target="dialog"><span>查找</span></a>
+					<a class="btnLook" width="650" height="400" title="选择主题" mask="true" resource="getBack.js"  rel="choseTopic" href="${request.contextPath}/admin/embedPage/article/searchArticleTopic?searchType=1" target="dialog"><span>查找</span></a>
 				</dd>
 			</dl>
 			<dl>
@@ -40,7 +40,7 @@
 					 <img id="previewImg" width="160px" height="160px" src="<@s.property value="article.cover160" />"/>
 					 <input type="hidden" id="articleIcon" name="tmpUrl" value="" />
                      <div class="button"><div class="buttonContent"><button data-operation="article.deleteImg" type="button">删除</button></div></div>
-				     <div class="button"><div class="buttonContent"><button data-operation="article.uploadImg" data-params="action=/admin/embedPage/fileUpload/uploadToTemporary&callBack=article.imgUploadCallBack" type="button">上传</button></div></div>
+				     <div class="button"><div class="buttonContent"><button data-operation="article.uploadImg" data-params="action=${request.contextPath}/admin/embedPage/fileUpload/uploadToTemporary&callBack=article.imgUploadCallBack" type="button">上传</button></div></div>
 				</dd>
 			</dl>
 		</div>

@@ -12,7 +12,7 @@
 <title>XX日志 - 改日志</title>
 </s:else>
 <%@ include file="/WEB-INF/jsp/common/head.jsp" %>
-<link  type="text/css" href="/staticFile/css/blog1.css" rel="stylesheet"/>
+<link  type="text/css" href="<%=request.getContextPath()%>/staticFile/css/blog1.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="container">
@@ -21,7 +21,7 @@
 	   <div class="gbreadcrumb">
                 <ul>
                     <li>
-                        <a href="/blog/">XX日志</a>
+                        <a href="<%=request.getContextPath()%>/blog/">XX日志</a>
                     </li>
                     <s:if test="blog==null">
 					<li>写日志</li>
@@ -32,7 +32,7 @@
                 </ul>
         </div>
 		<div>
-		<form id="editor" class="gform" method="post" action="/blog/post">
+		<form id="editor" class="gform" method="post" action="<%=request.getContextPath()%>/blog/post">
 		<s:if test="blog!=null&&blog.id>0">
                         <input name="blog.id" value="<s:property value="blog.id" />" type="hidden" />
         </s:if>
@@ -68,7 +68,7 @@
 	</div>
 	<div class="gspan-8 side gprefix-1">
 	<s:if test="curUser!=null">
-                <a href="/i/<s:property value="curUser.id"/>/">返回我的主页 &gt;</a>
+                <a href="<%=request.getContextPath()%>/i/<s:property value="curUser.id"/>/">返回我的主页 &gt;</a>
     </s:if>
 	</div>
 </div>
@@ -96,7 +96,7 @@ $(function(){
 	autoComplete.bind($("#tagAdd"),function(id,name){
 		if(!$("#tag"+id)[0])
 	    {
-		var str='<span id="tag'+id+ '" class="tag"><a target="_blank" href="/tag/'+id+'/">'+name+'</a><a href="javascript: void 0;" class="icon-close" title="移除标签">X</a><input type="hidden" name="tags" value="'+id+'"></span>';
+		var str='<span id="tag'+id+ '" class="tag"><a target="_blank" href="<%=request.getContextPath()%>/tag/'+id+'/">'+name+'</a><a href="javascript: void 0;" class="icon-close" title="移除标签">X</a><input type="hidden" name="tags" value="'+id+'"></span>';
 	    var tagContent=$("#tagContent");
 		$(str).appendTo(tagContent).find(".icon-close").click(function(){
 	    	$(this).parent().remove();
@@ -154,7 +154,7 @@ $(function(){
 			}
 			if (!lib.disableBtn($ctrl)) {
 				$.ajax({
-					url : "/ajax/blog/addCategory",
+					url : "<%=request.getContextPath()%>/ajax/blog/addCategory",
 					datatype : "json",
 					cache : false,
 					data : {

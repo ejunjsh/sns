@@ -10,7 +10,7 @@
 <title><s:property value="blog.title" />xx网站 - 全部主题</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/site.css"
+	href="<%=request.getContextPath()%>/staticFile/css/site.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -21,7 +21,7 @@
            <ul>
            <s:iterator value="allTopics">
            <li>
-			<a href="/site/<s:property value="id"/>/">
+			<a href="<%=request.getContextPath()%>/site/<s:property value="id"/>/">
 			<img height="20" width="20" alt="<s:property value="name"/>" src="<s:property value="cover24"/>">
 			<s:property value="name"/>
 			</a>
@@ -36,11 +36,11 @@
 		</div>
 		<s:iterator value="allArticles">
 		   <div class="article gspan-20">
-                    <a class="article-pic" href="/article/<s:property value="id"/>/" target="_blank">
-                        <img height="129" width="166" alt="<s:property value="title"/>" src="<s:property value="cover160"/>">
+                    <a class="article-pic" href="<%=request.getContextPath()%>/article/<s:property value="id"/>/" target="_blank">
+                        <img height="129" width="166" alt="<s:property value="title"/>" src="<%=request.getContextPath()%><s:property value="cover160"/>">
                     </a>
                     <h2>
-                        <a target="_blank" href="/article/<s:property value="id"/>/"><s:property value="title"/></a>
+                        <a target="_blank" href="<%=request.getContextPath()%>/article/<s:property value="id"/>/"><s:property value="title"/></a>
                     </h2>
                     <p class="article-info">
                         评论&nbsp;<s:property value="commentCount"/>
@@ -48,10 +48,10 @@
                         推荐&nbsp;<s:property value="recommendCount"/>
                     </p>
                     <p class="article-meta">
-                    <a target="_blank" href="/i/<s:property value="postedByUser.id"/>/"><s:property value="postedByUser.nickName"/></a>&nbsp;发表于&nbsp;<s:property value="postedDateF"/>
+                    <a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="postedByUser.id"/>/"><s:property value="postedByUser.nickName"/></a>&nbsp;发表于&nbsp;<s:property value="postedDateF"/>
                     </p>
-                    <p><s:property value="ContentNoHtml50"/><a target="_blank" href="/article/<s:property value="id"/>/">查看全文</a></p>
-                    <p class="article-from">来自：<a href="/site/<s:property value="articleTopic.id"/>/" target="_blank"><s:property value="articleTopic.name"/></a>&nbsp;主题站</p>
+                    <p><s:property value="ContentNoHtml50"/><a target="_blank" href="<%=request.getContextPath()%>/article/<s:property value="id"/>/">查看全文</a></p>
+                    <p class="article-from">来自：<a href="<%=request.getContextPath()%>/site/<s:property value="articleTopic.id"/>/" target="_blank"><s:property value="articleTopic.name"/></a>&nbsp;主题站</p>
                 </div>
 		</s:iterator>
 		<p:pages pageSize="${pageSize}" pageNo="${pageNo}" recordCount="${recordCount}"></p:pages>

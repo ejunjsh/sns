@@ -54,7 +54,7 @@
 	position:relative
 }
 .side-admins .side-admins-leader {
-	background:url(/staticFile/img/group.png) no-repeat right top;
+	background:url(../img/group.png) no-repeat right top;
 	position:absolute;
 	right:10px;
 	top:36%;
@@ -400,7 +400,7 @@
 	height:27px;
 	text-indent:-9999px;
 	outline:0;
-	background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -610px
+	background:url(../img/small.gif?v2.8) no-repeat 0 -610px
 }
 .gui-ubb-toggle {
 	_display:inline;
@@ -543,7 +543,7 @@
 	text-align:left;
 	overflow:hidden;
 	vertical-align:middle;
-	background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -32px
+	background:url(../img/small.gif?v2.8) no-repeat 0 -32px
 }
 .gui-share-xl {
 	padding-left:20px;
@@ -602,7 +602,7 @@
 	line-height:12px;
 	overflow:hidden;
 	text-indent:-9999px;
-	background:url(/staticFile/img/small.gif?v2.8) no-repeat -28px 0
+	background:url(../img/small.gif?v2.8) no-repeat -28px 0
 }
 .cmt-info {
 	float:right;
@@ -778,7 +778,7 @@
 	line-height:24px;
 	text-align:center;
 	color:#1e8a26;
-	background:url(/staticFile/img/mini.png) no-repeat 0 -192px
+	background:url(../img/mini.png) no-repeat 0 -192px
 }
 .block-del-do a:hover {
 	text-decoration:none
@@ -828,7 +828,7 @@
 	display:inline-block;
 	width:10px;
 	height:10px;
-	background:url(/staticFile/img/d.gif) no-repeat center center
+	background:url(../img/d.gif) no-repeat center center
 }
 .post-detail {
 	padding:1.5em 0 3em;
@@ -1041,14 +1041,14 @@
 	padding:0
 }
 .main-settings-box .error {
-	background:url(/staticFile/img/log_reg.png) no-repeat -108px 3px;
+	background:url(../img/log_reg.png) no-repeat -108px 3px;
 	color:#f00
 }
 .main-settings-box .ok {
-	background:url(/staticFile/img/log_reg.png) no-repeat -108px -25px
+	background:url(../img/log_reg.png) no-repeat -108px -25px
 }
 .main-settings-box .uploading {
-	background:url(/staticFile/img/loading.gif) no-repeat 0 8px
+	background:url(../img/loading.gif) no-repeat 0 8px
 }
 .upload-img {
 	margin-top:12px
@@ -1106,15 +1106,15 @@
 	font-weight:bold;
 	color:#666;
 	cursor:pointer;
-	background:url(/staticFile/img/btn.png) no-repeat 0 -556px;
+	background:url(../img/btn.png) no-repeat 0 -556px;
 	border:0;
 	text-align:center
 }
 .sub_info:hover {
-	background:url(/staticFile/img/btn.png) no-repeat -91px -556px
+	background:url(../img/btn.png) no-repeat -91px -556px
 }
 .sub_info:active {
-	background:url(/staticFile/img/btn.png) no-repeat -182px -556px
+	background:url(../img/btn.png) no-repeat -182px -556px
 }
 .members-search-title {
 	border-bottom:0;
@@ -1140,26 +1140,26 @@
 	position:absolute;
 	right:8px;
 	top:-3px;
-	background:url(/staticFile/img/group.png) no-repeat 0 0;
+	background:url(../img/group.png) no-repeat 0 0;
 	text-indent:-999px
 }
 .members-operations {
 	height:10px;
 	width:48px;
-	background:url(/staticFile/img/group.png) no-repeat 0 -21px;
+	background:url(../img/group.png) no-repeat 0 -21px;
 	position:absolute;
 	top:0;
 	left:12px;
 	display:none
 }
 .members-operations .members-operations-demote {
-	background:url(/staticFile/img/group.png) no-repeat -16px -36px
+	background:url(../img/group.png) no-repeat -16px -36px
 }
 .members-operations .members-operations-promote {
-	background:url(/staticFile/img/group.png) no-repeat 0 -36px
+	background:url(../img/group.png) no-repeat 0 -36px
 }
 .members-operations .members-operations-nonblacklist {
-	background:url(/staticFile/img/group.png) no-repeat -32px -36px
+	background:url(../img/group.png) no-repeat -32px -36px
 }
 .members-operations li {
 	width:16px;
@@ -1213,7 +1213,7 @@
 	display:none;
 	width:16px;
 	height:10px;
-	background:url(/staticFile/img/group.png) -32px -21px no-repeat;
+	background:url(../img/group.png) -32px -21px no-repeat;
 	position:absolute;
 	right:12px;
 	top:0
@@ -1363,13 +1363,13 @@
 	padding-left:0
 }
 .main-form-upload .error {
-	background:url(/staticFile/img/log_reg.png) no-repeat -108px 3px
+	background:url(../img/log_reg.png) no-repeat -108px 3px
 }
 .main-form-upload .ok {
-	background:url(/staticFile/img/log_reg.png) no-repeat -108px -25px
+	background:url(../img/log_reg.png) no-repeat -108px -25px
 }
 .main-form-upload .uploading {
-	background:url(/staticFile/img/loading2.gif) no-repeat 0 8px
+	background:url(../img/loading2.gif) no-repeat 0 8px
 }
 .group-new-page .side-tip {
 	text-align:left;

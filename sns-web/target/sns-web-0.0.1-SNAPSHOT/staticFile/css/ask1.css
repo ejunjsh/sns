@@ -255,7 +255,7 @@ s.tooltip-right {
     height:27px;
     text-indent:-9999px;
     outline:0;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -610px
+    background:url(../img/small.gif?v2.8) no-repeat 0 -610px
 }
 .gui-ubb-toggle {
     _display:inline;
@@ -398,7 +398,7 @@ s.tooltip-right {
     text-align:left;
     overflow:hidden;
     vertical-align:middle;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -32px
+    background:url(../img/small.gif?v2.8) no-repeat 0 -32px
 }
 .gui-share-xl {
     padding-left:20px;
@@ -1064,7 +1064,7 @@ s.tooltip-right {
     color:#b1b1b1;
     text-decoration:none;
     text-align:right;
-    background:url(/staticFile/img/small.gif) no-repeat 0 -756px
+    background:url(../img/small.gif) no-repeat 0 -756px
 }
 .ask-content-page .answers .answer-digg .answer-digg-dw {
     background-position:0 -791px;
@@ -1141,7 +1141,7 @@ s.tooltip-right {
     color:#666
 }
 .ask-content-page .answers .answer-diggers .answer-diggers-all span {
-    background:url('/staticFile/img/4-icon.png') -200px 0;
+    background:url('../img/4-icon.png') -200px 0;
     width:6px;
     height:3px;
     display:inline-block;
@@ -1266,7 +1266,7 @@ s.tooltip-right {
     padding-left:20px;
     height:12px;
     overflow:hidden;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat 0 -691px;
+    background:url(../img/small.gif?v2.8) no-repeat 0 -691px;
     *background-position:0 -691px
 }
 .cmts-t .cmts-num.highlight {
@@ -1678,7 +1678,7 @@ s.tooltip-right {
     line-height:1.8
 }
 .ask-brill-page .ask-title, .ask-wait-page .ask-title, .ask-maylike-page .ask-title, .ask-newest-page .ask-title, .ask-hot-page .ask-title, .ask-brill-page .main-title, .ask-wait-page .main-title, .ask-maylike-page .main-title, .ask-newest-page .main-title, .ask-hot-page .main-title {
-    background:url("/staticFile/img/titles-left.png") no-repeat 0 bottom;
+    background:url("../img/titles-left.png") no-repeat 0 bottom;
     margin-bottom:6px;
     _height:40px;
 }

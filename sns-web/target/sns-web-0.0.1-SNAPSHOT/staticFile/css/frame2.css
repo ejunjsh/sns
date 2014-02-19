@@ -303,7 +303,7 @@ body {
 	overflow:hidden
 }
 .gpack_u dd .gicon-leader {
-	background:url('/staticFile/img/4-icon.png') no-repeat -140px 0;
+	background:url('../img/4-icon.png') no-repeat -140px 0;
 	position:absolute;
 	width:16px;
 	height:16px;
@@ -377,7 +377,7 @@ body {
 }
 .main .titles .titles-new {
 	padding-left:14px;
-	background:url(/staticFile/img/4-icon.png) no-repeat 2px -295px
+	background:url(../img/4-icon.png) no-repeat 2px -295px
 }
 .main .titles .titles-h {
 	padding:6px 0 6px 30px;
@@ -401,7 +401,7 @@ body {
 	width:12px;
 	height:12px;
 	margin-left:3px;
-	background:url(/staticFile/img/4-icon.png) no-repeat 0 -383px
+	background:url(../img/4-icon.png) no-repeat 0 -383px
 }
 .main .titles-r-grey {
 	float:right;
@@ -1170,7 +1170,7 @@ body {
 .gbreadcrumb {
 	overflow:hidden;
 	padding:10px 0 15px;
-	background:url("/staticFile/img/titles-left.png") no-repeat scroll 0 bottom transparent;
+	background:url("../img/titles-left.png") no-repeat scroll 0 bottom transparent;
     _height:18px;
 }
 .gbreadcrumb ul {
@@ -1178,7 +1178,7 @@ body {
 	overflow:hidden
 }
 .gbreadcrumb li {
-	background:url("/staticFile/img/4-icon.png") no-repeat scroll 0 -420px transparent;
+	background:url("../img/4-icon.png") no-repeat scroll 0 -420px transparent;
 	color:#333;
 	float:left;
 	margin:0 25px 0 -15px;
@@ -1191,7 +1191,7 @@ body {
 	padding:0 0 5px 30px;
 	color:#4ba733;
 	line-height:1.8em;
-	background:url("/staticFile/img/main-title.png") 0 bottom no-repeat
+	background:url("../img/main-title.png") 0 bottom no-repeat
 }
 .gbtitle h2,.gbtitle h1 {
 	float:left;
@@ -1209,7 +1209,7 @@ body {
 	padding:0 0 15px 30px;
 	color:#333;
 	line-height:1.8em;
-	background:url("/staticFile/img/titles-left.png") 0 bottom no-repeat
+	background:url("../img/titles-left.png") 0 bottom no-repeat
 }
 .gtitle h2 {
 	float:left;
@@ -1258,7 +1258,7 @@ body {
 	border-right-color:#000
 }
 .gicon-sai,.gicon-male,.gicon-female,.gicon-lquote,.gicon-rquote,.gicon-arrow,.gicon-arrow-up,.gicon-focus,.gicon-focused,.gicon-blog,.gicon-answer,.gicon-question,.gicon-post,.gicon-news,.gicon-tag,.gicon-group,.gicon-weibo,.gicon-profile,.gicon-avatar,.gicon-security,.gicon-external_account,.gicon-focus-actived,.gicon-focused-actived,.gicon-blog-actived,.gicon-answer-actived,.gicon-question-actived,.gicon-post-actived,.gicon-news-actived,.gicon-tag-actived,.gicon-group-actived,.gicon-weibo-actived,.gicon-profile-actived,.gicon-avatar-actived,.gicon-security-actived,.gicon-external_account-actived,.gicon-notice,.gicon-remind,.gicon-settings,.gicon-message,.gicon-draft,.gicon-notice-actived,.gicon-remind-actived,.gicon-settings-actived,.gicon-message-actived,.gicon-draft-actived,.gicon-notice-unread,.gicon-remind-unread,.gicon-unread,.gicon-notice-unread-actived,.gicon-remind-unread-actived,.gicon-search,.gicon-sina,.gicon-qq,.gicon-rr,.gicon-lsina,.gicon-lqq,.gicon-lrr,.gicon-binded,.gicon-bind,.gicon-unbind,.gicon-close,.gicon-rss,.gicon-prev,.gicon-next,.gicon-share-rr,.gicon-share-db,.gicon-share-qzone,.gicon-share-qqmb,.gicon-share-sina,.gicon-share-lrr,.gicon-share-lsina,.gicon-share-ldb,.gicon-share-lqzone,.gicon-share-lqqmb,.icon-close,.icon-close:hover,.gicon-members,.gicon-blacklist,.gicon-audit,.gicon-group_settings,.gicon-demote_member,.gicon-promote_admin,.gicon-demote_blacklist,.gicon-demote_group,.gicon-promote_blacklist,.gicon-top,.gicon-best {
-	background:url('/staticFile/img/4-icon.png') transparent no-repeat;
+	background:url('../img/4-icon.png') transparent no-repeat;
 	display:inline-block;
 	*zoom:1;
 	overflow:hidden;
@@ -1762,7 +1762,7 @@ a.gicon-next {
 	font-family:"Microsoft YaHei","WenQuanYi Micro Hei",SimHei,tohoma,sans-serif;
 	color:#999;
 	cursor:pointer;
-	background:url(/staticFile/img/4-button.png) no-repeat 0 0
+	background:url(../img/4-button.png) no-repeat 0 0
 }
 button.gbtn,button.gbtn-primary,button.gbtn-bprimary,input.gbtn,input.gbtn-primary,input.gbtn-bprimary {
 	border:0 none
@@ -1798,7 +1798,7 @@ button.gbtn,button.gbtn-primary,button.gbtn-bprimary,input.gbtn,input.gbtn-prima
 	background-position:-330px -66px
 }
 .gbtn-ext {
-	background:url(/staticFile/img/4-button-ext.png) repeat-x 0 0;
+	background:url(../img/4-button-ext.png) repeat-x 0 0;
 	padding:0 12px;
 	_height:32px;
 	line-height:32px;
@@ -1807,7 +1807,7 @@ button.gbtn,button.gbtn-primary,button.gbtn-bprimary,input.gbtn,input.gbtn-prima
 	position:relative
 }
 .gbtn-ext-b,.gbtn-ext-a,.gbtn-ext:before,.gbtn-ext:after {
-	background:url(/staticFile/img/4-button.png) no-repeat -74px 0;
+	background:url(../img/4-button.png) no-repeat -74px 0;
 	content:"";
 	height:32px;
 	position:absolute;
@@ -1946,7 +1946,7 @@ input.gbtn-caret-r,input.gbtn-caret-l,button.gbtn-caret-l,button.gbtn-caret-r {
 	right:auto
 }
 .gbtn-join-gray {
-	background:url(/staticFile/img/4-button.png) 0 -260px no-repeat;
+	background:url(../img/4-button.png) 0 -260px no-repeat;
 	width:45px;
 	heigth:22px;
 	line-height:22px;
@@ -2169,7 +2169,7 @@ input.gbtn-caret-r,input.gbtn-caret-l,button.gbtn-caret-l,button.gbtn-caret-r {
 	color:#ccc
 }
 .guokr {
-	background:url(/staticFile/img/4-guokr-bg.png) no-repeat scroll center top #d6eff9;
+	background:url(../img/4-guokr-bg.png) no-repeat scroll center top #d6eff9;
 	height:10px
 }
 .gheader-wp {
@@ -2191,7 +2191,7 @@ input.gbtn-caret-r,input.gbtn-caret-l,button.gbtn-caret-l,button.gbtn-caret-r {
 	padding-left:30px
 }
 .gheader-wp .gheader-logo {
-	background:url(/staticFile/img/4-logo.png) no-repeat scroll 0 0 transparent;
+	background:url(../img/4-logo.png) no-repeat scroll 0 0 transparent;
 	height:35px;
 	width:118px;
 	line-height:10em;
@@ -2441,7 +2441,7 @@ input.gbtn-caret-r,input.gbtn-caret-l,button.gbtn-caret-l,button.gbtn-caret-r {
     height:16px;
     overflow:hidden;
     text-indent:-9999px;
-    background:url(/staticFile/img/small.gif?v2.8) no-repeat -16px -560px;
+    background:url(../img/small.gif?v2.8) no-repeat -16px -560px;
     display: block;
     right: 20px;
     top: 20px;
@@ -2487,13 +2487,13 @@ color: #666;
 
 .validate-option {color: #808080 }
 .validate-error {color: #fe2617 }
-.extra-tips .validate-error , .extra-tips .validate-option { padding-left: 10px; background: url(/staticFile/img/tips_arrow.gif) no-repeat;display:none;}
+.extra-tips .validate-error , .extra-tips .validate-option { padding-left: 10px; background: url(../img/tips_arrow.gif) no-repeat;display:none;}
 .extra-tips .validate-error { background-position: left -51px }
 .extra-tips .validate-option { background-position: left 5px }
 
 .gui-block .tip{
-background: url("/staticFile/img/ico_warn.png?id=1341302813656");
-_background: url("/staticFile/img/ico_warn.gif?id=1341302813656");
+background: url("../img/ico_warn.png?id=1341302813656");
+_background: url("../img/ico_warn.gif?id=1341302813656");
 margin: 0 3px 0 0;
 overflow: hidden;
 display: inline-block;
@@ -2549,7 +2549,7 @@ color: white;
 }
 
 .tops {
-background: url(/staticFile/img/tops.jpg) no-repeat center center;
+background: url(../img/tops.jpg) no-repeat center center;
 }
 .backToTop {
 display: none;

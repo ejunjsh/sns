@@ -12,8 +12,8 @@ var tag = function() {
 				
 			
 				KindEditor.create('#'+$textarea.attr("id"), {
-					    uploadJson:'/ajax/keImageUpload/upload',
-						cssPath : ['/staticFile/css/kind-code.css'],
+					    uploadJson:application.contextPath+ '/ajax/keImageUpload/upload',
+						cssPath : [application.contextPath+ '/staticFile/css/kind-code.css'],
 						afterBlur: function()
 						{
 							this.sync();
@@ -43,7 +43,7 @@ var tag = function() {
 			    	{
 			    	if (!lib.disableBtn($button)) {
 			    		$.ajax({
-							url : "/ajax/tag/doEdit",
+							url : application.contextPath+ "/ajax/tag/doEdit",
 							datatype : "json",
 							cache : false,
 							data : {
@@ -99,7 +99,7 @@ var tag = function() {
 		doFollow : function(ctrl, params) {
 			if (!lib.disableBtn($(ctrl))) {
 				$.ajax({
-					url : "/ajax/tag/doFollow",
+					url :application.contextPath+  "/ajax/tag/doFollow",
 					datatype : "json",
 					cache : false,
 					data : {
@@ -152,7 +152,7 @@ var tag = function() {
 		doUnfollow : function(ctrl, params) {
 			if (!lib.disableBtn($(ctrl))) {
 				$.ajax({
-					url : "/ajax/tag/doUnfollow",
+					url : application.contextPath+ "/ajax/tag/doUnfollow",
 					datatype : "json",
 					cache : false,
 					data : {
@@ -200,7 +200,7 @@ var tag = function() {
 		doFollowUser : function(ctrl, params) {
 			if (!lib.disableBtn($(ctrl))) {
 				$.ajax({
-					url : "/ajax/user/doFollow",
+					url : application.contextPath+ "/ajax/user/doFollow",
 					datatype : "json",
 					cache : false,
 					data : {
@@ -253,7 +253,7 @@ var tag = function() {
 		doUnfollowUser : function(ctrl, params) {
 			if (!lib.disableBtn($(ctrl))) {
 				$.ajax({
-					url : "/ajax/user/doUnfollow",
+					url : application.contextPath+ "/ajax/user/doUnfollow",
 					datatype : "json",
 					cache : false,
 					data : {
@@ -300,7 +300,7 @@ var tag = function() {
 		},
 		uploadTagImg:function(ctrl, params)
 		{
-			popWinUploader.show("/ajax/fileUpload/uploadToTemporary",function(json){
+			popWinUploader.show(application.contextPath+ "/ajax/fileUpload/uploadToTemporary",function(json){
 				  $("#tagAvatar").attr("src",json.data);
                   popWin.confirmShow("是否保存？",function(){
                 	  $ctrl=$(ctrl);

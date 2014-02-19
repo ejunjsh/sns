@@ -1,6 +1,6 @@
 <div class="pageContent">
 	
-	<form method="post" action="/admin/embedPage/group/doGroup" class="pageForm required-validate" onsubmit="return doGroupCallback(this)">
+	<form method="post" action="${request.contextPath}/admin/embedPage/group/doGroup" class="pageForm required-validate" onsubmit="return doGroupCallback(this)">
 		<div class="pageFormContent nowrap" layoutH="58">
                         <@s.if test="group!=null&&group.id>0">
                         <input name="group.id" value="<@s.property value="group.id" />" type="hidden" />
@@ -38,7 +38,7 @@
 			<dl>
 				<dt>分类：</dt>
 				<dd>
-					<input type="text"  suggesturl="/admin/embedPage/group/getGroupCategoryByKey" suggestfields="name" callBack="selectCategoryCallback" class="textInput" autocomplete="off">
+					<input type="text"  suggesturl="${request.contextPath}/admin/embedPage/group/getGroupCategoryByKey" suggestfields="name" callBack="selectCategoryCallback" class="textInput" autocomplete="off">
 					<@s.iterator value="group.categorys">
 				     <span id="category<@s.property value="id" />" class="tag"><@s.property value="name" /><a href="javascript: void 0;" class="icon-close" title="移除分类" onclick="$(this).parent().remove();">X</a><input type="hidden" name="categorys" value="<@s.property value="id" />"></span>
 				    </@s.iterator>

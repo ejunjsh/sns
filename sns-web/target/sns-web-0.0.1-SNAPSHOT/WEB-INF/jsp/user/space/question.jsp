@@ -10,7 +10,7 @@
 <title><s:property value="spaceUser.nickName" />主页 - XX网</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/user.css"
+	href="<%=request.getContextPath()%>/staticFile/css/user.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -19,7 +19,7 @@
  <%@ include file="/WEB-INF/jsp/user/space/common/leftSize.jsp"%>
             <div class="main gprefix-1 gspan-25">
             <div class="gbtitle">
-        <h2><a href="/i/<s:property value="spaceUser.id" />/" class="gbtitle-link">个人主页</a><span class="entities">&gt;</span>提问<span class="gbtitle-more">（全部<s:property value="spaceUser.questionCount" />个）</span></h2>
+        <h2><a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/" class="gbtitle-link">个人主页</a><span class="entities">&gt;</span>提问<span class="gbtitle-more">（全部<s:property value="spaceUser.questionCount" />个）</span></h2>
     </div>
  <ul class="ask-list">
        <s:iterator value="myQuestions">
@@ -34,13 +34,13 @@
                 
             </div>
             <div class="ask-list-detials">
-                <h2><a href="/question/<s:property value="id"/>/"><s:property value="title"/></a></h2>
+                <h2><a href="<%=request.getContextPath()%>/question/<s:property value="id"/>/"><s:property value="title"/></a></h2>
                 <div class="ask-list-legend">
                     <p class="ask-list-tags">
                     标签：
                     
                       <s:iterator value="tags" status="st">  
-                        <a href="/tag/<s:property value="cnSpell"/>/" target="_blank"><s:property value="name"/></a>
+                        <a href="<%=request.getContextPath()%>/tag/<s:property value="cnSpell"/>/" target="_blank"><s:property value="name"/></a>
                         <s:if test="!#st.last">
                         <span class="split">|</span>
                         </s:if>
@@ -60,7 +60,7 @@
 </div>
 	    <%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/space.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/space.js"></script>
 </div>
 </body>
 </html>

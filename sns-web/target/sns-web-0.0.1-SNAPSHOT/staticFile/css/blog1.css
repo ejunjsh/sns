@@ -357,7 +357,7 @@
     display:inline-block;
     width:10px;
     height:10px;
-    background:url(/staticFile/img/d.gif) no-repeat center center
+    background:url(../img/d.gif) no-repeat center center
 }
 .post-detail {
     padding:1.5em 0 3em;

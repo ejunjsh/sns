@@ -9,7 +9,7 @@
 <title>XX问题- 等待回答</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/ask1.css" rel="stylesheet" />
+	href="<%=request.getContextPath()%>/staticFile/css/ask1.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="container">
@@ -31,13 +31,13 @@
                 
             </div>
             <div class="ask-list-detials">
-                <h2><a href="/question/<s:property value="id"/>/"><s:property value="title"/></a></h2>
+                <h2><a href="<%=request.getContextPath()%>/question/<s:property value="id"/>/"><s:property value="title"/></a></h2>
                 <div class="ask-list-legend">
                     <p class="ask-list-tags">
                     标签：
                     
                       <s:iterator value="tags" status="st">  
-                        <a href="/tag/<s:property value="cnSpell"/>/" target="_blank"><s:property value="name"/></a>
+                        <a href="<%=request.getContextPath()%>/tag/<s:property value="cnSpell"/>/" target="_blank"><s:property value="name"/></a>
                         <s:if test="!#st.last">
                         <span class="split">|</span>
                         </s:if>
@@ -56,7 +56,7 @@
 	</div>
 	 <%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/question.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/question.js"></script>
 	</div>
 </body>
 </html>

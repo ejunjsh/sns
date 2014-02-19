@@ -1,5 +1,5 @@
 <div class="pageHeader">
-	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="/admin/embedPage/question/searchQuestion" method="post">
+	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="${request.contextPath}/admin/embedPage/question/searchQuestion" method="post">
 	<input type="hidden" name="params.pageIndex" value="${params.pageIndex+1}" />
 	<input type="hidden" name="params.pageSize" value="${params.pageSize}" />
 	<input type="hidden" name="params.order" value="${params.order}" />
@@ -26,9 +26,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" width="650" height="550" title="添加问题" mask="true" resource="tag.js,question.js"  rel="addQuestion" href="/admin/embedPage/question/doQuestion" target="dialog"><span>添加</span></a></li>
+			<li><a class="add" width="650" height="550" title="添加问题" mask="true" resource="tag.js,question.js"  rel="addQuestion" href="${request.contextPath}/admin/embedPage/question/doQuestion" target="dialog"><span>添加</span></a></li>
 			<li><a class="delete" href="demo/common/ajaxDone.html?uid={sid_user}" target="ajaxTodo" title="确定要删除吗？" warn="请选择一个用户"><span>删除</span></a></li>
-			<li><a class="edit" width="650" height="550" title="修改问题" mask="true" resource="tag.js,question.js"  rel="editQuestion" href="/admin/embedPage/question/doQuestion?question.id={qid}" target="dialog" warn="请选择一个问题"><span>修改</span></a></li>
+			<li><a class="edit" width="650" height="550" title="修改问题" mask="true" resource="tag.js,question.js"  rel="editQuestion" href="${request.contextPath}/admin/embedPage/question/doQuestion?question.id={qid}" target="dialog" warn="请选择一个问题"><span>修改</span></a></li>
 		</ul>
 	</div>
 

@@ -10,7 +10,7 @@
 <title>xx网站 - <s:property value="article.title"/></title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/site.css"
+	href="<%=request.getContextPath()%>/staticFile/css/site.css"
 	rel="stylesheet" />
 	<link type="text/css"
 	href="<%=request.getContextPath()%>/staticFile/js/sh/sh.css"
@@ -23,10 +23,10 @@
            <div class="gbreadcrumb">
                 <ul>
                     <li>
-                    <a href="/site/all">主题站</a>
+                    <a href="<%=request.getContextPath()%>/site/all">主题站</a>
                     </li>
                     <li>
-                    <a href="/site/<s:property value="article.articleTopic.id"/>/"><s:property value="article.articleTopic.name"/></a>
+                    <a href="<%=request.getContextPath()%>/site/<s:property value="article.articleTopic.id"/>/"><s:property value="article.articleTopic.name"/></a>
                     </li>
                     <li>
                      <s:property value="article.title"/>
@@ -37,7 +37,7 @@
            <div class="content-th">
               <h1 id="articleTitle"><s:property value="article.title"/></h1>
 				<div class="content-th-info">
-				<a href="/i/<s:property value="article.postedByUserId"/>/" title="<s:property value="article.postedByUser.nickName"/>"><s:property value="article.postedByUser.nickName"/></a>
+				<a href="<%=request.getContextPath()%>/i/<s:property value="article.postedByUserId"/>/" title="<s:property value="article.postedByUser.nickName"/>"><s:property value="article.postedByUser.nickName"/></a>
                  <span><s:property value="article.postedDateF"/></span>
 				</div>
            </div>
@@ -60,10 +60,10 @@
         </p>
         <ul class="content-titles gclear">
                     <s:if test="preArticle!=null&&preArticle.id>0">
-                    <li class="gfl gellipsis">上一篇：<a href="/article/<s:property value="preArticle.id" />/"><s:property value="preArticle.title" /></a></li>
+                    <li class="gfl gellipsis">上一篇：<a href="<%=request.getContextPath()%>/article/<s:property value="preArticle.id" />/"><s:property value="preArticle.title" /></a></li>
                     </s:if>
                     <s:if test="nextArticle!=null&&nextArticle.id>0">
-                    <li class="gfr gellipsis">下一篇：<a href="/article/<s:property value="nextArticle.id" />/"><s:property value="nextArticle.title" /></a></li>
+                    <li class="gfr gellipsis">下一篇：<a href="<%=request.getContextPath()%>/article/<s:property value="nextArticle.id" />/"><s:property value="nextArticle.title" /></a></li>
                     </s:if>
                 </ul>
                 <div class="recommend-articles">
@@ -72,8 +72,8 @@
                     <s:iterator value="relatedArticles" var="relatedArticle" status="st"> 
                     <s:if test="#st.count<=4">
                     <li>
-                    <a target="_blank" href="/article/<s:property value="#relatedArticle.id" />/"><img height="102" width="132" title="<s:property value="#relatedArticle.title" />" alt="<s:property value="#relatedArticle.title" />" src="<s:property value="#relatedArticle.cover160" />"></a>
-                        <a target="_blank" href="/<s:property value="#relatedArticle.id" />/"><s:property value="#relatedArticle.title" /></a>
+                    <a target="_blank" href="<%=request.getContextPath()%>/article/<s:property value="#relatedArticle.id" />/"><img height="102" width="132" title="<s:property value="#relatedArticle.title" />" alt="<s:property value="#relatedArticle.title" />" src="<s:property value="#relatedArticle.cover160" />"></a>
+                        <a target="_blank" href="<%=request.getContextPath()%>/<s:property value="#relatedArticle.id" />/"><s:property value="#relatedArticle.title" /></a>
                     </li>
                     </s:if>
                     </s:iterator>
@@ -107,14 +107,14 @@
               <s:iterator value="comments" var="comment" status="st">  
                 <li id="comment<s:property value="#comment.id"/>">
                     <div class="cmt-img cmtImg pt-pic">
-                        <a target="_blank" title="<s:property value="#comment.postedByUser.nickName"/>" href="/i/<s:property value="#comment.postedByUserId"/>/">
+                        <a target="_blank" title="<s:property value="#comment.postedByUser.nickName"/>" href="<%=request.getContextPath()%>/i/<s:property value="#comment.postedByUserId"/>/">
                             <img height="48" width="48" src="<s:property value="#comment.postedByUser.avatar48"/>">
                         </a>
                         <span class="cmt-floor"><s:property value="pageSize*(pageNo-1)+#st.count"/>楼</span>
                     </div>
                     <div class="pt-txt">
                         <span class="cmt-info"><s:property value="#comment.postedDateF"/></span>
-                        <a target="_blank" href="/i/<s:property value="#comment.postedByUserId"/>/" class="cmt-author cmtAuthor"><s:property value="#comment.postedByUser.nickName"/></a>
+                        <a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="#comment.postedByUserId"/>/" class="cmt-author cmtAuthor"><s:property value="#comment.postedByUser.nickName"/></a>
                         <div class="cmt-content cmtContent"><s:property value="#comment.contentWithAtLink" escape="false" /></div>
                         <span class="cmt-do">
                             
@@ -138,7 +138,7 @@
 						</p>
 						</s:if>
 			<s:else>
-			 <form action="/article/<s:property value="article.id"/>/newComment" method="POST" id="replyForm">
+			 <form action="<%=request.getContextPath()%>/article/<s:property value="article.id"/>/newComment" method="POST" id="replyForm">
                          <textarea  name="articleComment.content" id="editor"></textarea>
                          <input type="submit" data-operation="addArticleComment" value="发布" class="gbtn-primary">
                         </form>
@@ -152,7 +152,7 @@
         </div>
         <ul id="recommendArticle" class="related_article">
         <s:iterator value="relatedArticles"> 
-             <li><a target="_blank" href="/article/<s:property value="id"/>/"><s:property value="title"/></a>作者：<span class="related_article-author"><s:property value="postedByUser.nickName"/></span></li>
+             <li><a target="_blank" href="<%=request.getContextPath()%>/article/<s:property value="id"/>/"><s:property value="title"/></a>作者：<span class="related_article-author"><s:property value="postedByUser.nickName"/></span></li>
         </s:iterator>
         </ul>
             <div class="side-title">
@@ -160,9 +160,9 @@
             </div>
             <ul class="side-author">
                 <li>
-                <a class="pt-pic" title="<s:property value="article.postedByUser.nickName" />" target="_blank" href="/i/<s:property value="article.postedByUserId" />/"><img height="48" width="48" src="<s:property value="article.postedByUser.avatar48" />" alt="<s:property value="article.postedByUser.nickName" />"></a>
+                <a class="pt-pic" title="<s:property value="article.postedByUser.nickName" />" target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="article.postedByUserId" />/"><img height="48" width="48" src="<s:property value="article.postedByUser.avatar48" />" alt="<s:property value="article.postedByUser.nickName" />"></a>
                 <div class="pt-txt">
-                    <h3><a target="_blank" href="/i/<s:property value="article.postedByUserId" />/"><s:property value="article.postedByUser.nickName" /></a></h3>
+                    <h3><a target="_blank" href="<%=request.getContextPath()%>/i/<s:property value="article.postedByUserId" />/"><s:property value="article.postedByUser.nickName" /></a></h3>
                     <span><s:property value="article.postedByUser.followedCount" />人关注</span>
                     <p class="pt-txt-d"><s:property value="article.postedByUser.title" /></p>
                 </div>

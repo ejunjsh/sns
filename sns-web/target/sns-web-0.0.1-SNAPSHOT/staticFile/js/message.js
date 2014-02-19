@@ -10,7 +10,7 @@ var message = function() {
 			popWin.confirmShow(params.confirm, function() {
 			if (!lib.disableBtn($(ctrl))) {
 				$.ajax({
-					url : "/ajax/user/doDeleteGroupMessage",
+					url : application.contextPath+"/ajax/user/doDeleteGroupMessage",
 					datatype : "json",
 					cache : false,
 					data : {

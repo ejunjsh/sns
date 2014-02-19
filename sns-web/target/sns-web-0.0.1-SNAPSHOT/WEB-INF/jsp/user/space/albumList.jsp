@@ -10,10 +10,10 @@
 <title><s:property value="spaceUser.nickName" />主页 - XX网</title>
 <%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <link type="text/css"
-	href="/staticFile/css/user.css"
+	href="<%=request.getContextPath()%>/staticFile/css/user.css"
 	rel="stylesheet" />
 	<script type="text/javascript"
-			src="/staticFile/js/photoUtils.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/photoUtils.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -21,7 +21,7 @@
  <%@ include file="/WEB-INF/jsp/user/space/common/leftSize.jsp"%>
             <div class="main gprefix-1 gspan-25">
             <div class="gbtitle">
-        <h2><a href="/i/<s:property value="spaceUser.id" />/" class="gbtitle-link">个人主页</a><span class="entities">&gt;</span>相册<span class="gbtitle-more">（全部图片<s:property value="spaceUser.photoCount" />个）</span></h2>
+        <h2><a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/" class="gbtitle-link">个人主页</a><span class="entities">&gt;</span>相册<span class="gbtitle-more">（全部图片<s:property value="spaceUser.photoCount" />个）</span></h2>
         <s:if test="spaceUser.id==curUser.id">
         <a href="javascript:void(0)" data-operation="addAlbum" class="gbtn-primary"><b>+</b>相册</a>
         </s:if>
@@ -30,9 +30,9 @@
     <s:iterator value="myAlbums">
       <li>
 <div class="c">
-<a href="/i/<s:property value="spaceUser.id" />/album/<s:property value="id" />" ><img onload="bindMovePhoto(this);" onerror="lib.errorImg(this)" src="<s:property value="coverThumbnail" />" alt="<s:property value="title" />"></a>
+<a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/album/<s:property value="id" />" ><img onload="bindMovePhoto(this);" onerror="lib.errorImg(this)" src="<%=request.getContextPath()%><s:property value="coverThumbnail" />" alt="<s:property value="title" />"></a>
 </div>
-<p class="ptn"><a href="/i/<s:property value="spaceUser.id" />/album/<s:property value="id" />" class="xi2"><s:property value="title" /></a> (<s:property value="photoCount" />) </p>
+<p class="ptn"><a href="<%=request.getContextPath()%>/i/<s:property value="spaceUser.id" />/album/<s:property value="id" />" class="xi2"><s:property value="title" /></a> (<s:property value="photoCount" />) </p>
 <span> <s:property value="updatedDateF" /></span></li>
     </s:iterator>
     </ul>
@@ -42,7 +42,7 @@
 </div>
 	    <%@ include file="/WEB-INF/jsp/common/bottom.jsp"%>
 		<script type="text/javascript"
-			src="/staticFile/js/space.js"></script>
+			src="<%=request.getContextPath()%>/staticFile/js/space.js"></script>
 						<s:if test="spaceUser.id==curUser.id">
    <script type="text/javascript">
    $(function(){
